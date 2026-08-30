@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@500;700&display=swap');
+
+:root {
+    --bg-color: #06060c;
+    --primary-color: #00f3ff;
+    --primary-glow: rgba(0, 243, 255, 0.4);
+    --error-color: #ff003c;
+    --text-main: #e0e0e0;
+    --container-bg: rgba(12, 12, 20, 0.85);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Fira Code', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Efeito de grade tecnológica ao fundo */
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Controle de Exibição das Telas */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.6s ease-out;
+    width: 100%;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Container Principal (Card) */
+.container {
+    background: var(--container-bg);
+    padding: 3rem 2rem;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 25px var(--primary-glow);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    width: 90%;
+}
+
+.icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Tipografia */
+h1, h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-glow);
+    letter-spacing: 2px;
+}
+
+h1 { font-size: 2.8rem; margin-bottom: 1rem; }
+h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    color: #a0a0b0;
+}
+
+.prompt-text {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #a0a0b0;
+}
+
+/* Botões Cyberpunk */
+.cyber-button {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.cyber-button:hover {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Campo de Input de Nome */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #000;
+    border: 1px solid #333;
+    padding: 12px 15px;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    transition: border 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.prefix {
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.1rem;
+    width: 100%;
+    outline: none;
+}
+
+input::placeholder {
+    color: #444;
+}
+
+/* Validação */
+.error-msg {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px rgba(255, 0, 60, 0.4);
+}
+
+/* Animação de Transição */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade básica para telas menores */
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+    .prefix { display: none; /* Oculta o prefixo no celular para ganhar espaço */ }
+}
+
+/* --- ESTILOS DA TELA DA PARTIDA --- */
+.game-container {
+    max-width: 800px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+}
+
+.badge {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid var(--primary-color);
+    font-weight: bold;
+}
+
+.timer {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #ffb800; /* Amarelo de alerta tecnológico */
+    text-shadow: 0 0 10px rgba(255, 184, 0, 0.5);
+}
+
+.pergunta-box {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.botoes-resposta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-op {
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+/* Cores ao selecionar a resposta */
+.btn-op.selected-true {
+    background: #00ff66;
+    color: #000;
+    border-color: #00ff66;
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.btn-op.selected-false {
+    background: var(--error-color);
+    color: #fff;
+    border-color: var(--error-color);
+    box-shadow: 0 0 15px var(--error-color);
+}
+
+/* Desabilita os botões após a escolha */
+.btn-op:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.btn-op.selected-true:disabled, .btn-op.selected-false:disabled {
+    opacity: 1; /* Mantém o selecionado aceso */
+}
+
+/* Caixa de Feedback (Explicação) */
+.feedback-box {
+    background: rgba(0, 0, 0, 0.7);
+    border-left: 5px solid var(--primary-color);
+    padding: 1.5rem;
+    text-align: left;
+    animation: fadeIn 0.4s ease-out;
+    border-radius: 0 4px 4px 0;
+}
+
+.feedback-box.correct { border-left-color: #00ff66; }
+.feedback-box.incorrect { border-left-color: var(--error-color); }
+
+#feedback-titulo {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.correct #feedback-titulo { color: #00ff66; text-shadow: 0 0 5px #00ff66; }
+.incorrect #feedback-titulo { color: var(--error-color); text-shadow: 0 0 5px var(--error-color); }
+
+#feedback-explicacao {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-size: 1rem;
+    align-self: flex-end;
+    display: block;
+    margin-left: auto;
+}
+
+/* --- ESTILOS DA TELA DE RESULTADO E RANKING --- */
+.result-container {
+    max-width: 700px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box.highlight-box {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #a0a0b0;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.correct-color { color: #00ff66; }
+.error-color { color: var(--error-color); }
+
+/* Seção de Ranking */
+.ranking-section {
+    margin: 2rem 0;
+    background: #000;
+    border: 1px solid #222;
+    border-radius: 4px;
+    padding: 1.5rem;
+}
+
+.ranking-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.ranking-header {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr;
+    font-size: 0.8rem;
+    color: #666;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.ranking-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.ranking-item {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 1rem;
+    text-align: left;
+    align-items: center;
+}
+
+/* Destaque para os 3 primeiros colocados */
+.ranking-item.top-1 { color: #ffd700; font-weight: bold; text-shadow: 0 0 5px rgba(255, 215, 0, 0.4); }
+.ranking-item.top-2 { color: #c0c0c0; font-weight: bold; }
+.ranking-item.top-3 { color: #cd7f32; font-weight: bold; }
+
+/* Scrollbar personalizada para o ranking */
+.ranking-list::-webkit-scrollbar { width: 6px; }
+.ranking-list::-webkit-scrollbar-track { background: #000; }
+.ranking-list::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 3px; }
+/* Adicionado na integracao com o back-end: estado desabilitado do botao
+   principal (usado enquanto o front espera a resposta da API). */
+.cyber-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(40%);
+}

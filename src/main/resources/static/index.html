@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER CHALLENGE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="tela-inicial" class="screen active">
+        <div class="container">
+            <div class="icon">🛡️</div>
+            <h1>CYBER CHALLENGE</h1>
+            <p class="subtitle">Teste seus conhecimentos. Proteja seus dados.</p>
+            <button id="btn-iniciar" class="cyber-button">INICIAR DESAFIO</button>
+        </div>
+    </section>
+
+    <section id="tela-cadastro" class="screen hidden">
+        <div class="container">
+            <div class="icon">💻</div>
+            <h2>IDENTIFICAÇÃO DE USUÁRIO</h2>
+            <p class="prompt-text">Insira suas credenciais para iniciar o teste:</p>
+
+            <div class="input-group">
+                <span class="prefix">USER@CYBER:~#</span>
+                <input type="text" id="input-nome" placeholder="[ Digite seu nome ]" autocomplete="off">
+            </div>
+
+            <span id="erro-nome" class="error-msg hidden">⚠️ ERRO: O nome é obrigatório para acessar o sistema.</span>
+            <!-- Banner de erro para falhas de comunicação com a API (adicionado na integração) -->
+            <span id="erro-api" class="error-msg hidden">⚠️ Não foi possível conectar ao servidor. Tente novamente.</span>
+
+            <button id="btn-continuar" class="cyber-button">CONTINUAR</button>
+        </div>
+    </section>
+
+    <!-- TELA DA PARTIDA -->
+    <section id="tela-partida" class="screen hidden">
+        <div class="container game-container">
+            <!-- Cabeçalho com Número da Pergunta e Cronômetro -->
+            <div class="game-header">
+                <span id="contador-pergunta" class="badge">PERGUNTA 1 DE 5</span>
+                <span id="cronometro" class="timer">0.00s</span>
+            </div>
+
+            <!-- Pergunta -->
+            <div class="pergunta-box">
+                <p id="texto-pergunta">Carregando pergunta...</p>
+            </div>
+
+            <!-- Botões de Resposta -->
+            <div class="botoes-resposta">
+                <button id="btn-verdadeiro" class="cyber-button btn-op">VERDADEIRO</button>
+                <button id="btn-falso" class="cyber-button btn-op">FALSO</button>
+            </div>
+
+            <!-- Caixa de Explicação (Oculta por padrão) -->
+            <div id="feedback-box" class="feedback-box hidden">
+                <h3 id="feedback-titulo">RESULTADO</h3>
+                <p id="feedback-explicacao">A explicação aparecerá aqui.</p>
+                <button id="btn-avancar" class="cyber-button btn-small hidden">AVANÇAR >></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA DE RESULTADO FINAL -->
+    <section id="tela-resultado" class="screen hidden">
+        <div class="container result-container">
+            <h2>DESAFIO CONCLUÍDO!</h2>
+            <p id="res-nome" class="subtitle">Agente: [Nome]</p>
+
+            <!-- Grid de Estatísticas -->
+            <div class="stats-grid">
+                <div class="stat-box highlight-box">
+                    <span class="stat-label">PONTUAÇÃO</span>
+                    <span id="res-pontuacao" class="stat-value">0 / 10</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">ACERTOS</span>
+                    <span id="res-acertos" class="stat-value correct-color">0 / 5</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">ERROS</span>
+                    <span id="res-erros" class="stat-value error-color">0 / 5</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">TEMPO TOTAL</span>
+                    <span id="res-tempo" class="stat-value">0.0s</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">MÉDIA / PERGUNTA</span>
+                    <span id="res-media" class="stat-value">0.0s</span>
+                </div>
+            </div>
+
+            <!-- Mensagem Dinâmica -->
+            <div id="res-mensagem-box" class="feedback-box">
+                <p id="res-mensagem" style="margin: 0;"></p>
+            </div>
+
+            <!-- Aviso caso o envio para o servidor falhe (adicionado na integração) -->
+            <span id="erro-envio" class="error-msg hidden">⚠️ O resultado não pôde ser salvo no servidor (ranking/dashboard não serão atualizados desta vez).</span>
+
+            <!-- Ranking -->
+            <div class="ranking-section">
+                <h3>🏆 RANKING GERAL</h3>
+                <div class="ranking-header">
+                    <span>POS</span>
+                    <span>NOME</span>
+                    <span>PONTOS</span>
+                    <span>TEMPO</span>
+                </div>
+                <ul id="ranking-list" class="ranking-list">
+                    <!-- O JavaScript vai inserir os jogadores aqui -->
+                </ul>
+            </div>
+
+            <button id="btn-novo-jogador" class="cyber-button">NOVO PARTICIPANTE</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER CHALLENGE — Dashboard</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-wrapper">
+
+        <header class="admin-header">
+            <div class="admin-title">
+                <span class="icon">🛡️</span>
+                <div>
+                    <h1>CYBER CHALLENGE</h1>
+                    <p class="subtitle">Painel administrativo — Dashboard</p>
+                </div>
+            </div>
+            <div class="admin-actions">
+                <a href="../index.html" class="admin-link">↩ Voltar ao jogo</a>
+                <button id="btn-atualizar" class="cyber-button btn-small">ATUALIZAR</button>
+            </div>
+        </header>
+
+        <div id="admin-loading" class="admin-status">Carregando dados do dashboard...</div>
+        <div id="admin-erro" class="error-msg hidden">⚠️ Não foi possível carregar o dashboard. Verifique se o back-end está no ar e tente atualizar.</div>
+        <div id="admin-vazio" class="admin-status hidden">Ainda não há partidas registradas. Jogue o CYBER CHALLENGE para ver os dados aqui.</div>
+
+        <main id="admin-content" class="hidden">
+
+            <!-- INDICADORES GERAIS -->
+            <section class="admin-section">
+                <h2 class="section-title">📊 Indicadores gerais</h2>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span class="kpi-label">Participantes</span>
+                        <span id="kpi-total-participantes" class="kpi-value">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Partidas</span>
+                        <span id="kpi-total-partidas" class="kpi-value">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Pontuação média</span>
+                        <span id="kpi-media-pontuacao" class="kpi-value">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Acertos médios</span>
+                        <span id="kpi-media-acertos" class="kpi-value">0 / 5</span>
+                    </div>
+                    <div class="kpi-card highlight-box">
+                        <span class="kpi-label">Taxa geral de acerto</span>
+                        <span id="kpi-taxa-acerto" class="kpi-value">0%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Tempo médio / partida</span>
+                        <span id="kpi-tempo-medio" class="kpi-value">0.0s</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DESTAQUES DE PERGUNTAS -->
+            <section class="admin-section">
+                <h2 class="section-title">❓ Destaques por pergunta</h2>
+                <div class="highlight-grid">
+                    <div class="highlight-card correct">
+                        <span class="highlight-label">✅ Mais acertada</span>
+                        <p id="dest-mais-acertada" class="highlight-texto">—</p>
+                        <span id="dest-mais-acertada-valor" class="highlight-valor">0%</span>
+                    </div>
+                    <div class="highlight-card incorrect">
+                        <span class="highlight-label">❌ Mais errada</span>
+                        <p id="dest-mais-errada" class="highlight-texto">—</p>
+                        <span id="dest-mais-errada-valor" class="highlight-valor">0%</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="highlight-label">🐢 Maior tempo médio</span>
+                        <p id="dest-maior-tempo" class="highlight-texto">—</p>
+                        <span id="dest-maior-tempo-valor" class="highlight-valor">0.0s</span>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="highlight-label">⚡ Menor tempo médio</span>
+                        <p id="dest-menor-tempo" class="highlight-texto">—</p>
+                        <span id="dest-menor-tempo-valor" class="highlight-valor">0.0s</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DESEMPENHO POR TEMA -->
+            <section class="admin-section">
+                <h2 class="section-title">🗂️ Desempenho por tema</h2>
+                <div class="tema-destaques">
+                    <span class="tema-badge correct">Maior acerto: <strong id="tema-maior-acerto">—</strong></span>
+                    <span class="tema-badge incorrect">Maior erro: <strong id="tema-maior-erro">—</strong></span>
+                </div>
+                <div id="tema-lista" class="tema-lista">
+                    <!-- barras por tema inseridas via JS -->
+                </div>
+            </section>
+
+            <!-- TABELA DETALHADA POR PERGUNTA -->
+            <section class="admin-section">
+                <h2 class="section-title">📋 Detalhamento por pergunta</h2>
+                <div class="tabela-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Pergunta</th>
+                                <th>Tema</th>
+                                <th>Respostas</th>
+                                <th>Acerto</th>
+                                <th>Erro</th>
+                                <th>V / F</th>
+                                <th>Tempo médio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-perguntas-body">
+                            <!-- linhas inseridas via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

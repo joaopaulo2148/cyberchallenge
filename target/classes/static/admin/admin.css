@@ -1,0 +1,311 @@
+/* CYBER CHALLENGE — Dashboard administrativo
+   Reaproveita as variaveis de cor/fonte definidas em ../style.css
+   (--bg-color, --primary-color, --primary-glow, --error-color, --text-main, --container-bg) */
+
+.admin-body {
+    display: block;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    align-items: initial;
+    justify-content: initial;
+    padding: 24px;
+}
+
+.admin-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- CABEÇALHO --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: var(--container-bg);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 25px var(--primary-glow);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+}
+
+.admin-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-title .icon {
+    font-size: 2.2rem;
+}
+
+.admin-title h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-glow);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.admin-title .subtitle {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    opacity: 0.8;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-bottom: 1px dashed var(--primary-color);
+    padding-bottom: 2px;
+}
+
+.admin-link:hover {
+    opacity: 0.8;
+}
+
+.admin-actions .btn-small {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    width: auto;
+}
+
+/* --- ESTADOS (loading / erro / vazio) --- */
+.admin-status {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-main);
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+/* --- SEÇÕES --- */
+.admin-section {
+    background: var(--container-bg);
+    border: 1px solid rgba(0, 243, 255, 0.25);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+/* --- KPIs --- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+}
+
+.kpi-card {
+    background: rgba(0, 243, 255, 0.05);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-radius: 6px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.kpi-card.highlight-box {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.kpi-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
+.kpi-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* --- DESTAQUES DE PERGUNTAS --- */
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.highlight-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.highlight-card.correct {
+    border-left-color: #00ff88;
+}
+
+.highlight-card.incorrect {
+    border-left-color: var(--error-color);
+}
+
+.highlight-label {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.highlight-texto {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    min-height: 2.6em;
+}
+
+.highlight-valor {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+/* --- DESEMPENHO POR TEMA --- */
+.tema-destaques {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+
+.tema-badge {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tema-badge.correct {
+    border-color: #00ff88;
+    color: #00ff88;
+}
+
+.tema-badge.incorrect {
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
+
+.tema-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tema-linha {
+    display: grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+}
+
+.tema-nome {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tema-barra-fundo {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.tema-barra-preenchida {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), #00ff88);
+    box-shadow: 0 0 8px var(--primary-glow);
+}
+
+.tema-percentual {
+    text-align: right;
+    color: var(--primary-color);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+}
+
+/* --- TABELA --- */
+.tabela-wrapper {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.admin-table th {
+    text-align: left;
+    color: var(--primary-color);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    vertical-align: top;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.celula-texto {
+    max-width: 320px;
+}
+
+.tag-acerto {
+    color: #00ff88;
+    font-weight: bold;
+}
+
+.tag-erro {
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 600px) {
+    .admin-body {
+        padding: 12px;
+    }
+    .admin-header {
+        padding: 16px;
+    }
+    .tema-linha {
+        grid-template-columns: 100px 1fr 50px;
+    }
+}
