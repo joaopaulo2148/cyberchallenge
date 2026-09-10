@@ -27,6 +27,19 @@ public class Participante {
     @Column(name = "tempo_medio")
     private Double tempoMedio;
 
+    // MELHORIA: dados adicionais de cadastro do participante (secao 3)
+    private Integer idade;
+
+    // Autoavaliacao de conhecimento em ciberseguranca, de 1 a 10
+    private Integer autoavaliacao;
+
+    // Nivel de dificuldade escolhido para esta partida (1 a 4)
+    private Integer nivel;
+
+    // MELHORIA: nota final da partida, numa escala de 0 a 10 (secao 4)
+    @Column(name = "nota_final")
+    private Double notaFinal;
+
     // Relacionamento 1 para N: Um participante possui varias respostas
     @OneToMany(mappedBy = "participante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas = new ArrayList<>();
@@ -51,6 +64,14 @@ public class Participante {
     public void setTempoTotal(Double tempoTotal) { this.tempoTotal = tempoTotal; }
     public Double getTempoMedio() { return tempoMedio; }
     public void setTempoMedio(Double tempoMedio) { this.tempoMedio = tempoMedio; }
+    public Integer getIdade() { return idade; }
+    public void setIdade(Integer idade) { this.idade = idade; }
+    public Integer getAutoavaliacao() { return autoavaliacao; }
+    public void setAutoavaliacao(Integer autoavaliacao) { this.autoavaliacao = autoavaliacao; }
+    public Integer getNivel() { return nivel; }
+    public void setNivel(Integer nivel) { this.nivel = nivel; }
+    public Double getNotaFinal() { return notaFinal; }
+    public void setNotaFinal(Double notaFinal) { this.notaFinal = notaFinal; }
     public List<Resposta> getRespostas() { return respostas; }
     public void setRespostas(List<Resposta> respostas) { this.respostas = respostas; }
 }

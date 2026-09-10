@@ -1,25 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURAÇÃO DA API ---
-    // Caminho relativo: funciona tanto quando o front é servido pelo próprio
-    // Spring Boot (src/main/resources/static) quanto quando aberto via um
-    // proxy no mesmo domínio. Se for hospedar o front em outro domínio,
-    // troque por uma URL absoluta (ex: 'https://meu-backend:8080/api').
     const API_BASE_URL = '/api';
+
+    // Chave usada no localStorage para lembrar quais perguntas o jogador já
+    // viu no nível atual, para dar mais variedade em "jogar novamente"
+    // (MELHORIA, secao 1). Guardamos por nível porque cada nível tem seu
+    // próprio estoque de perguntas.
+    const CHAVE_HISTORICO = 'cyberchallenge_perguntas_recentes';
 
     // --- ELEMENTOS DAS TELAS ---
     const telaInicial = document.getElementById('tela-inicial');
     const telaCadastro = document.getElementById('tela-cadastro');
+    const telaNivel = document.getElementById('tela-nivel');
     const telaPartida = document.getElementById('tela-partida');
     const telaResultado = document.getElementById('tela-resultado');
+    const telaRanking = document.getElementById('tela-ranking');
+
+    // --- ELEMENTOS MENU ---
+    const btnIniciar = document.getElementById('btn-iniciar');
+    const btnVerRanking = document.getElementById('btn-ver-ranking');
 
     // --- ELEMENTOS CADASTRO ---
-    const btnIniciar = document.getElementById('btn-iniciar');
+    const btnVoltarCadastro = document.getElementById('btn-voltar-cadastro');
     const btnContinuar = document.getElementById('btn-continuar');
     const inputNome = document.getElementById('input-nome');
+    const inputIdade = document.getElementById('input-idade');
+    const inputAutoavaliacao = document.getElementById('input-autoavaliacao');
+    const autoavaliacaoValor = document.getElementById('autoavaliacao-valor');
     const erroNome = document.getElementById('erro-nome');
     const erroApi = document.getElementById('erro-api');
 
+    // --- ELEMENTOS NIVEL ---
+    const btnVoltarNivel = document.getElementById('btn-voltar-nivel');
+    const cardsNivel = document.querySelectorAll('.nivel-card');
+    const erroNivel = document.getElementById('erro-nivel');
+
     // --- ELEMENTOS PARTIDA ---
+    const badgeNivel = document.getElementById('badge-nivel');
     const contadorPergunta = document.getElementById('contador-pergunta');
     const cronometroDisplay = document.getElementById('cronometro');
     const textoPergunta = document.getElementById('texto-pergunta');
@@ -32,19 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- ELEMENTOS RESULTADO & RANKING ---
     const resNome = document.getElementById('res-nome');
+    const resNotaFinal = document.getElementById('res-nota-final');
     const resPontuacao = document.getElementById('res-pontuacao');
     const resAcertos = document.getElementById('res-acertos');
     const resErros = document.getElementById('res-erros');
     const resTempo = document.getElementById('res-tempo');
     const resMedia = document.getElementById('res-media');
+    const resNivel = document.getElementById('res-nivel');
     const resMensagem = document.getElementById('res-mensagem');
     const resMensagemBox = document.getElementById('res-mensagem-box');
     const erroEnvio = document.getElementById('erro-envio');
     const rankingList = document.getElementById('ranking-list');
-    const btnNovoJogador = document.getElementById('btn-novo-jogador');
+    const btnJogarNovamente = document.getElementById('btn-jogar-novamente');
+    const btnVoltarMenu = document.getElementById('btn-voltar-menu');
+
+    // --- ELEMENTOS TELA DE RANKING INDEPENDENTE ---
+    const btnVoltarRanking = document.getElementById('btn-voltar-ranking');
+    const rankingListStandalone = document.getElementById('ranking-list-standalone');
+    const rankingVazio = document.getElementById('ranking-vazio');
+    const erroRanking = document.getElementById('erro-ranking');
+
+    // Nomes de exibição de cada nível (usados na tela de partida/resultado)
+    const NOMES_NIVEL = { 1: 'Leigo', 2: 'Usuário', 3: 'Intermediário', 4: 'Especialista' };
 
     // --- VARIÁVEIS DE JOGO E MEMÓRIA ---
     let nomeJogador = "";
+    let idadeJogador = null;
+    let autoavaliacaoJogador = 5;
+    let nivelEscolhido = null;
     let indicePerguntaAtual = 0;
     let pontuacao = 0;
     let acertos = 0;
@@ -53,31 +85,61 @@ document.addEventListener('DOMContentLoaded', () => {
     let temposRespostas = [];
 
     // Perguntas da partida atual, vindas da API (GET /api/partidas/iniciar).
-    // Cada item: { id, texto, tema, respostaCorreta, explicacao }
+    // Cada item: { id, texto, tema, respostaCorreta, explicacao, nivel }
     let perguntasAtual = [];
 
     // Respostas que serão enviadas para POST /api/partidas/finalizar
     // Cada item: { perguntaId, respostaEscolhida, tempoGasto }
     let respostasParaEnviar = [];
 
-    // --- FLUXOS DE NAVEGAÇÃO ---
+    // --- FLUXO DE NAVEGAÇÃO (secao 5) ---
+    // MENU -> CADASTRO -> ESCOLHA DE NÍVEL -> PARTIDA -> RESULTADO -> RANKING / JOGAR NOVAMENTE / MENU
     btnIniciar.addEventListener('click', () => {
         mudarTela(telaInicial, telaCadastro);
         setTimeout(() => inputNome.focus(), 300);
     });
 
-    btnContinuar.addEventListener('click', processarCadastro);
-    inputNome.addEventListener('keypress', (e) => { if (e.key === 'Enter') processarCadastro(); });
-    inputNome.addEventListener('input', () => {
-        erroNome.classList.add('hidden');
-        erroApi.classList.add('hidden');
+    btnVerRanking.addEventListener('click', () => {
+        mudarTela(telaInicial, telaRanking);
+        carregarTelaRankingIndependente();
     });
 
-    btnNovoJogador.addEventListener('click', () => {
-        // Zera o input e volta direto para o cadastro sem perder o ranking
-        inputNome.value = '';
-        mudarTela(telaResultado, telaCadastro);
-        setTimeout(() => inputNome.focus(), 300);
+    btnVoltarRanking.addEventListener('click', () => {
+        mudarTela(telaRanking, telaInicial);
+    });
+
+    btnVoltarCadastro.addEventListener('click', () => {
+        mudarTela(telaCadastro, telaInicial);
+    });
+
+    inputAutoavaliacao.addEventListener('input', () => {
+        autoavaliacaoValor.innerText = inputAutoavaliacao.value;
+    });
+
+    btnContinuar.addEventListener('click', processarCadastro);
+    inputNome.addEventListener('keypress', (e) => { if (e.key === 'Enter') processarCadastro(); });
+    inputNome.addEventListener('input', limparErrosCadastro);
+    inputIdade.addEventListener('input', limparErrosCadastro);
+
+    function limparErrosCadastro() {
+        erroNome.classList.add('hidden');
+        erroApi.classList.add('hidden');
+    }
+
+    btnVoltarNivel.addEventListener('click', () => {
+        mudarTela(telaNivel, telaCadastro);
+    });
+
+    cardsNivel.forEach(card => {
+        card.addEventListener('click', () => selecionarNivel(parseInt(card.dataset.nivel, 10)));
+    });
+
+    btnJogarNovamente.addEventListener('click', () => {
+        mudarTela(telaResultado, telaNivel);
+    });
+
+    btnVoltarMenu.addEventListener('click', () => {
+        mudarTela(telaResultado, telaInicial);
     });
 
     function mudarTela(telaAtual, novaTela) {
@@ -87,37 +149,78 @@ document.addEventListener('DOMContentLoaded', () => {
         novaTela.classList.add('active');
     }
 
-    async function processarCadastro() {
+    // --- CADASTRO (secao 3) ---
+    function processarCadastro() {
         const nome = inputNome.value.trim();
-        erroNome.classList.add('hidden');
-        erroApi.classList.add('hidden');
+        const idade = parseInt(inputIdade.value, 10);
+        limparErrosCadastro();
 
-        if (nome === '') {
+        // BUG CORRIGIDO/MELHORIA: validação de nome e idade também no
+        // front-end, além da validação definitiva feita no back-end.
+        if (nome === '' || isNaN(idade) || idade < 1 || idade > 120) {
             erroNome.classList.remove('hidden');
             return;
         }
 
         nomeJogador = nome;
+        idadeJogador = idade;
+        autoavaliacaoJogador = parseInt(inputAutoavaliacao.value, 10);
 
-        btnContinuar.disabled = true;
-        btnContinuar.innerText = 'CARREGANDO...';
+        mudarTela(telaCadastro, telaNivel);
+    }
+
+    // --- ESCOLHA DE NÍVEL (secao 2) ---
+    async function selecionarNivel(nivel) {
+        nivelEscolhido = nivel;
+        erroNivel.classList.add('hidden');
+
+        cardsNivel.forEach(c => c.classList.remove('selecionado'));
+        const cardClicado = document.querySelector(`.nivel-card[data-nivel="${nivel}"]`);
+        if (cardClicado) cardClicado.classList.add('selecionado');
+
+        cardsNivel.forEach(c => c.disabled = true);
 
         try {
-            await carregarPerguntasDaApi();
+            await carregarPerguntasDaApi(nivel);
             iniciarPartida();
         } catch (erro) {
             console.error('Falha ao buscar perguntas da API:', erro);
-            erroApi.classList.remove('hidden');
+            erroNivel.classList.remove('hidden');
         } finally {
-            btnContinuar.disabled = false;
-            btnContinuar.innerText = 'CONTINUAR';
+            cardsNivel.forEach(c => c.disabled = false);
         }
     }
 
     // --- INTEGRAÇÃO COM A API ---
 
-    async function carregarPerguntasDaApi() {
-        const resposta = await fetch(`${API_BASE_URL}/partidas/iniciar`);
+    function obterPerguntasRecentes(nivel) {
+        try {
+            const historico = JSON.parse(localStorage.getItem(CHAVE_HISTORICO) || '{}');
+            return historico[nivel] || [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function salvarPerguntasRecentes(nivel, ids) {
+        try {
+            const historico = JSON.parse(localStorage.getItem(CHAVE_HISTORICO) || '{}');
+            historico[nivel] = ids;
+            localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(historico));
+        } catch (e) {
+            // localStorage indisponível (ex: modo privado) — sem problema,
+            // o jogo simplesmente não terá a otimização de variedade extra.
+        }
+    }
+
+    async function carregarPerguntasDaApi(nivel) {
+        // MELHORIA (secao 1): informa ao servidor quais perguntas foram
+        // usadas na última partida deste nível, para tentar evitar repeti-las.
+        const idsRecentes = obterPerguntasRecentes(nivel);
+        const params = new URLSearchParams({ nivel: String(nivel) });
+        idsRecentes.forEach(id => params.append('excluir', id));
+
+        const resposta = await fetch(`${API_BASE_URL}/partidas/iniciar?${params.toString()}`);
         if (!resposta.ok) {
             throw new Error(`GET /partidas/iniciar retornou status ${resposta.status}`);
         }
@@ -126,11 +229,15 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error('A API não retornou nenhuma pergunta.');
         }
         perguntasAtual = perguntas;
+        salvarPerguntasRecentes(nivel, perguntas.map(p => p.id));
     }
 
     async function enviarResultadoParaApi() {
         const payload = {
             nomeParticipante: nomeJogador,
+            idade: idadeJogador,
+            autoavaliacao: autoavaliacaoJogador,
+            nivel: nivelEscolhido,
             respostas: respostasParaEnviar
         };
 
@@ -155,14 +262,33 @@ document.addEventListener('DOMContentLoaded', () => {
         return resposta.json();
     }
 
+    async function carregarTelaRankingIndependente() {
+        erroRanking.classList.add('hidden');
+        rankingVazio.classList.add('hidden');
+        rankingListStandalone.innerHTML = '';
+
+        try {
+            const ranking = await carregarRankingDaApi();
+            if (!ranking || ranking.length === 0) {
+                rankingVazio.classList.remove('hidden');
+                return;
+            }
+            renderizarRanking(ranking, rankingListStandalone);
+        } catch (erro) {
+            console.error('Falha ao carregar ranking:', erro);
+            erroRanking.classList.remove('hidden');
+        }
+    }
+
     // --- LÓGICA DO JOGO ---
     function iniciarPartida() {
-        mudarTela(telaCadastro, telaPartida);
+        mudarTela(telaNivel, telaPartida);
         indicePerguntaAtual = 0;
         pontuacao = 0;
         acertos = 0;
         temposRespostas = [];
         respostasParaEnviar = [];
+        badgeNivel.innerText = `NÍVEL ${nivelEscolhido} · ${NOMES_NIVEL[nivelEscolhido].toUpperCase()}`;
         carregarPergunta();
     }
 
@@ -258,22 +384,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const tempoTotal = temposRespostas.reduce((a, b) => a + b, 0);
         const tempoMedio = tempoTotal / totalPerguntas;
 
+        // MELHORIA (secao 4): nota final de 0 a 10, mesma regra determinística
+        // usada no back-end (acertos / total * 10, arredondada a 1 casa decimal).
+        const notaFinal = Math.round((acertos / totalPerguntas) * 10 * 10) / 10;
+
         resNome.innerText = `Agente: ${nomeJogador}`;
+        resNotaFinal.innerText = notaFinal.toFixed(1);
         resPontuacao.innerText = `${pontuacao} / ${totalPerguntas * 2}`;
         resAcertos.innerText = `${acertos} / ${totalPerguntas}`;
         resErros.innerText = `${erros} / ${totalPerguntas}`;
         resTempo.innerText = `${tempoTotal.toFixed(2)}s`;
         resMedia.innerText = `${tempoMedio.toFixed(2)}s`;
+        resNivel.innerText = `${nivelEscolhido} · ${NOMES_NIVEL[nivelEscolhido]}`;
 
-        // Regra da Mensagem Dinâmica (Item 10)
+        // Regra da Mensagem Dinâmica, agora baseada na nota final (0 a 10)
         resMensagemBox.className = 'feedback-box';
-        if (pontuacao === 10) {
+        if (notaFinal >= 9) {
             resMensagem.innerText = "Excelente! Você demonstrou ótimo conhecimento em Segurança Cibernética.";
             resMensagemBox.classList.add('correct');
-        } else if (pontuacao >= 8) {
+        } else if (notaFinal >= 7) {
             resMensagem.innerText = "Muito bom! Você possui bons conhecimentos, mas ainda existem alguns pontos para revisar.";
             resMensagemBox.classList.add('correct');
-        } else if (pontuacao >= 6) {
+        } else if (notaFinal >= 5) {
             resMensagem.innerText = "Bom começo! Algumas práticas de segurança ainda merecem atenção.";
             resMensagemBox.classList.add('incorrect');
         } else {
@@ -287,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             await enviarResultadoParaApi();
             const ranking = await carregarRankingDaApi();
-            renderizarRanking(ranking);
+            renderizarRanking(ranking, rankingList);
         } catch (erro) {
             console.error('Falha ao salvar/consultar dados no servidor:', erro);
             erroEnvio.classList.remove('hidden');
@@ -296,9 +428,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- LÓGICA DO RANKING (Item 11) ---
     // O ranking agora vem pronto (já ordenado pela regra de negócio) do
-    // back-end via GET /api/partidas/ranking, então aqui só renderizamos.
-    function renderizarRanking(ranking) {
-        rankingList.innerHTML = '';
+    // back-end via GET /api/partidas/ranking. A mesma função de renderização
+    // é reaproveitada tanto na tela de resultado quanto na tela de ranking
+    // independente acessível pelo menu.
+    function renderizarRanking(ranking, elementoLista) {
+        elementoLista.innerHTML = '';
         ranking.forEach((jogador, index) => {
             const li = document.createElement('li');
             li.className = 'ranking-item';
@@ -314,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>${jogador.pontuacao} pts</span>
                 <span>${jogador.tempoTotal.toFixed(2)}s</span>
             `;
-            rankingList.appendChild(li);
+            elementoLista.appendChild(li);
         });
     }
 });

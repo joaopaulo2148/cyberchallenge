@@ -3,8 +3,10 @@ package com.cyberchallenge.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -36,6 +38,23 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalArgument(IllegalArgumentException ex) {
         return ResponseEntity.badRequest().body(corpoErro(HttpStatus.BAD_REQUEST, ex.getMessage(), null));
+    }
+
+    // MELHORIA: parametros de query obrigatorios (ex: "nivel" em
+    // /api/partidas/iniciar) agora retornam uma mensagem clara em vez de um
+    // erro 500 generico quando estao ausentes ou tem um tipo invalido.
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<Map<String, Object>> handleParametroFaltando(MissingServletRequestParameterException ex) {
+        return ResponseEntity.badRequest().body(
+            corpoErro(HttpStatus.BAD_REQUEST, "O parametro obrigatorio '" + ex.getParameterName() + "' nao foi informado.", null)
+        );
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Map<String, Object>> handleParametroInvalido(MethodArgumentTypeMismatchException ex) {
+        return ResponseEntity.badRequest().body(
+            corpoErro(HttpStatus.BAD_REQUEST, "O parametro '" + ex.getName() + "' recebeu um valor invalido.", null)
+        );
     }
 
     @ExceptionHandler(RecursoNaoEncontradoException.class)

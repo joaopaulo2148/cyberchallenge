@@ -82,9 +82,10 @@ public class DashboardService {
                 .mapToInt(Participante::getPontuacao)
                 .average().orElse(0);
 
-        // Cada participante joga exatamente 5 perguntas (regra fixa do jogo)
+        // MELHORIA: cada participante agora joga exatamente 10 perguntas por
+        // partida (regra fixa do jogo, secao 1), com 2 pontos por acerto.
         double mediaAcertos = mediaPontuacao / 2.0;
-        double taxaGeralAcerto = (mediaAcertos / 5.0) * 100.0;
+        double taxaGeralAcerto = (mediaAcertos / 10.0) * 100.0;
 
         double tempoMedioPartidas = participantes.stream()
                 .mapToDouble(Participante::getTempoTotal)

@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('kpi-total-participantes').innerText = ind.totalParticipantes;
         document.getElementById('kpi-total-partidas').innerText = ind.totalPartidas;
         document.getElementById('kpi-media-pontuacao').innerText = ind.mediaPontuacao.toFixed(1);
-        document.getElementById('kpi-media-acertos').innerText = `${ind.mediaAcertos.toFixed(1)} / 5`;
+        document.getElementById('kpi-media-acertos').innerText = `${ind.mediaAcertos.toFixed(1)} / 10`;
         document.getElementById('kpi-taxa-acerto').innerText = `${ind.taxaGeralAcertoPercentual.toFixed(1)}%`;
         document.getElementById('kpi-tempo-medio').innerText = `${ind.tempoMedioPartidasSegundos.toFixed(1)}s`;
     }

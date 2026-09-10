@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- MENU INICIAL (secao 5) -->
     <section id="tela-inicial" class="screen active">
         <div class="container">
             <div class="icon">🛡️</div>
             <h1>CYBER CHALLENGE</h1>
             <p class="subtitle">Teste seus conhecimentos. Proteja seus dados.</p>
-            <button id="btn-iniciar" class="cyber-button">INICIAR DESAFIO</button>
+            <div class="menu-botoes">
+                <button id="btn-iniciar" class="cyber-button">INICIAR DESAFIO</button>
+                <button id="btn-ver-ranking" class="cyber-button btn-secundario">🏆 RANKING</button>
+                <a href="/admin/" class="cyber-button btn-secundario btn-link" target="_blank" rel="noopener">📊 DASHBOARD ADMIN</a>
+            </div>
         </div>
     </section>
 
+    <!-- CADASTRO (secao 3): nome, idade e autoavaliacao de conhecimento -->
     <section id="tela-cadastro" class="screen hidden">
         <div class="container">
             <div class="icon">💻</div>
@@ -23,15 +29,70 @@
             <p class="prompt-text">Insira suas credenciais para iniciar o teste:</p>
 
             <div class="input-group">
-                <span class="prefix">USER@CYBER:~#</span>
+                <span class="prefix">NOME:~#</span>
                 <input type="text" id="input-nome" placeholder="[ Digite seu nome ]" autocomplete="off">
             </div>
 
-            <span id="erro-nome" class="error-msg hidden">⚠️ ERRO: O nome é obrigatório para acessar o sistema.</span>
-            <!-- Banner de erro para falhas de comunicação com a API (adicionado na integração) -->
+            <div class="input-group">
+                <span class="prefix">IDADE:~#</span>
+                <input type="number" id="input-idade" placeholder="[ Digite sua idade ]" autocomplete="off" min="1" max="120">
+            </div>
+
+            <div class="autoavaliacao-group">
+                <label for="input-autoavaliacao" class="prompt-text autoavaliacao-label">
+                    De 1 a 10, quanto você considera que entende de segurança cibernética?
+                </label>
+                <div class="slider-row">
+                    <input type="range" id="input-autoavaliacao" min="1" max="10" value="5">
+                    <span id="autoavaliacao-valor" class="badge">5</span>
+                </div>
+            </div>
+
+            <span id="erro-nome" class="error-msg hidden">⚠️ ERRO: preencha nome e idade corretamente para continuar.</span>
             <span id="erro-api" class="error-msg hidden">⚠️ Não foi possível conectar ao servidor. Tente novamente.</span>
 
-            <button id="btn-continuar" class="cyber-button">CONTINUAR</button>
+            <div class="botoes-navegacao">
+                <button id="btn-voltar-cadastro" class="cyber-button btn-secundario btn-small-nav">« VOLTAR</button>
+                <button id="btn-continuar" class="cyber-button">CONTINUAR</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESCOLHA DE NIVEL (secao 2) -->
+    <section id="tela-nivel" class="screen hidden">
+        <div class="container">
+            <div class="icon">🎚️</div>
+            <h2>ESCOLHA O NÍVEL</h2>
+            <p class="prompt-text">Selecione o nível de dificuldade das 10 perguntas da sua partida:</p>
+
+            <div class="niveis-grid">
+                <button class="nivel-card" data-nivel="1">
+                    <span class="nivel-numero">1</span>
+                    <span class="nivel-nome">Leigo</span>
+                    <span class="nivel-desc">Conceitos básicos de segurança digital</span>
+                </button>
+                <button class="nivel-card" data-nivel="2">
+                    <span class="nivel-numero">2</span>
+                    <span class="nivel-nome">Usuário</span>
+                    <span class="nivel-desc">Situações comuns do dia a dia</span>
+                </button>
+                <button class="nivel-card" data-nivel="3">
+                    <span class="nivel-numero">3</span>
+                    <span class="nivel-nome">Intermediário</span>
+                    <span class="nivel-desc">Exige conhecimento mais aprofundado</span>
+                </button>
+                <button class="nivel-card" data-nivel="4">
+                    <span class="nivel-numero">4</span>
+                    <span class="nivel-nome">Especialista</span>
+                    <span class="nivel-desc">Perguntas avançadas de cibersegurança</span>
+                </button>
+            </div>
+
+            <span id="erro-nivel" class="error-msg hidden">⚠️ Não foi possível carregar as perguntas deste nível. Tente novamente.</span>
+
+            <div class="botoes-navegacao">
+                <button id="btn-voltar-nivel" class="cyber-button btn-secundario btn-small-nav">« VOLTAR</button>
+            </div>
         </div>
     </section>
 
@@ -40,7 +101,8 @@
         <div class="container game-container">
             <!-- Cabeçalho com Número da Pergunta e Cronômetro -->
             <div class="game-header">
-                <span id="contador-pergunta" class="badge">PERGUNTA 1 DE 5</span>
+                <span id="badge-nivel" class="badge badge-nivel">NÍVEL 1</span>
+                <span id="contador-pergunta" class="badge">PERGUNTA 1 DE 10</span>
                 <span id="cronometro" class="timer">0.00s</span>
             </div>
 
@@ -70,19 +132,26 @@
             <h2>DESAFIO CONCLUÍDO!</h2>
             <p id="res-nome" class="subtitle">Agente: [Nome]</p>
 
+            <!-- Nota final em destaque (secao 4) -->
+            <div class="nota-final-box">
+                <span class="stat-label">NOTA FINAL</span>
+                <span id="res-nota-final" class="nota-final-valor">0.0</span>
+                <span class="nota-final-escala">/ 10</span>
+            </div>
+
             <!-- Grid de Estatísticas -->
             <div class="stats-grid">
                 <div class="stat-box highlight-box">
                     <span class="stat-label">PONTUAÇÃO</span>
-                    <span id="res-pontuacao" class="stat-value">0 / 10</span>
+                    <span id="res-pontuacao" class="stat-value">0 / 20</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-label">ACERTOS</span>
-                    <span id="res-acertos" class="stat-value correct-color">0 / 5</span>
+                    <span id="res-acertos" class="stat-value correct-color">0 / 10</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-label">ERROS</span>
-                    <span id="res-erros" class="stat-value error-color">0 / 5</span>
+                    <span id="res-erros" class="stat-value error-color">0 / 10</span>
                 </div>
                 <div class="stat-box">
                     <span class="stat-label">TEMPO TOTAL</span>
@@ -92,6 +161,10 @@
                     <span class="stat-label">MÉDIA / PERGUNTA</span>
                     <span id="res-media" class="stat-value">0.0s</span>
                 </div>
+                <div class="stat-box">
+                    <span class="stat-label">NÍVEL JOGADO</span>
+                    <span id="res-nivel" class="stat-value">-</span>
+                </div>
             </div>
 
             <!-- Mensagem Dinâmica -->
@@ -99,7 +172,7 @@
                 <p id="res-mensagem" style="margin: 0;"></p>
             </div>
 
-            <!-- Aviso caso o envio para o servidor falhe (adicionado na integração) -->
+            <!-- Aviso caso o envio para o servidor falhe -->
             <span id="erro-envio" class="error-msg hidden">⚠️ O resultado não pôde ser salvo no servidor (ranking/dashboard não serão atualizados desta vez).</span>
 
             <!-- Ranking -->
@@ -116,7 +189,37 @@
                 </ul>
             </div>
 
-            <button id="btn-novo-jogador" class="cyber-button">NOVO PARTICIPANTE</button>
+            <div class="botoes-navegacao botoes-resultado">
+                <button id="btn-jogar-novamente" class="cyber-button">JOGAR NOVAMENTE</button>
+                <button id="btn-voltar-menu" class="cyber-button btn-secundario">VOLTAR AO MENU</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TELA DE RANKING INDEPENDENTE (acessivel direto do menu, sem jogar) -->
+    <section id="tela-ranking" class="screen hidden">
+        <div class="container result-container">
+            <h2>🏆 RANKING GERAL</h2>
+            <p class="prompt-text">Melhores desempenhos registrados no Cyber Challenge:</p>
+
+            <div class="ranking-section ranking-section-standalone">
+                <div class="ranking-header">
+                    <span>POS</span>
+                    <span>NOME</span>
+                    <span>PONTOS</span>
+                    <span>TEMPO</span>
+                </div>
+                <ul id="ranking-list-standalone" class="ranking-list">
+                    <!-- O JavaScript vai inserir os jogadores aqui -->
+                </ul>
+            </div>
+
+            <span id="ranking-vazio" class="error-msg hidden" style="color:#a0a0b0; text-shadow:none;">Ainda não há partidas registradas.</span>
+            <span id="erro-ranking" class="error-msg hidden">⚠️ Não foi possível carregar o ranking agora.</span>
+
+            <div class="botoes-navegacao">
+                <button id="btn-voltar-ranking" class="cyber-button btn-secundario btn-small-nav">« VOLTAR AO MENU</button>
+            </div>
         </div>
     </section>
 

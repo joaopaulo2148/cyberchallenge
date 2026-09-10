@@ -25,6 +25,12 @@ public class Pergunta {
     @Column(nullable = false)
     private Boolean ativa = true;
 
+    // MELHORIA: nivel de dificuldade da pergunta (1 = Leigo, 2 = Usuario,
+    // 3 = Intermediario, 4 = Especialista). Cada partida sorteia perguntas
+    // de um unico nivel, escolhido pelo jogador antes de iniciar.
+    @Column(nullable = false)
+    private Integer nivel;
+
     public Pergunta() {}
 
     // Getters e Setters
@@ -40,4 +46,6 @@ public class Pergunta {
     public void setExplicacao(String explicacao) { this.explicacao = explicacao; }
     public Boolean getAtiva() { return ativa; }
     public void setAtiva(Boolean ativa) { this.ativa = ativa; }
+    public Integer getNivel() { return nivel; }
+    public void setNivel(Integer nivel) { this.nivel = nivel; }
 }

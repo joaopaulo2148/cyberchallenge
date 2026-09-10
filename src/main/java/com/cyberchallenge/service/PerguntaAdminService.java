@@ -70,5 +70,6 @@ public class PerguntaAdminService {
         pergunta.setRespostaCorreta(form.respostaCorreta());
         pergunta.setExplicacao(form.explicacao());
         pergunta.setAtiva(form.ativa() == null ? true : form.ativa());
+        pergunta.setNivel(form.nivel());
     }
 }

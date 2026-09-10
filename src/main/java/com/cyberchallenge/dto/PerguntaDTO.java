@@ -20,9 +20,10 @@ public record PerguntaDTO(
     String texto,
     String tema,
     Boolean respostaCorreta,
-    String explicacao
+    String explicacao,
+    Integer nivel
 ) {
     public static PerguntaDTO fromEntity(Pergunta p) {
-        return new PerguntaDTO(p.getId(), p.getTexto(), p.getTema(), p.getRespostaCorreta(), p.getExplicacao());
+        return new PerguntaDTO(p.getId(), p.getTexto(), p.getTema(), p.getRespostaCorreta(), p.getExplicacao(), p.getNivel());
     }
 }

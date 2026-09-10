@@ -9,9 +9,10 @@ public record PerguntaAdminDTO(
     String tema,
     Boolean respostaCorreta,
     String explicacao,
-    Boolean ativa
+    Boolean ativa,
+    Integer nivel
 ) {
     public static PerguntaAdminDTO fromEntity(Pergunta p) {
-        return new PerguntaAdminDTO(p.getId(), p.getTexto(), p.getTema(), p.getRespostaCorreta(), p.getExplicacao(), p.getAtiva());
+        return new PerguntaAdminDTO(p.getId(), p.getTexto(), p.getTema(), p.getRespostaCorreta(), p.getExplicacao(), p.getAtiva(), p.getNivel());
     }
 }

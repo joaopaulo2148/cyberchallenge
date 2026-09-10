@@ -384,3 +384,169 @@ input::placeholder {
     cursor: not-allowed;
     filter: grayscale(40%);
 }
+
+/* --- MELHORIAS DE NAVEGAÇÃO (menu, cadastro estendido, níveis, ranking) --- */
+
+.menu-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-secundario {
+    border-color: #666;
+    color: #c0c0c0;
+}
+
+.btn-secundario:hover {
+    background: #c0c0c0;
+    color: #000;
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
+}
+
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.botoes-navegacao {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.botoes-resultado {
+    margin-top: 1.5rem;
+}
+
+.btn-small-nav {
+    max-width: 180px;
+    padding: 12px 20px;
+    font-size: 1rem;
+}
+
+/* Slider de autoavaliação (cadastro) */
+.autoavaliacao-group {
+    margin: 0.5rem 0 1.5rem;
+    text-align: left;
+}
+
+.autoavaliacao-label {
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.slider-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.slider-row input[type="range"] {
+    flex: 1;
+    accent-color: var(--primary-color);
+}
+
+.slider-row .badge {
+    min-width: 2.5rem;
+    text-align: center;
+}
+
+/* Cards de seleção de nível */
+.niveis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.nivel-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #333;
+    border-radius: 6px;
+    padding: 1.2rem 0.8rem;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.25s ease;
+    font-family: 'Fira Code', monospace;
+}
+
+.nivel-card:hover,
+.nivel-card:focus-visible {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.nivel-card.selecionado {
+    border-color: var(--primary-color);
+    background: rgba(0, 243, 255, 0.08);
+}
+
+.nivel-numero {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.nivel-nome {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.nivel-desc {
+    font-size: 0.8rem;
+    color: #a0a0b0;
+    text-align: center;
+}
+
+.badge-nivel {
+    border-color: #ffb800;
+    color: #ffb800;
+    background: rgba(255, 184, 0, 0.1);
+}
+
+/* Nota final em destaque na tela de resultado */
+.nota-final-box {
+    background: rgba(0, 243, 255, 0.08);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.nota-final-valor {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px var(--primary-glow);
+    line-height: 1;
+}
+
+.nota-final-escala {
+    font-size: 1rem;
+    color: #a0a0b0;
+}
+
+.ranking-section-standalone {
+    max-height: none;
+}
+
+@media (max-width: 480px) {
+    .niveis-grid { grid-template-columns: 1fr; }
+    .botoes-navegacao { flex-direction: column; align-items: stretch; }
+}
