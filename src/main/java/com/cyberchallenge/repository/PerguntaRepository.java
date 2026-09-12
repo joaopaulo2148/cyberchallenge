@@ -29,7 +29,6 @@ public interface PerguntaRepository extends JpaRepository<Pergunta, Long> {
 
     long countByAtivaTrueAndNivel(Integer nivel);
 
-    // Area administrativa e dashboard
     List<Pergunta> findByTema(String tema);
 
     List<Pergunta> findByAtivaTrue();

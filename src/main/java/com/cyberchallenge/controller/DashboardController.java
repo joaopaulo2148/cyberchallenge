@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Dashboard analitico descrito na secao 12 do briefing. */
+/**
+ * Estatisticas Gerais do Cyber Challenge (reformulacao, item 13).
+ *
+ * Publico, sem nenhuma restricao de acesso -- nao existe mais area
+ * administrativa neste projeto.
+ */
 @RestController
-@RequestMapping("/api/dashboard")
+@RequestMapping("/api/estatisticas")
 public class DashboardController {
 
     private final DashboardService dashboardService;
@@ -19,7 +24,7 @@ public class DashboardController {
     }
 
     @GetMapping
-    public ResponseEntity<DashboardDTO> obterDashboard() {
+    public ResponseEntity<DashboardDTO> obterEstatisticas() {
         return ResponseEntity.ok(dashboardService.gerarDashboard());
     }
 }

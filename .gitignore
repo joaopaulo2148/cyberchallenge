@@ -1,0 +1,23 @@
+# Build
+target/
+*.class
+
+# Ambiente / credenciais
+.env
+.env.*
+!.env.example
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

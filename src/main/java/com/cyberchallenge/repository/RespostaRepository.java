@@ -12,7 +12,7 @@ public interface RespostaRepository extends JpaRepository<Resposta, Long> {
 
     List<Resposta> findByPerguntaId(Long perguntaId);
 
-    List<Resposta> findByParticipanteId(Long participanteId);
+    List<Resposta> findByPartidaId(Long partidaId);
 
     // Usado pelo Dashboard: traz todas as respostas ja com a Pergunta associada
     // carregada (evita o problema de N+1 select ao calcular as metricas por

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas Gerais - Cyber Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema"></button>
+            <a href="/index.html" class="brand">
+                <svg class="brand-logo icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 L20 5.5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5.5 Z"></path>
+                    <path d="M9 12 L11 14 L15.5 9"></path>
+                </svg>
+                <span class="brand-name">Cyber Challenge</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="screen active">
+            <div class="card card-xwide">
+                <h2>Estatísticas Gerais</h2>
+                <p class="subtitle">Um retrato agregado de todas as partidas já registradas no Cyber Challenge.</p>
+
+                <div id="estatisticas-carregando" class="loading-row">
+                    <span class="spinner"></span> Carregando estatísticas...
+                </div>
+
+                <div id="estatisticas-vazio" class="estado-vazio hidden">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg>
+                    <p>Ainda não há partidas suficientes para gerar estatísticas.</p>
+                </div>
+
+                <div id="estatisticas-erro" class="msg msg-error hidden">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+                    <span>Não foi possível carregar as estatísticas agora.</span>
+                </div>
+
+                <div id="estatisticas-conteudo" class="hidden">
+                    <div class="kpi-grid">
+                        <div class="kpi-card"><div id="kpi-total-partidas" class="kpi-value">0</div><div class="kpi-label">Partidas jogadas</div></div>
+                        <div class="kpi-card"><div id="kpi-total-participantes" class="kpi-value">0</div><div class="kpi-label">Participantes</div></div>
+                        <div class="kpi-card"><div id="kpi-media-pontuacao" class="kpi-value">0.0</div><div class="kpi-label">Pontuação média</div></div>
+                        <div class="kpi-card"><div id="kpi-taxa-acerto" class="kpi-value">0%</div><div class="kpi-label">Taxa geral de acerto</div></div>
+                        <div class="kpi-card"><div id="kpi-tempo-medio" class="kpi-value">0.0s</div><div class="kpi-label">Tempo médio por partida</div></div>
+                        <div class="kpi-card"><div id="kpi-autoavaliacao" class="kpi-value">0.0</div><div class="kpi-label">Autoavaliação média</div></div>
+                    </div>
+
+                    <div class="msg" id="comparacao-autoavaliacao" style="background: var(--accent-soft); color: var(--text-primary);"></div>
+
+                    <div class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="14"></line><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line></svg>
+                        Desempenho por nível
+                    </div>
+                    <div id="grafico-niveis" class="bar-chart"></div>
+
+                    <div class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 3 3 5-6"></path></svg>
+                        Desempenho por tema
+                    </div>
+                    <div id="grafico-temas" class="bar-chart"></div>
+
+                    <div class="section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+                        Destaques
+                    </div>
+                    <ul id="lista-destaques" class="highlight-list"></ul>
+                </div>
+
+                <div class="btn-row">
+                    <a href="/index.html" class="btn btn-primary">Voltar ao Menu</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Cyber Challenge — jogo educativo de conscientização em segurança cibernética.</p>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script src="estatisticas.js"></script>
+</body>
+</html>

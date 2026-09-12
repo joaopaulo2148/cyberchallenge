@@ -62,6 +62,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(corpoErro(HttpStatus.NOT_FOUND, ex.getMessage(), null));
     }
 
+    // MELHORIA (item 3/6): nickname duplicado retorna 409, em vez de um
+    // 500 generico vindo de uma violacao de constraint unica no banco.
+    @ExceptionHandler(ConflitoException.class)
+    public ResponseEntity<Map<String, Object>> handleConflito(ConflitoException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(corpoErro(HttpStatus.CONFLICT, ex.getMessage(), null));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenerica(Exception ex) {
         return ResponseEntity.internalServerError()

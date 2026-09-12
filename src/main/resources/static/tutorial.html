@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial - Cyber Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema"></button>
+            <a href="/index.html" class="brand">
+                <svg class="brand-logo icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 L20 5.5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5.5 Z"></path>
+                    <path d="M9 12 L11 14 L15.5 9"></path>
+                </svg>
+                <span class="brand-name">Cyber Challenge</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="screen active">
+            <div class="card card-wide">
+                <h2>Como funciona</h2>
+                <p class="subtitle">Um passo a passo rápido antes da sua primeira partida.</p>
+
+                <div class="tutorial-step">
+                    <span class="tutorial-step-num">1</span>
+                    <div class="tutorial-step-texto">
+                        <h3>Informe seus dados</h3>
+                        <p>Escolha um nickname, informe sua idade e avalie, de 1 a 10, o quanto você acha que entende de segurança digital.</p>
+                    </div>
+                </div>
+                <div class="tutorial-step">
+                    <span class="tutorial-step-num">2</span>
+                    <div class="tutorial-step-texto">
+                        <h3>Escolha um nível</h3>
+                        <p>Existem quatro níveis, do Leigo ao Especialista. Cada partida sorteia 10 perguntas do nível escolhido.</p>
+                    </div>
+                </div>
+                <div class="tutorial-step">
+                    <span class="tutorial-step-num">3</span>
+                    <div class="tutorial-step-texto">
+                        <h3>Responda as perguntas</h3>
+                        <p>As perguntas podem ser de Verdadeiro ou Falso, ou de múltipla escolha. Depois de responder, você vê na hora se acertou e uma explicação educativa.</p>
+                    </div>
+                </div>
+                <div class="tutorial-step">
+                    <span class="tutorial-step-num">4</span>
+                    <div class="tutorial-step-texto">
+                        <h3>Veja o seu resultado</h3>
+                        <p>Ao final, você recebe uma nota de 0 a 10, o percentual de acertos e pode conferir sua posição no ranking do nível que jogou.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Experimente uma pergunta de exemplo</h3>
+                <div class="tutorial-demo">
+                    <div class="pergunta-tema">Exemplo · Senhas</div>
+                    <p style="color: var(--text-primary); font-weight: 600; margin: 0 0 1.1rem;">Qual das opções abaixo é considerada uma senha forte?</p>
+
+                    <div id="demo-opcoes" class="opcoes-multipla">
+                        <button type="button" class="opcao-btn" data-correta="false">123456</button>
+                        <button type="button" class="opcao-btn" data-correta="true">Tr#9vL!2qXo</button>
+                        <button type="button" class="opcao-btn" data-correta="false">senha123</button>
+                    </div>
+
+                    <div id="demo-feedback" class="feedback-box hidden">
+                        <div id="demo-feedback-titulo" class="feedback-titulo"></div>
+                        <p class="explicacao">Uma senha forte combina letras maiúsculas, minúsculas, números e símbolos, sem seguir um padrão previsível ou dado pessoal.</p>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <a href="/index.html" class="btn btn-primary">Voltar ao Menu</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Cyber Challenge — jogo educativo de conscientização em segurança cibernética.</p>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ICONE_CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg>';
+            const ICONE_X = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>';
+
+            const botoes = document.querySelectorAll('#demo-opcoes .opcao-btn');
+            const feedback = document.getElementById('demo-feedback');
+            const feedbackTitulo = document.getElementById('demo-feedback-titulo');
+
+            botoes.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    const acertou = botao.dataset.correta === 'true';
+                    botoes.forEach(b => {
+                        b.disabled = true;
+                        if (b.dataset.correta === 'true') b.classList.add('correta');
+                        else if (b === botao) b.classList.add('incorreta');
+                        else b.classList.add('neutra-desabilitada');
+                    });
+                    feedback.classList.remove('hidden');
+                    feedback.classList.add(acertou ? 'correct' : 'incorrect');
+                    feedbackTitulo.innerHTML = acertou ? `${ICONE_CHECK} Resposta correta` : `${ICONE_X} Resposta incorreta`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

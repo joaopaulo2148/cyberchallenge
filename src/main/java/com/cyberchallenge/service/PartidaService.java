@@ -6,10 +6,14 @@ import com.cyberchallenge.dto.RankingDTO;
 import com.cyberchallenge.dto.RespostaSubmitDTO;
 import com.cyberchallenge.exception.RecursoNaoEncontradoException;
 import com.cyberchallenge.exception.RegraDeNegocioException;
+import com.cyberchallenge.model.Alternativa;
 import com.cyberchallenge.model.Participante;
+import com.cyberchallenge.model.Partida;
 import com.cyberchallenge.model.Pergunta;
 import com.cyberchallenge.model.Resposta;
+import com.cyberchallenge.model.TipoPergunta;
 import com.cyberchallenge.repository.ParticipanteRepository;
+import com.cyberchallenge.repository.PartidaRepository;
 import com.cyberchallenge.repository.PerguntaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,32 +27,38 @@ import java.util.stream.Collectors;
 @Service
 public class PartidaService {
 
-    // MELHORIA (secao 1): cada partida agora tem exatamente 10 perguntas,
-    // sorteadas aleatoriamente entre o estoque (aproximadamente 60) do nivel
-    // escolhido pelo jogador.
+    // Cada partida tem exatamente 10 perguntas, sorteadas aleatoriamente
+    // entre o estoque do nivel escolhido pelo jogador.
     private static final int TOTAL_PERGUNTAS_POR_PARTIDA = 10;
-    private static final int PONTOS_POR_ACERTO = 2;
+
+    // MELHORIA (simplificacao do sistema de pontuacao): 1 ponto por
+    // acerto, sem pesos diferentes entre perguntas. Pontuacao maxima = 10.
+    private static final int PONTOS_POR_ACERTO = 1;
+
     private static final int NIVEL_MINIMO = 1;
     private static final int NIVEL_MAXIMO = 4;
 
     private final PerguntaRepository perguntaRepository;
+    private final PartidaRepository partidaRepository;
     private final ParticipanteRepository participanteRepository;
 
-    public PartidaService(PerguntaRepository perguntaRepository, ParticipanteRepository participanteRepository) {
+    public PartidaService(PerguntaRepository perguntaRepository, PartidaRepository partidaRepository,
+                           ParticipanteRepository participanteRepository) {
         this.perguntaRepository = perguntaRepository;
+        this.partidaRepository = partidaRepository;
         this.participanteRepository = participanteRepository;
     }
 
     /**
      * Retorna 10 perguntas aleatorias e ativas do nivel escolhido.
      *
-     * MELHORIA (secao 1): quando o front-end informa uma lista de IDs
-     * usados na partida anterior daquele mesmo nivel (parametro
-     * idsRecentes), o sistema tenta evitar repeti-los imediatamente, para
-     * aumentar a variedade entre partidas seguidas ("jogar novamente").
-     * Se, apos excluir esses IDs, nao houver mais perguntas suficientes no
-     * estoque, o sistema automaticamente cai de volta para o sorteio sem
-     * exclusao — o jogo nunca fica bloqueado por falta de perguntas.
+     * Quando o front-end informa uma lista de IDs usados na partida
+     * anterior daquele mesmo nivel (parametro idsRecentes), o sistema
+     * tenta evitar repeti-los imediatamente, para aumentar a variedade
+     * entre partidas seguidas. Se, apos excluir esses IDs, nao houver mais
+     * perguntas suficientes no estoque, o sistema cai de volta para o
+     * sorteio sem exclusao — o jogo nunca fica bloqueado por falta de
+     * perguntas.
      */
     public List<PerguntaDTO> iniciarPartida(Integer nivel, List<Long> idsRecentes) {
         validarNivel(nivel);
@@ -68,8 +78,6 @@ public class PartidaService {
             perguntas = perguntaRepository.findRandomPerguntasAtivasPorNivelExcluindo(nivel, exclusao);
         }
 
-        // Fallback: sem lista de exclusao, ou a exclusao deixou menos
-        // perguntas do que o necessario para completar a partida.
         if (perguntas.size() < TOTAL_PERGUNTAS_POR_PARTIDA) {
             perguntas = perguntaRepository.findRandomPerguntasAtivasPorNivel(nivel);
         }
@@ -86,19 +94,15 @@ public class PartidaService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional // Garante que ou salva tudo (participante + respostas) ou desfaz em caso de erro
+    @Transactional
     public void processarFinalPartida(PartidaSubmitDTO dto) {
-        // BUG CORRIGIDO: nome vazio/so-espacos nao era validado no back-end.
-        String nome = dto.nomeParticipante() == null ? "" : dto.nomeParticipante().trim();
-        if (nome.isEmpty()) {
-            throw new RegraDeNegocioException("O nome do participante e obrigatorio.");
-        }
+        Participante participante = participanteRepository.findById(dto.participanteId())
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Participante nao encontrado: " + dto.participanteId()));
 
         validarNivel(dto.nivel());
 
-        // BUG CORRIGIDO: nao havia checagem contra perguntas duplicadas na mesma
-        // submissao. A partida deve conter exatamente TOTAL_PERGUNTAS_POR_PARTIDA
-        // respostas, sem repetir a mesma pergunta.
+        // BUG EVITADO: sem essa checagem, um payload malformado poderia
+        // responder a mesma pergunta mais de uma vez na mesma partida.
         Set<Long> idsUnicos = new HashSet<>();
         for (RespostaSubmitDTO r : dto.respostas()) {
             if (!idsUnicos.add(r.perguntaId())) {
@@ -106,31 +110,26 @@ public class PartidaService {
             }
         }
 
-        Participante participante = new Participante();
-        participante.setNome(nome);
-        participante.setIdade(dto.idade());
-        participante.setAutoavaliacao(dto.autoavaliacao());
-        participante.setNivel(dto.nivel());
+        Partida partida = new Partida();
+        partida.setParticipante(participante);
+        partida.setNivel(dto.nivel());
 
         int pontuacaoTotal = 0;
         int acertosTotal = 0;
         double tempoTotal = 0.0;
 
         for (RespostaSubmitDTO resDto : dto.respostas()) {
-            // Busca a pergunta oficial no banco para evitar fraudes
             Pergunta perguntaOficial = perguntaRepository.findById(resDto.perguntaId())
                     .orElseThrow(() -> new RecursoNaoEncontradoException("Pergunta nao encontrada: " + resDto.perguntaId()));
 
-            // MELHORIA (secao 2): garante que todas as perguntas respondidas
-            // realmente pertencem ao nivel informado pelo participante,
-            // evitando que uma partida misture perguntas de niveis diferentes.
             if (!dto.nivel().equals(perguntaOficial.getNivel())) {
                 throw new RegraDeNegocioException(
                     "A pergunta " + perguntaOficial.getId() + " nao pertence ao nivel " + dto.nivel() + "."
                 );
             }
 
-            boolean acertou = perguntaOficial.getRespostaCorreta().equals(resDto.respostaEscolhida());
+            Resposta resposta = new Resposta();
+            boolean acertou = avaliarResposta(perguntaOficial, resDto, resposta);
 
             if (acertou) {
                 pontuacaoTotal += PONTOS_POR_ACERTO;
@@ -138,49 +137,55 @@ public class PartidaService {
             }
             tempoTotal += resDto.tempoGasto();
 
-            // Cria o registro da resposta individual para o Dashboard
-            Resposta resposta = new Resposta();
-            resposta.setParticipante(participante);
+            resposta.setPartida(partida);
             resposta.setPergunta(perguntaOficial);
-            resposta.setResposta(resDto.respostaEscolhida());
             resposta.setCorreta(acertou);
             resposta.setTempoResposta(resDto.tempoGasto());
 
-            participante.getRespostas().add(resposta);
+            partida.getRespostas().add(resposta);
         }
 
         int totalPerguntas = dto.respostas().size();
+        int errosTotal = totalPerguntas - acertosTotal;
 
-        // Finaliza os calculos do participante
-        participante.setPontuacao(pontuacaoTotal);
-        participante.setTempoTotal(tempoTotal);
-        participante.setTempoMedio(tempoTotal / totalPerguntas);
-        participante.setNotaFinal(calcularNotaFinal(acertosTotal, totalPerguntas));
+        // MELHORIA (simplificacao do sistema de pontuacao): com 1 ponto por
+        // acerto numa partida de exatamente 10 perguntas, pontuacao,
+        // acertos e nota final (0 a 10) sao sempre o mesmo numero.
+        // Exemplo: 8 acertos -> pontuacao 8 -> nota final 8.0.
+        partida.setPontuacao(pontuacaoTotal);
+        partida.setAcertos(acertosTotal);
+        partida.setErros(errosTotal);
+        partida.setTempoTotal(tempoTotal);
+        partida.setTempoMedio(tempoTotal / totalPerguntas);
+        partida.setNotaFinal((double) acertosTotal);
 
-        // O CascadeType.ALL na Entidade garante que as respostas sejam salvas junto com o participante
-        participanteRepository.save(participante);
+        partidaRepository.save(partida);
     }
 
-    /**
-     * MELHORIA (secao 4): calculo da pontuacao final, numa escala de 0 a 10.
-     *
-     * Regra (determinística, simples e documentada): a nota e a proporcao
-     * de acertos sobre o total de perguntas da partida, multiplicada por 10
-     * e arredondada para uma casa decimal.
-     *
-     *     nota = round((acertos / totalPerguntas) * 10, 1 casa decimal)
-     *
-     * Exemplos com 10 perguntas: 10 acertos -> nota 10.0; 7 acertos ->
-     * nota 7.0; 0 acertos -> nota 0.0. Optou-se por uma escala de 0 a 10
-     * (em vez de forcar um piso artificial em 1) porque zero acertos deve,
-     * de fato, corresponder a nota minima da escala.
-     */
-    private double calcularNotaFinal(int acertos, int totalPerguntas) {
-        if (totalPerguntas == 0) {
-            return 0.0;
+    private boolean avaliarResposta(Pergunta pergunta, RespostaSubmitDTO resDto, Resposta resposta) {
+        if (pergunta.getTipo() == TipoPergunta.MULTIPLA_ESCOLHA) {
+            if (resDto.alternativaEscolhidaId() == null) {
+                throw new RegraDeNegocioException(
+                    "A pergunta " + pergunta.getId() + " e de multipla escolha: informe alternativaEscolhidaId."
+                );
+            }
+            Alternativa escolhida = pergunta.getAlternativas().stream()
+                    .filter(a -> a.getId().equals(resDto.alternativaEscolhidaId()))
+                    .findFirst()
+                    .orElseThrow(() -> new RegraDeNegocioException(
+                        "A alternativa " + resDto.alternativaEscolhidaId() + " nao pertence a pergunta " + pergunta.getId() + "."
+                    ));
+            resposta.setAlternativaEscolhida(escolhida);
+            return Boolean.TRUE.equals(escolhida.getCorreta());
+        } else {
+            if (resDto.respostaEscolhida() == null) {
+                throw new RegraDeNegocioException(
+                    "A pergunta " + pergunta.getId() + " e Verdadeiro/Falso: informe respostaEscolhida."
+                );
+            }
+            resposta.setResposta(resDto.respostaEscolhida());
+            return pergunta.getRespostaCorreta().equals(resDto.respostaEscolhida());
         }
-        double nota = (acertos * 10.0) / totalPerguntas;
-        return Math.round(nota * 10.0) / 10.0;
     }
 
     private void validarNivel(Integer nivel) {
@@ -191,8 +196,16 @@ public class PartidaService {
         }
     }
 
-    public List<RankingDTO> obterRanking() {
-        return participanteRepository.findAllByOrderByPontuacaoDescTempoTotalAscTempoMedioAsc()
+    /**
+     * MELHORIA (ranking separado por nivel, item 2/7): retorna o ranking
+     * de um unico nivel por vez -- nunca mistura participantes de niveis
+     * diferentes. Ordenacao: maior pontuacao e, em caso de empate, menor
+     * tempo medio de resposta (ver PartidaRepository para a explicacao
+     * completa da regra de desempate).
+     */
+    public List<RankingDTO> obterRanking(Integer nivel) {
+        validarNivel(nivel);
+        return partidaRepository.findByNivelOrderByPontuacaoDescTempoMedioAsc(nivel)
                 .stream()
                 .map(RankingDTO::fromEntity)
                 .collect(Collectors.toList());
