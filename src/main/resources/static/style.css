@@ -97,7 +97,7 @@ a { color: var(--accent); }
 .icon-svg { display: inline-block; vertical-align: middle; stroke: currentColor; }
 
 /* ---------------- Barra superior ----------------
-   Apenas o alternador de tema (esquerda) e a marca (direita) --
+   Marca (esquerda); conta e alternador de tema (direita) --
    nunca um segundo menu de navegacao. */
 .site-header {
     width: 100%;
@@ -313,7 +313,8 @@ a { color: var(--accent); }
 }
 
 .field input[type="text"],
-.field input[type="number"] {
+.field input[type="number"],
+.field input[type="password"] {
     width: 100%;
     padding: 0.75rem 0.9rem;
     font-size: 1rem;
@@ -678,6 +679,12 @@ a { color: var(--accent); }
 }
 
 @media (max-width: 560px) {
+    .site-header__inner { padding: 0.7rem 0.9rem; }
+    .brand-logo { width: 26px; height: 26px; }
+    .brand-name { font-size: 0.92rem; }
+    .header-right { gap: 0.5rem; }
+    .account-control a, .account-control button { padding: 0.35rem 0.65rem; font-size: 0.78rem; }
+    .theme-toggle { width: 36px; height: 36px; }
     main.page-content { padding: 1rem 0.6rem 3rem; }
     .card { padding: 1.6rem 1.1rem; width: 96%; }
     h1 { font-size: 1.6rem; }
