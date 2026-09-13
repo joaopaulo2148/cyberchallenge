@@ -10,13 +10,16 @@
     <header class="site-header">
         <div class="site-header__inner">
             <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema"></button>
-            <a href="/index.html" class="brand">
-                <svg class="brand-logo icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2 L20 5.5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5.5 Z"></path>
-                    <path d="M9 12 L11 14 L15.5 9"></path>
-                </svg>
-                <span class="brand-name">Cyber Challenge</span>
-            </a>
+            <div class="header-right">
+                <div id="account-control" class="account-control"></div>
+                <a href="/index.html" class="brand">
+                    <svg class="brand-logo icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2 L20 5.5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5.5 Z"></path>
+                        <path d="M9 12 L11 14 L15.5 9"></path>
+                    </svg>
+                    <span class="brand-name">Cyber Challenge</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -29,8 +32,8 @@
                 <div class="tutorial-step">
                     <span class="tutorial-step-num">1</span>
                     <div class="tutorial-step-texto">
-                        <h3>Informe seus dados</h3>
-                        <p>Escolha um nickname, informe sua idade e avalie, de 1 a 10, o quanto você acha que entende de segurança digital.</p>
+                        <h3>Crie sua conta</h3>
+                        <p>Escolha um nickname único, informe sua idade, avalie de 1 a 10 o quanto você acha que entende de segurança digital e defina uma senha forte. Da próxima vez, é só entrar com o nickname e a senha.</p>
                     </div>
                 </div>
                 <div class="tutorial-step">
@@ -44,7 +47,7 @@
                     <span class="tutorial-step-num">3</span>
                     <div class="tutorial-step-texto">
                         <h3>Responda as perguntas</h3>
-                        <p>As perguntas podem ser de Verdadeiro ou Falso, ou de múltipla escolha. Depois de responder, você vê na hora se acertou e uma explicação educativa.</p>
+                        <p>As perguntas podem ser de Verdadeiro ou Falso, múltipla escolha ou completar a frase. Depois de responder, você vê na hora se acertou e uma explicação educativa.</p>
                     </div>
                 </div>
                 <div class="tutorial-step">
@@ -84,6 +87,7 @@
     </footer>
 
     <script src="theme.js"></script>
+    <script src="conta.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const ICONE_CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg>';

@@ -1,0 +1,2882 @@
+[
+  {
+    "texto": "Nunca devemos compartilhar nossa ______ com outras pessoas.",
+    "tema": "Senhas",
+    "nivel": 1,
+    "explicacao": "A senha e pessoal e intransferivel; compartilha-la, mesmo com alguem de confianca, aumenta o risco de vazamento.",
+    "alternativas": [
+      {
+        "texto": "senha",
+        "correta": true
+      },
+      {
+        "texto": "tela",
+        "correta": false
+      },
+      {
+        "texto": "internet",
+        "correta": false
+      },
+      {
+        "texto": "conta",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um e-mail que pede dados bancarios com urgencia costuma ser um exemplo de ______.",
+    "tema": "Phishing",
+    "nivel": 1,
+    "explicacao": "Mensagens urgentes pedindo dados sensiveis sao a marca registrada de golpes de phishing.",
+    "alternativas": [
+      {
+        "texto": "promocao",
+        "correta": false
+      },
+      {
+        "texto": "phishing",
+        "correta": true
+      },
+      {
+        "texto": "backup",
+        "correta": false
+      },
+      {
+        "texto": "atualizacao",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Antes de conectar em uma rede Wi-Fi publica, e recomendado evitar acessar contas ______.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 1,
+    "explicacao": "Redes publicas facilitam a interceptacao de dados, entao acessos sensiveis (banco, por exemplo) merecem mais cautela.",
+    "alternativas": [
+      {
+        "texto": "de jogos",
+        "correta": false
+      },
+      {
+        "texto": "sensiveis, como o banco",
+        "correta": true
+      },
+      {
+        "texto": "de redes sociais antigas",
+        "correta": false
+      },
+      {
+        "texto": "de e-mail promocional",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "A autenticacao de dois fatores adiciona uma camada extra alem da ______.",
+    "tema": "Autenticação Multifator",
+    "nivel": 1,
+    "explicacao": "O 2FA combina a senha com um segundo elemento (como um codigo no celular), dificultando o acesso mesmo que a senha vaze.",
+    "alternativas": [
+      {
+        "texto": "senha",
+        "correta": true
+      },
+      {
+        "texto": "localizacao",
+        "correta": false
+      },
+      {
+        "texto": "bateria",
+        "correta": false
+      },
+      {
+        "texto": "camera",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um golpista que se passa por um amigo em apuros para pedir dinheiro esta praticando ______.",
+    "tema": "Engenharia Social",
+    "nivel": 1,
+    "explicacao": "Engenharia social explora a confianca e as emocoes da vitima para conseguir dinheiro ou informacoes.",
+    "alternativas": [
+      {
+        "texto": "manutencao de rede",
+        "correta": false
+      },
+      {
+        "texto": "engenharia social",
+        "correta": true
+      },
+      {
+        "texto": "backup na nuvem",
+        "correta": false
+      },
+      {
+        "texto": "atualizacao de sistema",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um programa malicioso criado para prejudicar ou espionar um dispositivo e chamado de ______.",
+    "tema": "Malware",
+    "nivel": 1,
+    "explicacao": "Malware e o termo geral para qualquer software malicioso: virus, ransomware, spyware, entre outros.",
+    "alternativas": [
+      {
+        "texto": "malware",
+        "correta": true
+      },
+      {
+        "texto": "navegador",
+        "correta": false
+      },
+      {
+        "texto": "driver",
+        "correta": false
+      },
+      {
+        "texto": "firewall",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Antes de vender ou descartar um celular antigo, e importante fazer uma ______ de fabrica.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 1,
+    "explicacao": "A restauracao de fabrica apaga os dados pessoais, evitando que quem receber o aparelho acesse fotos e contas antigas.",
+    "alternativas": [
+      {
+        "texto": "restauracao",
+        "correta": true
+      },
+      {
+        "texto": "recarga",
+        "correta": false
+      },
+      {
+        "texto": "limpeza fisica",
+        "correta": false
+      },
+      {
+        "texto": "desativacao de wi-fi",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O cadeado que aparece no navegador indica que a conexao com o site esta ______.",
+    "tema": "Navegação Segura",
+    "nivel": 1,
+    "explicacao": "O cadeado (HTTPS) garante apenas que os dados trafegam criptografados, nao que o conteudo do site seja confiavel.",
+    "alternativas": [
+      {
+        "texto": "mais rapida",
+        "correta": false
+      },
+      {
+        "texto": "criptografada",
+        "correta": true
+      },
+      {
+        "texto": "livre de anuncios",
+        "correta": false
+      },
+      {
+        "texto": "aprovada pelo governo",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Dados pessoais como CPF e endereco devem ser informados apenas em sites ______.",
+    "tema": "Proteção de Dados",
+    "nivel": 1,
+    "explicacao": "Fornecer dados pessoais deve ser reservado a situacoes realmente necessarias e a sites cuja confiabilidade foi verificada.",
+    "alternativas": [
+      {
+        "texto": "bonitos",
+        "correta": false
+      },
+      {
+        "texto": "confiaveis e necessarios",
+        "correta": true
+      },
+      {
+        "texto": "com muitos anuncios",
+        "correta": false
+      },
+      {
+        "texto": "recem-criados",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Manter aplicativos e o sistema operacional ______ ajuda a corrigir falhas de seguranca conhecidas.",
+    "tema": "Atualizações",
+    "nivel": 1,
+    "explicacao": "Atualizacoes corrigem vulnerabilidades ja descobertas, reduzindo a chance de um ataque explorar essas falhas.",
+    "alternativas": [
+      {
+        "texto": "desinstalados",
+        "correta": false
+      },
+      {
+        "texto": "atualizados",
+        "correta": true
+      },
+      {
+        "texto": "ocultos",
+        "correta": false
+      },
+      {
+        "texto": "duplicados",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Uma senha considerada forte deve combinar letras, numeros e ______.",
+    "tema": "Senhas",
+    "nivel": 1,
+    "explicacao": "Combinar letras maiusculas, minusculas, numeros e simbolos aumenta bastante a dificuldade de adivinhar a senha.",
+    "alternativas": [
+      {
+        "texto": "simbolos",
+        "correta": true
+      },
+      {
+        "texto": "espacos apenas",
+        "correta": false
+      },
+      {
+        "texto": "emojis",
+        "correta": false
+      },
+      {
+        "texto": "o proprio nome",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Receber uma mensagem dizendo que voce ganhou um premio em um sorteio do qual nunca participou e um sinal de ______.",
+    "tema": "Golpes Digitais",
+    "nivel": 1,
+    "explicacao": "Premios de sorteios nos quais a pessoa nunca participou sao uma isca comum usada em golpes.",
+    "alternativas": [
+      {
+        "texto": "sorte",
+        "correta": false
+      },
+      {
+        "texto": "golpe",
+        "correta": true
+      },
+      {
+        "texto": "promocao legitima",
+        "correta": false
+      },
+      {
+        "texto": "erro do sistema apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Fazer copias de seguranca em locais diferentes ajuda a proteger arquivos contra perda por ______.",
+    "tema": "Backups",
+    "nivel": 1,
+    "explicacao": "Guardar copias em locais diferentes evita perder tudo de uma vez em caso de roubo, defeito ou ataque de ransomware.",
+    "alternativas": [
+      {
+        "texto": "excesso de espaco",
+        "correta": false
+      },
+      {
+        "texto": "roubo ou ataque de ransomware",
+        "correta": true
+      },
+      {
+        "texto": "uso normal do computador",
+        "correta": false
+      },
+      {
+        "texto": "atualizacoes do sistema",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Clicar em links de mensagens de numeros desconhecidos sem verificar antes pode levar a paginas de ______.",
+    "tema": "Links Maliciosos",
+    "nivel": 1,
+    "explicacao": "Links de remetentes desconhecidos podem redirecionar para paginas falsas de phishing sem que a vitima perceba.",
+    "alternativas": [
+      {
+        "texto": "noticias oficiais",
+        "correta": false
+      },
+      {
+        "texto": "phishing",
+        "correta": true
+      },
+      {
+        "texto": "suporte tecnico real",
+        "correta": false
+      },
+      {
+        "texto": "compras seguras",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um vazamento de dados ocorre quando informacoes privadas sao ______ sem autorizacao.",
+    "tema": "Vazamento de Dados",
+    "nivel": 1,
+    "explicacao": "Vazamentos expoem dados pessoais ou corporativos que deveriam ficar restritos, geralmente por falhas de seguranca ou ataques.",
+    "alternativas": [
+      {
+        "texto": "copiadas ou acessadas",
+        "correta": true
+      },
+      {
+        "texto": "comprimidas",
+        "correta": false
+      },
+      {
+        "texto": "impressas",
+        "correta": false
+      },
+      {
+        "texto": "formatadas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Antes de instalar um aplicativo, e recomendado verificar as ______ solicitadas por ele.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 1,
+    "explicacao": "Permissoes exageradas para o proposito do aplicativo (como um app de lanterna pedindo acesso a contatos) sao um sinal de alerta.",
+    "alternativas": [
+      {
+        "texto": "cores do icone",
+        "correta": false
+      },
+      {
+        "texto": "permissoes",
+        "correta": true
+      },
+      {
+        "texto": "avaliacoes de amigos apenas",
+        "correta": false
+      },
+      {
+        "texto": "data de lancamento",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ransomware e um tipo de malware que ______ os arquivos da vitima e cobra um resgate.",
+    "tema": "Ransomware",
+    "nivel": 1,
+    "explicacao": "O ransomware sequestra os dados criptografando-os e cobra um resgate, geralmente em criptomoeda, pela suposta liberacao.",
+    "alternativas": [
+      {
+        "texto": "copia",
+        "correta": false
+      },
+      {
+        "texto": "criptografa",
+        "correta": true
+      },
+      {
+        "texto": "renomeia apenas",
+        "correta": false
+      },
+      {
+        "texto": "organiza",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Manter o Wi-Fi e o Bluetooth do celular desligados quando nao estao em uso reduz a superficie de ______.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 1,
+    "explicacao": "Conexoes sem fio ativas e desnecessarias aumentam as chances de tentativas de conexao indevida ao dispositivo.",
+    "alternativas": [
+      {
+        "texto": "bateria",
+        "correta": false
+      },
+      {
+        "texto": "ataque",
+        "correta": true
+      },
+      {
+        "texto": "armazenamento",
+        "correta": false
+      },
+      {
+        "texto": "tela",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Golpes que se aproveitam de datas como a Black Friday costumam disfarcar phishing como ______ imperdiveis.",
+    "tema": "Phishing",
+    "nivel": 1,
+    "explicacao": "Datas de grande volume de compras sao aproveitadas por criminosos para disfarcar phishing como promocoes chamativas.",
+    "alternativas": [
+      {
+        "texto": "ofertas",
+        "correta": true
+      },
+      {
+        "texto": "multas",
+        "correta": false
+      },
+      {
+        "texto": "atualizacoes",
+        "correta": false
+      },
+      {
+        "texto": "senhas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Antes de aceitar os termos de um aplicativo, vale a pena ler a politica de ______.",
+    "tema": "Privacidade",
+    "nivel": 1,
+    "explicacao": "A politica de privacidade informa quais dados o aplicativo coleta e como serao usados.",
+    "alternativas": [
+      {
+        "texto": "cores",
+        "correta": false
+      },
+      {
+        "texto": "privacidade",
+        "correta": true
+      },
+      {
+        "texto": "fontes",
+        "correta": false
+      },
+      {
+        "texto": "nomes",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um antivirus atualizado ajuda a detectar e bloquear varios tipos de ______ conhecidos.",
+    "tema": "Malware",
+    "nivel": 1,
+    "explicacao": "Antivirus atualizados possuem bases de dados recentes de ameacas conhecidas, aumentando a chance de deteccao.",
+    "alternativas": [
+      {
+        "texto": "malware",
+        "correta": true
+      },
+      {
+        "texto": "wallpapers",
+        "correta": false
+      },
+      {
+        "texto": "contatos",
+        "correta": false
+      },
+      {
+        "texto": "fotos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ao se ausentar do computador em um local publico, e recomendado ______ a tela.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 1,
+    "explicacao": "Bloquear a tela ao se ausentar impede que outras pessoas acessem informacoes ou sistemas sem autorizacao.",
+    "alternativas": [
+      {
+        "texto": "desligar",
+        "correta": false
+      },
+      {
+        "texto": "bloquear",
+        "correta": true
+      },
+      {
+        "texto": "limpar",
+        "correta": false
+      },
+      {
+        "texto": "compartilhar",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Mensagens que criam um senso de ______ sao uma tatica comum em golpes digitais.",
+    "tema": "Golpes Digitais",
+    "nivel": 1,
+    "explicacao": "Criar urgencia impede que a vitima pense com calma antes de agir, facilitando o golpe.",
+    "alternativas": [
+      {
+        "texto": "urgencia",
+        "correta": true
+      },
+      {
+        "texto": "calma",
+        "correta": false
+      },
+      {
+        "texto": "silencio",
+        "correta": false
+      },
+      {
+        "texto": "felicidade apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Perfis falsos em redes sociais costumam imitar ______ conhecidas para aplicar golpes.",
+    "tema": "Redes Sociais",
+    "nivel": 1,
+    "explicacao": "Golpistas criam perfis falsos imitando lojas ou marcas conhecidas para anunciar produtos que nunca serao entregues.",
+    "alternativas": [
+      {
+        "texto": "marcas ou lojas",
+        "correta": true
+      },
+      {
+        "texto": "cores de fundo",
+        "correta": false
+      },
+      {
+        "texto": "fontes de texto",
+        "correta": false
+      },
+      {
+        "texto": "horarios de postagem",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Baixar aplicativos apenas de lojas ______ reduz o risco de instalar malware.",
+    "tema": "Downloads",
+    "nivel": 1,
+    "explicacao": "Lojas oficiais possuem processos de verificacao que dificultam, embora nao eliminem, a distribuicao de apps maliciosos.",
+    "alternativas": [
+      {
+        "texto": "oficiais",
+        "correta": true
+      },
+      {
+        "texto": "desconhecidas",
+        "correta": false
+      },
+      {
+        "texto": "estrangeiras apenas",
+        "correta": false
+      },
+      {
+        "texto": "gratuitas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Trocar a senha ______ do roteador domestico e uma medida basica de seguranca.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 1,
+    "explicacao": "Senhas padrao de fabrica sao conhecidas publicamente e facilmente exploradas por invasores.",
+    "alternativas": [
+      {
+        "texto": "padrao de fabrica",
+        "correta": true
+      },
+      {
+        "texto": "de wi-fi dos vizinhos",
+        "correta": false
+      },
+      {
+        "texto": "do provedor apenas",
+        "correta": false
+      },
+      {
+        "texto": "do roteador antigo",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um aplicativo que pede acesso a contatos sem nenhuma relacao com sua funcao pode ser um sinal de ______.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 1,
+    "explicacao": "Permissoes desproporcionais ao proposito do app sao um indicio de comportamento suspeito ou coleta indevida de dados.",
+    "alternativas": [
+      {
+        "texto": "boa reputacao",
+        "correta": false
+      },
+      {
+        "texto": "comportamento suspeito",
+        "correta": true
+      },
+      {
+        "texto": "eficiencia",
+        "correta": false
+      },
+      {
+        "texto": "popularidade",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Verificar se o remetente de um e-mail corporativo usa o dominio ______ da empresa ajuda a identificar phishing.",
+    "tema": "Segurança de E-mail",
+    "nivel": 1,
+    "explicacao": "Ataques de phishing direcionado costumam usar dominios muito parecidos com o oficial, com pequenas alteracoes.",
+    "alternativas": [
+      {
+        "texto": "oficial",
+        "correta": true
+      },
+      {
+        "texto": "mais bonito",
+        "correta": false
+      },
+      {
+        "texto": "mais antigo",
+        "correta": false
+      },
+      {
+        "texto": "internacional",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Compartilhar a localizacao em tempo real publicamente pode revelar sua ______ diaria.",
+    "tema": "Privacidade",
+    "nivel": 1,
+    "explicacao": "Compartilhar localizacao em tempo real pode revelar padroes de rotina e quando a casa esta vazia, por exemplo.",
+    "alternativas": [
+      {
+        "texto": "rotina",
+        "correta": true
+      },
+      {
+        "texto": "senha",
+        "correta": false
+      },
+      {
+        "texto": "cor favorita",
+        "correta": false
+      },
+      {
+        "texto": "familia apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Verificar avaliacoes e reputacao de uma loja virtual antes da compra ajuda a evitar ______ de e-commerce falso.",
+    "tema": "Golpes Digitais",
+    "nivel": 1,
+    "explicacao": "Lojas fraudulentas costumam ter pouco tempo de existencia e reclamacoes recentes em sites de avaliacao.",
+    "alternativas": [
+      {
+        "texto": "descontos",
+        "correta": false
+      },
+      {
+        "texto": "golpes",
+        "correta": true
+      },
+      {
+        "texto": "frete gratis",
+        "correta": false
+      },
+      {
+        "texto": "cupons",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um gerenciador de senhas ajuda a criar senhas ______ para cada servico usado.",
+    "tema": "Senhas",
+    "nivel": 2,
+    "explicacao": "Gerenciadores de senha geram e guardam combinacoes unicas e fortes, eliminando a necessidade de reutilizar senhas.",
+    "alternativas": [
+      {
+        "texto": "iguais",
+        "correta": false
+      },
+      {
+        "texto": "unicas",
+        "correta": true
+      },
+      {
+        "texto": "curtas",
+        "correta": false
+      },
+      {
+        "texto": "temporarias apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O golpe conhecido como SIM swap ocorre quando um criminoso transfere o ______ da vitima para um chip proprio.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "Ao portar o numero da vitima, o golpista passa a receber os codigos de verificacao por SMS destinados a ela.",
+    "alternativas": [
+      {
+        "texto": "numero de telefone",
+        "correta": true
+      },
+      {
+        "texto": "saldo bancario",
+        "correta": false
+      },
+      {
+        "texto": "endereco de e-mail",
+        "correta": false
+      },
+      {
+        "texto": "aplicativo do banco",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ao usar o internet banking fora de casa, o mais seguro e evitar redes Wi-Fi publicas e preferir os ______ do celular.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 2,
+    "explicacao": "Dados moveis costumam ser mais seguros que uma rede Wi-Fi publica aberta para acessar servicos sensiveis.",
+    "alternativas": [
+      {
+        "texto": "dados moveis",
+        "correta": true
+      },
+      {
+        "texto": "fones de ouvido",
+        "correta": false
+      },
+      {
+        "texto": "aplicativos de jogos",
+        "correta": false
+      },
+      {
+        "texto": "navegadores antigos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Phishing direcionado a uma pessoa ou cargo especifico e chamado de ______.",
+    "tema": "Phishing",
+    "nivel": 2,
+    "explicacao": "Diferente do phishing em massa, o spear phishing usa informacoes especificas da vitima para parecer mais convincente.",
+    "alternativas": [
+      {
+        "texto": "spam comum",
+        "correta": false
+      },
+      {
+        "texto": "spear phishing",
+        "correta": true
+      },
+      {
+        "texto": "newsletter",
+        "correta": false
+      },
+      {
+        "texto": "marketing direto",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Golpes de falso suporte tecnico costumam pedir a instalacao de programas de ______.",
+    "tema": "Engenharia Social",
+    "nivel": 2,
+    "explicacao": "Apos convencer a vitima de um problema falso, o golpista pede acesso remoto para assumir o controle do computador.",
+    "alternativas": [
+      {
+        "texto": "acesso remoto",
+        "correta": true
+      },
+      {
+        "texto": "edicao de fotos",
+        "correta": false
+      },
+      {
+        "texto": "backup local",
+        "correta": false
+      },
+      {
+        "texto": "antivirus gratuito legitimo",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um QR Code falso colado sobre um QR Code legitimo pode redirecionar para um site de ______.",
+    "tema": "Links Maliciosos",
+    "nivel": 2,
+    "explicacao": "Essa tecnica, chamada de quishing, usa QR Codes falsos colados sobre os originais para enganar quem escaneia.",
+    "alternativas": [
+      {
+        "texto": "phishing",
+        "correta": true
+      },
+      {
+        "texto": "suporte oficial",
+        "correta": false
+      },
+      {
+        "texto": "desconto real",
+        "correta": false
+      },
+      {
+        "texto": "atualizacao do sistema",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Manter aplicativos com atualizacao ______ ajuda a manter as correcoes de seguranca sempre em dia.",
+    "tema": "Atualizações",
+    "nivel": 2,
+    "explicacao": "Atualizacoes automaticas reduzem o tempo em que o dispositivo fica exposto a vulnerabilidades ja corrigidas.",
+    "alternativas": [
+      {
+        "texto": "automatica",
+        "correta": true
+      },
+      {
+        "texto": "desativada",
+        "correta": false
+      },
+      {
+        "texto": "mensal manual apenas",
+        "correta": false
+      },
+      {
+        "texto": "bloqueada",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de forca bruta tenta ______ combinacoes de senha ate encontrar a correta.",
+    "tema": "Senhas",
+    "nivel": 2,
+    "explicacao": "Esse ataque usa softwares que testam muitas combinacoes rapidamente, por isso senhas longas dificultam o sucesso.",
+    "alternativas": [
+      {
+        "texto": "poucas",
+        "correta": false
+      },
+      {
+        "texto": "varias",
+        "correta": true
+      },
+      {
+        "texto": "nenhuma",
+        "correta": false
+      },
+      {
+        "texto": "apenas uma",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Golpes romanticos online costumam pedir dinheiro apos ganhar a ______ da vitima ao longo de semanas.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "O investimento de tempo em um relacionamento falso cria confianca emocional, tornando o pedido de dinheiro mais convincente.",
+    "alternativas": [
+      {
+        "texto": "confianca",
+        "correta": true
+      },
+      {
+        "texto": "senha",
+        "correta": false
+      },
+      {
+        "texto": "localizacao apenas",
+        "correta": false
+      },
+      {
+        "texto": "lista de contatos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Verificar se um site tem CNPJ e contato claros ajuda a identificar lojas online ______.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "Lojas falsas costumam esconder ou nao ter informacoes claras de contato e CNPJ.",
+    "alternativas": [
+      {
+        "texto": "confiaveis",
+        "correta": true
+      },
+      {
+        "texto": "caras",
+        "correta": false
+      },
+      {
+        "texto": "populares",
+        "correta": false
+      },
+      {
+        "texto": "recentes",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Revisar quais aplicativos tem acesso a sua conta do Google ou Facebook ajuda a revogar acessos ______.",
+    "tema": "Privacidade",
+    "nivel": 2,
+    "explicacao": "Aplicativos de terceiros conectados a contas principais podem acumular permissoes esquecidas ao longo do tempo.",
+    "alternativas": [
+      {
+        "texto": "indevidos",
+        "correta": true
+      },
+      {
+        "texto": "uteis",
+        "correta": false
+      },
+      {
+        "texto": "recentes apenas",
+        "correta": false
+      },
+      {
+        "texto": "pagos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Trojans bancarios para Android costumam abusar da permissao de ______ para roubar dados da tela.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 2,
+    "explicacao": "Essa permissao permite ler a tela e simular toques, e e abusada por trojans bancarios para roubar dados exibidos.",
+    "alternativas": [
+      {
+        "texto": "acessibilidade",
+        "correta": true
+      },
+      {
+        "texto": "bateria",
+        "correta": false
+      },
+      {
+        "texto": "brilho de tela",
+        "correta": false
+      },
+      {
+        "texto": "papel de parede",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um firewall ajuda a controlar quais ______ de rede sao permitidas ou bloqueadas.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 2,
+    "explicacao": "O firewall funciona como uma barreira de controle de trafego, permitindo ou negando comunicacoes com base em regras.",
+    "alternativas": [
+      {
+        "texto": "conexoes",
+        "correta": true
+      },
+      {
+        "texto": "cores",
+        "correta": false
+      },
+      {
+        "texto": "fotos",
+        "correta": false
+      },
+      {
+        "texto": "senhas antigas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Apos um vazamento de dados de um servico usado, a medida mais importante costuma ser trocar a ______ imediatamente.",
+    "tema": "Vazamento de Dados",
+    "nivel": 2,
+    "explicacao": "Trocar a senha (e habilitar 2FA quando possivel) e a medida mais eficaz apos um vazamento de dados.",
+    "alternativas": [
+      {
+        "texto": "senha",
+        "correta": true
+      },
+      {
+        "texto": "cor do perfil",
+        "correta": false
+      },
+      {
+        "texto": "foto de perfil",
+        "correta": false
+      },
+      {
+        "texto": "cidade cadastrada",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Notificacoes push falsas imitando bancos tentam induzir o usuario a abrir um aplicativo ______.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "Alguns malwares para celular geram notificacoes falsas identicas as de bancos legitimos para roubar credenciais.",
+    "alternativas": [
+      {
+        "texto": "falso",
+        "correta": true
+      },
+      {
+        "texto": "de backup",
+        "correta": false
+      },
+      {
+        "texto": "de fotos",
+        "correta": false
+      },
+      {
+        "texto": "de mensagens comum",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ao usar um computador publico, e recomendado sempre fazer ______ de todas as contas antes de sair.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 2,
+    "explicacao": "Nao encerrar a sessao em um computador publico pode permitir que a proxima pessoa acesse suas contas.",
+    "alternativas": [
+      {
+        "texto": "logout",
+        "correta": true
+      },
+      {
+        "texto": "captura de tela",
+        "correta": false
+      },
+      {
+        "texto": "backup",
+        "correta": false
+      },
+      {
+        "texto": "atualizacao",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Golpes de emprego falso costumam pedir um pagamento ______ por materiais ou treinamento.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "Empregos legitimos nao costumam exigir pagamento antecipado do candidato; esse pedido e um forte indicio de fraude.",
+    "alternativas": [
+      {
+        "texto": "antecipado",
+        "correta": true
+      },
+      {
+        "texto": "apos o primeiro salario",
+        "correta": false
+      },
+      {
+        "texto": "simbolico da empresa",
+        "correta": false
+      },
+      {
+        "texto": "reembolsavel sempre",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Manter a localizacao do celular ativada apenas para os aplicativos que realmente precisam preserva a ______.",
+    "tema": "Privacidade",
+    "nivel": 2,
+    "explicacao": "Conceder acesso a localizacao apenas quando necessario reduz a exposicao de dados pessoais sensiveis.",
+    "alternativas": [
+      {
+        "texto": "privacidade",
+        "correta": true
+      },
+      {
+        "texto": "bateria apenas",
+        "correta": false
+      },
+      {
+        "texto": "velocidade do gps",
+        "correta": false
+      },
+      {
+        "texto": "cor da tela",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque man-in-the-middle intercepta a comunicacao entre duas partes sem que elas ______.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 2,
+    "explicacao": "Esse ataque, comum em redes Wi-Fi publicas nao criptografadas, e feito de forma dissimulada, sem que as vitimas notem.",
+    "alternativas": [
+      {
+        "texto": "percebam",
+        "correta": true
+      },
+      {
+        "texto": "se conectem",
+        "correta": false
+      },
+      {
+        "texto": "usem senha",
+        "correta": false
+      },
+      {
+        "texto": "estejam online",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Verificar duas vezes o destinatario antes de confirmar um Pix e importante porque a transferencia e quase ______.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 2,
+    "explicacao": "Diferente de outras formas de pagamento, o Pix e processado quase instantaneamente, dificultando o cancelamento em caso de erro.",
+    "alternativas": [
+      {
+        "texto": "instantanea",
+        "correta": true
+      },
+      {
+        "texto": "gratuita",
+        "correta": false
+      },
+      {
+        "texto": "reversivel sempre",
+        "correta": false
+      },
+      {
+        "texto": "opcional",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Manter dispositivos IoT, como cameras, com a senha ______ de fabrica facilita a invasao da rede domestica.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 2,
+    "explicacao": "Senhas padrao de dispositivos IoT sao amplamente conhecidas e exploradas por atacantes para invadir redes domesticas.",
+    "alternativas": [
+      {
+        "texto": "padrao",
+        "correta": true
+      },
+      {
+        "texto": "mais recente",
+        "correta": false
+      },
+      {
+        "texto": "criptografada",
+        "correta": false
+      },
+      {
+        "texto": "aleatoria personalizada",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Verificar se o link de pagamento de um boleto recebido por mensagem aponta para o site ______ da empresa evita fraudes.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "Links falsos de pagamento podem redirecionar o valor pago para uma conta fraudulenta em vez da empresa real.",
+    "alternativas": [
+      {
+        "texto": "oficial",
+        "correta": true
+      },
+      {
+        "texto": "mais rapido",
+        "correta": false
+      },
+      {
+        "texto": "estrangeiro",
+        "correta": false
+      },
+      {
+        "texto": "com desconto",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Denunciar um perfil falso se passando por uma empresa em redes sociais ajuda a proteger outros ______.",
+    "tema": "Redes Sociais",
+    "nivel": 2,
+    "explicacao": "A denuncia pode levar a remocao do perfil falso, reduzindo o alcance do golpista.",
+    "alternativas": [
+      {
+        "texto": "usuarios",
+        "correta": true
+      },
+      {
+        "texto": "servidores",
+        "correta": false
+      },
+      {
+        "texto": "dispositivos",
+        "correta": false
+      },
+      {
+        "texto": "dominios",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "A recuperacao de senha por perguntas secretas pode ser fragil se as respostas forem faceis de encontrar nas ______.",
+    "tema": "Autenticação",
+    "nivel": 2,
+    "explicacao": "Informacoes publicadas em redes sociais podem ser usadas para responder perguntas de seguranca e invadir contas.",
+    "alternativas": [
+      {
+        "texto": "redes sociais",
+        "correta": true
+      },
+      {
+        "texto": "lojas fisicas",
+        "correta": false
+      },
+      {
+        "texto": "agendas de papel",
+        "correta": false
+      },
+      {
+        "texto": "bibliotecas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Vagas remotas que exigem a compra de equipamentos antes de comecar a trabalhar sao um sinal de ______.",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "explicacao": "Pedir que o candidato compre equipamentos antes de um contrato formal e um padrao comum em fraudes de emprego.",
+    "alternativas": [
+      {
+        "texto": "fraude",
+        "correta": true
+      },
+      {
+        "texto": "beneficio extra",
+        "correta": false
+      },
+      {
+        "texto": "politica de RH comum",
+        "correta": false
+      },
+      {
+        "texto": "promocao",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um time de resposta a incidentes e responsavel por identificar, conter e ______ problemas de seguranca.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 2,
+    "explicacao": "Esses times coordenam a resposta tecnica e organizacional durante e apos um incidente de seguranca.",
+    "alternativas": [
+      {
+        "texto": "remediar",
+        "correta": true
+      },
+      {
+        "texto": "ignorar",
+        "correta": false
+      },
+      {
+        "texto": "adiar",
+        "correta": false
+      },
+      {
+        "texto": "divulgar publicamente sempre",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Manter contas de redes sociais inativas por anos, sem senha atualizada, aumenta o risco de ______.",
+    "tema": "Redes Sociais",
+    "nivel": 2,
+    "explicacao": "Contas inativas e com senhas antigas podem ser invadidas e usadas para golpes contra os contatos daquela pessoa.",
+    "alternativas": [
+      {
+        "texto": "invasao",
+        "correta": true
+      },
+      {
+        "texto": "popularidade",
+        "correta": false
+      },
+      {
+        "texto": "recomendacao do app",
+        "correta": false
+      },
+      {
+        "texto": "verificacao automatica",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Verificar a URL completa na barra de enderecos, e nao so o titulo da aba, ajuda a evitar sites ______.",
+    "tema": "Navegação Segura",
+    "nivel": 2,
+    "explicacao": "Paginas falsas podem usar titulos de aba identicos aos originais; a URL real e o indicador mais confiavel.",
+    "alternativas": [
+      {
+        "texto": "falsos",
+        "correta": true
+      },
+      {
+        "texto": "lentos",
+        "correta": false
+      },
+      {
+        "texto": "estrangeiros",
+        "correta": false
+      },
+      {
+        "texto": "sem anuncios",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Aceitar solicitacoes de amizade de perfis desconhecidos sem verificar aumenta a exposicao a golpes de ______.",
+    "tema": "Engenharia Social",
+    "nivel": 2,
+    "explicacao": "Perfis falsos usados em golpes costumam comecar interagindo como amigos para ganhar confianca antes de aplicar o golpe.",
+    "alternativas": [
+      {
+        "texto": "engenharia social",
+        "correta": true
+      },
+      {
+        "texto": "atualizacao de app",
+        "correta": false
+      },
+      {
+        "texto": "backup",
+        "correta": false
+      },
+      {
+        "texto": "firewall",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Empresas devem treinar periodicamente funcionarios sobre reconhecimento de phishing e ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 2,
+    "explicacao": "O treinamento continuo reduz a chance de um funcionario cair em golpes, ja que o fator humano e um dos principais vetores de ataque.",
+    "alternativas": [
+      {
+        "texto": "engenharia social",
+        "correta": true
+      },
+      {
+        "texto": "marketing digital",
+        "correta": false
+      },
+      {
+        "texto": "atendimento ao cliente",
+        "correta": false
+      },
+      {
+        "texto": "vendas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O uso de 'salt' no armazenamento de senhas dificulta ataques de ______.",
+    "tema": "Senhas",
+    "nivel": 3,
+    "explicacao": "O salt adiciona um valor aleatorio unico a cada senha antes do hashing, tornando inuteis tabelas pre-computadas de hashes.",
+    "alternativas": [
+      {
+        "texto": "rainbow table",
+        "correta": true
+      },
+      {
+        "texto": "phishing por e-mail",
+        "correta": false
+      },
+      {
+        "texto": "engenharia social",
+        "correta": false
+      },
+      {
+        "texto": "negacao de servico",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Vishing e a variante do phishing aplicada por ______.",
+    "tema": "Phishing",
+    "nivel": 3,
+    "explicacao": "Vishing (voice phishing) usa ligacoes telefonicas, muitas vezes com numero falsificado, para induzir a vitima a fornecer dados.",
+    "alternativas": [
+      {
+        "texto": "chamada de voz",
+        "correta": true
+      },
+      {
+        "texto": "mensagem de texto apenas",
+        "correta": false
+      },
+      {
+        "texto": "redes sociais apenas",
+        "correta": false
+      },
+      {
+        "texto": "cartas fisicas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Uma VPN cria um tunel ______ entre o dispositivo do usuario e um servidor remoto.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 3,
+    "explicacao": "O tunel criptografado protege o trafego contra interceptacao, especialmente util em redes publicas nao confiaveis.",
+    "alternativas": [
+      {
+        "texto": "criptografado",
+        "correta": true
+      },
+      {
+        "texto": "visivel",
+        "correta": false
+      },
+      {
+        "texto": "mais lento apenas",
+        "correta": false
+      },
+      {
+        "texto": "publico",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de DNS spoofing redireciona o usuario para um site falso mesmo digitando o endereco ______.",
+    "tema": "Navegação Segura",
+    "nivel": 3,
+    "explicacao": "Ao corromper a resolucao de nomes (DNS), o atacante faz o dominio legitimo apontar para um servidor malicioso.",
+    "alternativas": [
+      {
+        "texto": "correto",
+        "correta": true
+      },
+      {
+        "texto": "errado de proposito",
+        "correta": false
+      },
+      {
+        "texto": "de um concorrente",
+        "correta": false
+      },
+      {
+        "texto": "expirado",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Uma vulnerabilidade zero-day e uma falha ainda ______ pelo fabricante no momento em que e explorada.",
+    "tema": "Malware",
+    "nivel": 3,
+    "explicacao": "Zero-day se refere ao fato de o fabricante ter zero dias de aviso previo antes da falha ser explorada.",
+    "alternativas": [
+      {
+        "texto": "desconhecida",
+        "correta": true
+      },
+      {
+        "texto": "documentada",
+        "correta": false
+      },
+      {
+        "texto": "corrigida ha anos",
+        "correta": false
+      },
+      {
+        "texto": "divulgada publicamente",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "No pretexting, o atacante cria um cenario ou identidade falsa para obter ______ da vitima.",
+    "tema": "Engenharia Social",
+    "nivel": 3,
+    "explicacao": "No pretexting, o atacante inventa uma historia convincente (como se passar por auditor) para justificar o pedido de dados.",
+    "alternativas": [
+      {
+        "texto": "informacoes",
+        "correta": true
+      },
+      {
+        "texto": "elogios",
+        "correta": false
+      },
+      {
+        "texto": "bateria",
+        "correta": false
+      },
+      {
+        "texto": "permissao de firewall",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O principio do menor privilegio recomenda dar a cada usuario apenas as permissoes ______ para sua funcao.",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "explicacao": "Esse principio reduz o impacto de uma conta comprometida, ja que o acesso do atacante fica limitado ao que a conta podia acessar.",
+    "alternativas": [
+      {
+        "texto": "minimas necessarias",
+        "correta": true
+      },
+      {
+        "texto": "maximas possiveis",
+        "correta": false
+      },
+      {
+        "texto": "de administrador sempre",
+        "correta": false
+      },
+      {
+        "texto": "temporarias de um dia",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um keylogger e um malware que registra as ______ digitadas pelo usuario.",
+    "tema": "Malware",
+    "nivel": 3,
+    "explicacao": "Keyloggers monitoram a entrada do teclado silenciosamente e enviam os dados capturados ao atacante.",
+    "alternativas": [
+      {
+        "texto": "teclas",
+        "correta": true
+      },
+      {
+        "texto": "fotos tiradas",
+        "correta": false
+      },
+      {
+        "texto": "chamadas recebidas",
+        "correta": false
+      },
+      {
+        "texto": "cores da tela",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de credential stuffing testa senhas ______ de outros servicos em contas diferentes.",
+    "tema": "Senhas",
+    "nivel": 3,
+    "explicacao": "Esse ataque explora a reutilizacao de senhas: credenciais vazadas em um servico sao testadas em massa em outras plataformas.",
+    "alternativas": [
+      {
+        "texto": "vazadas",
+        "correta": true
+      },
+      {
+        "texto": "criadas na hora",
+        "correta": false
+      },
+      {
+        "texto": "nunca usadas",
+        "correta": false
+      },
+      {
+        "texto": "aleatorias geradas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Malvertising e a distribuicao de malware atraves de ______ em sites legitimos comprometidos.",
+    "tema": "Malware",
+    "nivel": 3,
+    "explicacao": "Malvertising usa anuncios online para distribuir malware ou redirecionar o usuario para paginas maliciosas.",
+    "alternativas": [
+      {
+        "texto": "anuncios",
+        "correta": true
+      },
+      {
+        "texto": "comentarios apenas",
+        "correta": false
+      },
+      {
+        "texto": "titulos de pagina",
+        "correta": false
+      },
+      {
+        "texto": "nomes de dominio",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "No golpe de business email compromise (BEC), o atacante se passa por um executivo para induzir uma transferencia ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "explicacao": "No BEC, o atacante finge ser um executivo ou fornecedor legitimo para convencer a vitima a realizar um pagamento fraudulento.",
+    "alternativas": [
+      {
+        "texto": "financeira fraudulenta",
+        "correta": true
+      },
+      {
+        "texto": "de arquivos legitima",
+        "correta": false
+      },
+      {
+        "texto": "de e-mail simples",
+        "correta": false
+      },
+      {
+        "texto": "de senha apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Chaves de seguranca fisicas (tokens U2F) sao mais resistentes a phishing porque verificam a ______ do site antes de autenticar.",
+    "tema": "Autenticação Multifator",
+    "nivel": 3,
+    "explicacao": "Ao verificar criptograficamente a origem da solicitacao, o token dificulta seu uso em um site de phishing, ao contrario de um codigo SMS.",
+    "alternativas": [
+      {
+        "texto": "origem real",
+        "correta": true
+      },
+      {
+        "texto": "velocidade",
+        "correta": false
+      },
+      {
+        "texto": "cor do layout",
+        "correta": false
+      },
+      {
+        "texto": "popularidade",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um honeypot e um sistema propositalmente vulneravel usado para ______ o comportamento de atacantes.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 3,
+    "explicacao": "Honeypots ajudam equipes de seguranca a observar tecnicas reais de ataque em um ambiente controlado, sem expor sistemas reais.",
+    "alternativas": [
+      {
+        "texto": "estudar",
+        "correta": true
+      },
+      {
+        "texto": "acelerar",
+        "correta": false
+      },
+      {
+        "texto": "apagar",
+        "correta": false
+      },
+      {
+        "texto": "vender",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "A criptografia de disco completo protege os dados principalmente quando o dispositivo esta ______.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 3,
+    "explicacao": "A criptografia de disco protege os dados justamente quando o dispositivo esta desligado ou bloqueado, sem a chave correta.",
+    "alternativas": [
+      {
+        "texto": "desligado ou bloqueado",
+        "correta": true
+      },
+      {
+        "texto": "ligado e em uso",
+        "correta": false
+      },
+      {
+        "texto": "carregando",
+        "correta": false
+      },
+      {
+        "texto": "em modo aviao",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de watering hole compromete um site que o grupo-alvo costuma ______, em vez de atacar diretamente.",
+    "tema": "Malware",
+    "nivel": 3,
+    "explicacao": "O atacante identifica sites frequentados pelo grupo-alvo e os compromete, esperando que as vitimas visitem e sejam infectadas.",
+    "alternativas": [
+      {
+        "texto": "visitar",
+        "correta": true
+      },
+      {
+        "texto": "hospedar",
+        "correta": false
+      },
+      {
+        "texto": "bloquear",
+        "correta": false
+      },
+      {
+        "texto": "denunciar",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O typosquatting registra dominios com erros de ______ proximos a sites populares.",
+    "tema": "Phishing",
+    "nivel": 3,
+    "explicacao": "Registrar um dominio parecido com um site popular, mas com uma letra trocada, espera capturar usuarios que digitam errado.",
+    "alternativas": [
+      {
+        "texto": "digitacao",
+        "correta": true
+      },
+      {
+        "texto": "hospedagem",
+        "correta": false
+      },
+      {
+        "texto": "seguranca",
+        "correta": false
+      },
+      {
+        "texto": "criptografia",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ransomware do tipo double extortion, alem de criptografar arquivos, ameaca ______ os dados roubados.",
+    "tema": "Ransomware",
+    "nivel": 3,
+    "explicacao": "Na extorsao dupla, o atacante rouba os dados antes de criptografa-los e ameaca publica-los para aumentar a pressao pelo pagamento.",
+    "alternativas": [
+      {
+        "texto": "publicar",
+        "correta": true
+      },
+      {
+        "texto": "apagar sem copia",
+        "correta": false
+      },
+      {
+        "texto": "devolver de graca",
+        "correta": false
+      },
+      {
+        "texto": "ignorar",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ferramentas de SIEM ajudam a correlacionar eventos de diferentes sistemas para identificar padroes de ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "explicacao": "Ferramentas de SIEM agregam e analisam logs de multiplas fontes, permitindo detectar comportamentos anomalos.",
+    "alternativas": [
+      {
+        "texto": "ataque",
+        "correta": true
+      },
+      {
+        "texto": "desempenho apenas",
+        "correta": false
+      },
+      {
+        "texto": "layout visual",
+        "correta": false
+      },
+      {
+        "texto": "licenciamento",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O shoulder surfing consiste em observar por cima do ______ de alguem para capturar senhas.",
+    "tema": "Engenharia Social",
+    "nivel": 3,
+    "explicacao": "E uma tecnica simples de coleta de informacao usada em locais publicos, como caixas eletronicos e transporte publico.",
+    "alternativas": [
+      {
+        "texto": "ombro",
+        "correta": true
+      },
+      {
+        "texto": "computador desligado",
+        "correta": false
+      },
+      {
+        "texto": "telhado",
+        "correta": false
+      },
+      {
+        "texto": "email",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um pentest autorizado busca identificar vulnerabilidades antes que atacantes ______ as explorem de verdade.",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "explicacao": "Pentests simulam ataques reais, de forma controlada e autorizada, para avaliar a seguranca de sistemas e redes.",
+    "alternativas": [
+      {
+        "texto": "reais",
+        "correta": true
+      },
+      {
+        "texto": "ficticios",
+        "correta": false
+      },
+      {
+        "texto": "internos apenas",
+        "correta": false
+      },
+      {
+        "texto": "aposentados",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de replay reenvia uma comunicacao ______ anteriormente para repetir uma acao valida.",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 3,
+    "explicacao": "Sem mecanismos como tokens de uso unico, o atacante pode reenviar dados capturados para repetir uma acao valida.",
+    "alternativas": [
+      {
+        "texto": "capturada",
+        "correta": true
+      },
+      {
+        "texto": "criada do zero",
+        "correta": false
+      },
+      {
+        "texto": "criptografada com nova chave",
+        "correta": false
+      },
+      {
+        "texto": "nunca enviada",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "A verificacao de integridade de arquivos por hash (como SHA-256) tambem serve para checar se um arquivo foi ______.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 3,
+    "explicacao": "Comparar o hash divulgado com o calculado do arquivo baixado permite verificar se ele foi modificado.",
+    "alternativas": [
+      {
+        "texto": "alterado",
+        "correta": true
+      },
+      {
+        "texto": "comprimido",
+        "correta": false
+      },
+      {
+        "texto": "renomeado apenas",
+        "correta": false
+      },
+      {
+        "texto": "visualizado",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Golpes de romance scam envolvem relacionamentos falsos construidos ao longo de semanas antes de pedir ______.",
+    "tema": "Golpes Digitais",
+    "nivel": 3,
+    "explicacao": "O investimento de tempo cria confianca emocional na vitima, tornando o pedido de dinheiro posterior mais convincente.",
+    "alternativas": [
+      {
+        "texto": "dinheiro",
+        "correta": true
+      },
+      {
+        "texto": "uma foto apenas",
+        "correta": false
+      },
+      {
+        "texto": "um encontro presencial imediato",
+        "correta": false
+      },
+      {
+        "texto": "um numero de telefone",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O objetivo de um ataque DoS/DDoS e tornar um servico ______ sobrecarregando-o de trafego.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 3,
+    "explicacao": "Diferente do roubo de dados, o objetivo do DoS/DDoS e sobrecarregar um servico ate torna-lo indisponivel.",
+    "alternativas": [
+      {
+        "texto": "indisponivel",
+        "correta": true
+      },
+      {
+        "texto": "mais rapido",
+        "correta": false
+      },
+      {
+        "texto": "mais seguro",
+        "correta": false
+      },
+      {
+        "texto": "gratuito",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "A pratica de least exposure recomenda desativar servicos e portas de rede ______ ao funcionamento do sistema.",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "explicacao": "Reduzir a superficie de ataque desativando servicos desnecessarios diminui o numero de pontos exploraveis.",
+    "alternativas": [
+      {
+        "texto": "desnecessarios",
+        "correta": true
+      },
+      {
+        "texto": "essenciais",
+        "correta": false
+      },
+      {
+        "texto": "mais antigos apenas",
+        "correta": false
+      },
+      {
+        "texto": "mais caros",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Trojans bancarios costumam se disfarcar de aplicativos legitimos para roubar ______ de acesso a contas financeiras.",
+    "tema": "Malware",
+    "nivel": 3,
+    "explicacao": "Esses trojans imitam a interface de bancos ou interceptam a comunicacao para capturar login e senha da vitima.",
+    "alternativas": [
+      {
+        "texto": "credenciais",
+        "correta": true
+      },
+      {
+        "texto": "fotos",
+        "correta": false
+      },
+      {
+        "texto": "contatos apenas",
+        "correta": false
+      },
+      {
+        "texto": "videos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Na engenharia social inversa, o atacante faz a vitima acreditar que precisa da ______ dele.",
+    "tema": "Engenharia Social",
+    "nivel": 3,
+    "explicacao": "O criminoso cria um problema (real ou falso) e depois se oferece como a solucao, ganhando acesso ou confianca da vitima.",
+    "alternativas": [
+      {
+        "texto": "ajuda",
+        "correta": true
+      },
+      {
+        "texto": "senha",
+        "correta": false
+      },
+      {
+        "texto": "permissao de firewall",
+        "correta": false
+      },
+      {
+        "texto": "localizacao",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Shadow IT se refere ao uso de aplicativos nao ______ pelo departamento de TI de uma empresa.",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "explicacao": "Ferramentas usadas sem aprovacao da equipe de TI escapam dos controles de seguranca corporativos, aumentando riscos.",
+    "alternativas": [
+      {
+        "texto": "aprovados",
+        "correta": true
+      },
+      {
+        "texto": "gratuitos",
+        "correta": false
+      },
+      {
+        "texto": "populares",
+        "correta": false
+      },
+      {
+        "texto": "recentes",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Cookies de sessao roubados por um ataque XSS podem permitir que um atacante assuma a ______ da vitima.",
+    "tema": "Navegação Segura",
+    "nivel": 3,
+    "explicacao": "Se um site vulneravel a XSS permitir scripts maliciosos, o atacante pode capturar cookies e se autenticar como a vitima.",
+    "alternativas": [
+      {
+        "texto": "sessao logada",
+        "correta": true
+      },
+      {
+        "texto": "conexao wi-fi",
+        "correta": false
+      },
+      {
+        "texto": "bateria",
+        "correta": false
+      },
+      {
+        "texto": "localizacao apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Exfiltracao de dados se refere a transferencia ______ de informacoes para fora da organizacao.",
+    "tema": "Vazamento de Dados",
+    "nivel": 3,
+    "explicacao": "Diferente de um backup legitimo, a exfiltracao e a saida nao autorizada de dados, geralmente feita por um atacante.",
+    "alternativas": [
+      {
+        "texto": "nao autorizada",
+        "correta": true
+      },
+      {
+        "texto": "planejada e aprovada",
+        "correta": false
+      },
+      {
+        "texto": "temporaria",
+        "correta": false
+      },
+      {
+        "texto": "interna apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O algoritmo RSA baseia sua seguranca na dificuldade de ______ numeros grandes em fatores primos.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "explicacao": "A seguranca do RSA depende da complexidade computacional de fatorar o produto de dois numeros primos grandes.",
+    "alternativas": [
+      {
+        "texto": "fatorar",
+        "correta": true
+      },
+      {
+        "texto": "somar",
+        "correta": false
+      },
+      {
+        "texto": "arredondar",
+        "correta": false
+      },
+      {
+        "texto": "multiplicar",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O Perfect Forward Secrecy garante que sessoes passadas nao possam ser descriptografadas mesmo se a chave de longo prazo for ______ no futuro.",
+    "tema": "Navegação Segura",
+    "nivel": 4,
+    "explicacao": "O PFS gera chaves de sessao unicas e efemeras, entao a exposicao futura da chave privada nao compromete o trafego ja registrado.",
+    "alternativas": [
+      {
+        "texto": "comprometida",
+        "correta": true
+      },
+      {
+        "texto": "reutilizada",
+        "correta": false
+      },
+      {
+        "texto": "compartilhada",
+        "correta": false
+      },
+      {
+        "texto": "renovada",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de padding oracle explora informacoes vazadas pelo comportamento de ______ de uma cifra mal implementada.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "explicacao": "Ao observar diferencas em mensagens de erro relacionadas ao padding, o atacante pode inferir informacoes sobre o texto cifrado.",
+    "alternativas": [
+      {
+        "texto": "erro",
+        "correta": true
+      },
+      {
+        "texto": "velocidade da CPU",
+        "correta": false
+      },
+      {
+        "texto": "interface grafica",
+        "correta": false
+      },
+      {
+        "texto": "nome do arquivo",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O framework MITRE ATT&CK cataloga taticas e ______ conhecidas usadas por atacantes durante uma intrusao.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 4,
+    "explicacao": "O ATT&CK e amplamente usado por equipes de seguranca para mapear comportamentos observados de atacantes.",
+    "alternativas": [
+      {
+        "texto": "tecnicas",
+        "correta": true
+      },
+      {
+        "texto": "licencas",
+        "correta": false
+      },
+      {
+        "texto": "marcas registradas",
+        "correta": false
+      },
+      {
+        "texto": "multas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de golden ticket em ambientes Active Directory explora o comprometimento da conta ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "Com o hash da conta KRBTGT, um atacante pode forjar tickets Kerberos validos para se autenticar como qualquer usuario.",
+    "alternativas": [
+      {
+        "texto": "KRBTGT",
+        "correta": true
+      },
+      {
+        "texto": "convidado padrao",
+        "correta": false
+      },
+      {
+        "texto": "de e-mail do CEO",
+        "correta": false
+      },
+      {
+        "texto": "de backup local",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um buffer overflow ocorre quando um programa escreve mais dados em uma area de memoria do que ela pode ______.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Essa sobrescrita de memoria adjacente pode ser explorada para alterar o fluxo de execucao do programa.",
+    "alternativas": [
+      {
+        "texto": "armazenar",
+        "correta": true
+      },
+      {
+        "texto": "exibir",
+        "correta": false
+      },
+      {
+        "texto": "imprimir",
+        "correta": false
+      },
+      {
+        "texto": "nomear",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "A tecnica ASLR dificulta a exploracao de vulnerabilidades de memoria ao ______ os enderecos usados pelo processo.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Ao dificultar a previsao de enderecos de memoria, o ASLR complica a exploracao confiavel de falhas como buffer overflow.",
+    "alternativas": [
+      {
+        "texto": "randomizar",
+        "correta": true
+      },
+      {
+        "texto": "fixar",
+        "correta": false
+      },
+      {
+        "texto": "duplicar",
+        "correta": false
+      },
+      {
+        "texto": "imprimir",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ataques living off the land usam ferramentas legitimas do sistema para evitar a ______ por antivirus.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Ao usar ferramentas nativas do sistema (como PowerShell), o atacante reduz a chance de ser identificado por assinaturas conhecidas.",
+    "alternativas": [
+      {
+        "texto": "deteccao",
+        "correta": true
+      },
+      {
+        "texto": "instalacao",
+        "correta": false
+      },
+      {
+        "texto": "compra",
+        "correta": false
+      },
+      {
+        "texto": "licenca",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O lateral movement descreve a etapa em que um atacante, ja dentro da rede, se desloca para outros sistemas ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "Apos o acesso inicial, o atacante busca ampliar seu alcance dentro da rede, buscando sistemas com privilegios mais altos.",
+    "alternativas": [
+      {
+        "texto": "internos",
+        "correta": true
+      },
+      {
+        "texto": "publicos",
+        "correta": false
+      },
+      {
+        "texto": "desligados",
+        "correta": false
+      },
+      {
+        "texto": "de terceiros externos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O Certificate Transparency mantem registros publicos de certificados emitidos para detectar emissoes ______.",
+    "tema": "Navegação Segura",
+    "nivel": 4,
+    "explicacao": "Ao manter logs publicos e auditaveis, e possivel detectar certificados emitidos indevidamente por autoridades comprometidas.",
+    "alternativas": [
+      {
+        "texto": "fraudulentas",
+        "correta": true
+      },
+      {
+        "texto": "gratuitas",
+        "correta": false
+      },
+      {
+        "texto": "antigas",
+        "correta": false
+      },
+      {
+        "texto": "temporarias",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de timing side-channel explora variacoes no ______ de uma operacao criptografica para inferir a chave.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "explicacao": "Pequenas diferencas no tempo de processamento podem revelar informacoes sensiveis se a implementacao nao for constante em tempo.",
+    "alternativas": [
+      {
+        "texto": "tempo de execucao",
+        "correta": true
+      },
+      {
+        "texto": "consumo de tinta",
+        "correta": false
+      },
+      {
+        "texto": "tamanho da tela",
+        "correta": false
+      },
+      {
+        "texto": "volume de audio",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Uma vulnerabilidade de SSRF permite que um atacante faca o servidor realizar requisicoes para destinos ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "Isso pode ser usado para acessar recursos internos protegidos por firewall ou metadados de servicos em nuvem.",
+    "alternativas": [
+      {
+        "texto": "nao intencionados",
+        "correta": true
+      },
+      {
+        "texto": "previamente aprovados",
+        "correta": false
+      },
+      {
+        "texto": "externos publicos apenas",
+        "correta": false
+      },
+      {
+        "texto": "de teste apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O modelo Zero Trust assume que nenhum usuario ou dispositivo e ______ por padrao, mesmo dentro do perimetro.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "O Zero Trust exige verificacao continua de identidade e contexto, ao contrario do modelo tradicional de perimetro.",
+    "alternativas": [
+      {
+        "texto": "confiavel",
+        "correta": true
+      },
+      {
+        "texto": "monitorado",
+        "correta": false
+      },
+      {
+        "texto": "identificado",
+        "correta": false
+      },
+      {
+        "texto": "registrado",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O DLL hijacking explora a ordem de busca de bibliotecas para fazer um programa carregar uma DLL ______.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Ao colocar uma DLL maliciosa com o mesmo nome em um local pesquisado antes do local legitimo, o atacante injeta seu codigo.",
+    "alternativas": [
+      {
+        "texto": "maliciosa",
+        "correta": true
+      },
+      {
+        "texto": "assinada digitalmente",
+        "correta": false
+      },
+      {
+        "texto": "mais recente",
+        "correta": false
+      },
+      {
+        "texto": "do sistema original",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de amplificacao DDoS explora servicos que respondem com pacotes muito ______ que a requisicao original.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 4,
+    "explicacao": "Servicos como DNS ou NTP mal configurados podem ser abusados para amplificar o volume de trafego direcionado a vitima.",
+    "alternativas": [
+      {
+        "texto": "maiores",
+        "correta": true
+      },
+      {
+        "texto": "menores",
+        "correta": false
+      },
+      {
+        "texto": "identicos",
+        "correta": false
+      },
+      {
+        "texto": "mais lentos apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O certificate pinning faz o aplicativo verificar se o certificado corresponde exatamente ao ______, e nao apenas se e valido.",
+    "tema": "Segurança em Dispositivos Móveis",
+    "nivel": 4,
+    "explicacao": "O pinning evita ataques man-in-the-middle mesmo quando um certificado fraudulento e aceito pelo sistema operacional.",
+    "alternativas": [
+      {
+        "texto": "esperado",
+        "correta": true
+      },
+      {
+        "texto": "mais recente disponivel",
+        "correta": false
+      },
+      {
+        "texto": "emitido no exterior",
+        "correta": false
+      },
+      {
+        "texto": "gratuito",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um IOC (Indicator of Compromise) e uma evidencia observavel que sugere que um sistema foi ______.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 4,
+    "explicacao": "IOCs (como hash de arquivo ou endereco IP) sao usados para detectar e responder a atividades maliciosas conhecidas.",
+    "alternativas": [
+      {
+        "texto": "comprometido",
+        "correta": true
+      },
+      {
+        "texto": "atualizado",
+        "correta": false
+      },
+      {
+        "texto": "desligado",
+        "correta": false
+      },
+      {
+        "texto": "vendido",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O threat hunting envolve a busca proativa e ______ por ameacas que escaparam das deteccoes automatizadas.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 4,
+    "explicacao": "O threat hunting combina hipoteses, dados e experiencia humana para encontrar ameacas nao capturadas por alertas automaticos.",
+    "alternativas": [
+      {
+        "texto": "manual",
+        "correta": true
+      },
+      {
+        "texto": "totalmente automatizada",
+        "correta": false
+      },
+      {
+        "texto": "aleatoria",
+        "correta": false
+      },
+      {
+        "texto": "terceirizada obrigatoria",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Uma race condition do tipo TOCTOU explora o intervalo entre a verificacao de uma condicao e o ______ do recurso.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Time-of-check to time-of-use e uma classe classica de vulnerabilidade onde o estado do sistema muda entre a checagem e a acao.",
+    "alternativas": [
+      {
+        "texto": "uso",
+        "correta": true
+      },
+      {
+        "texto": "nome",
+        "correta": false
+      },
+      {
+        "texto": "backup",
+        "correta": false
+      },
+      {
+        "texto": "registro contabil",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O HSTS instrui o navegador a sempre se conectar a um site via ______, mesmo que o usuario digite HTTP.",
+    "tema": "Navegação Segura",
+    "nivel": 4,
+    "explicacao": "O HSTS ajuda a prevenir ataques de downgrade que tentam forcar a conexao a usar HTTP nao criptografado.",
+    "alternativas": [
+      {
+        "texto": "HTTPS",
+        "correta": true
+      },
+      {
+        "texto": "FTP",
+        "correta": false
+      },
+      {
+        "texto": "Telnet",
+        "correta": false
+      },
+      {
+        "texto": "SMTP",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Containers compartilham o ______ do sistema host, ao contrario do isolamento mais forte de uma maquina virtual completa.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "Uma vulnerabilidade no kernel ou uma configuracao incorreta pode permitir escapar do isolamento do container.",
+    "alternativas": [
+      {
+        "texto": "kernel",
+        "correta": true
+      },
+      {
+        "texto": "teclado",
+        "correta": false
+      },
+      {
+        "texto": "monitor",
+        "correta": false
+      },
+      {
+        "texto": "mouse",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O DNS tunneling pode ser usado para ______ dados de uma rede corporativa disfarcando o trafego como consultas DNS.",
+    "tema": "Vazamento de Dados",
+    "nivel": 4,
+    "explicacao": "Como o trafego DNS costuma ser menos monitorado, atacantes podem codificar dados dentro de consultas para contornar controles.",
+    "alternativas": [
+      {
+        "texto": "exfiltrar",
+        "correta": true
+      },
+      {
+        "texto": "criptografar apenas",
+        "correta": false
+      },
+      {
+        "texto": "bloquear",
+        "correta": false
+      },
+      {
+        "texto": "comprimir apenas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O blast radius se refere ao alcance potencial de ______ que uma unica credencial comprometida pode causar.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "Reduzir o blast radius, com segmentacao e menor privilegio, limita o impacto de um unico comprometimento na infraestrutura.",
+    "alternativas": [
+      {
+        "texto": "dano",
+        "correta": true
+      },
+      {
+        "texto": "lucro",
+        "correta": false
+      },
+      {
+        "texto": "desempenho",
+        "correta": false
+      },
+      {
+        "texto": "armazenamento",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Vulnerabilidades de deserializacao insegura podem permitir execucao remota de codigo quando dados nao confiaveis viram ______.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Se a aplicacao desserializar dados controlados pelo atacante sem validacao, isso pode instanciar objetos maliciosos e executar codigo.",
+    "alternativas": [
+      {
+        "texto": "objetos",
+        "correta": true
+      },
+      {
+        "texto": "logs apenas",
+        "correta": false
+      },
+      {
+        "texto": "backups",
+        "correta": false
+      },
+      {
+        "texto": "imagens",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O fuzzing consiste em fornecer entradas aleatorias ou malformadas a um programa para descobrir ______.",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "explicacao": "O fuzzing automatizado testa exaustivamente entradas inesperadas, ajudando a identificar bugs de seguranca antes da exploracao.",
+    "alternativas": [
+      {
+        "texto": "falhas",
+        "correta": true
+      },
+      {
+        "texto": "clientes",
+        "correta": false
+      },
+      {
+        "texto": "licencas",
+        "correta": false
+      },
+      {
+        "texto": "relatorios financeiros",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um rootkit e projetado para ocultar sua propria ______ e a de outros processos maliciosos.",
+    "tema": "Malware",
+    "nivel": 4,
+    "explicacao": "Rootkits podem operar em niveis profundos do sistema, interceptando chamadas para esconder arquivos, processos e conexoes.",
+    "alternativas": [
+      {
+        "texto": "presenca",
+        "correta": true
+      },
+      {
+        "texto": "velocidade",
+        "correta": false
+      },
+      {
+        "texto": "licenca",
+        "correta": false
+      },
+      {
+        "texto": "origem geografica",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O CVSS fornece uma pontuacao padronizada para medir a ______ tecnica de uma vulnerabilidade.",
+    "tema": "Incidentes de Segurança",
+    "nivel": 4,
+    "explicacao": "O CVSS considera fatores como vetor de ataque, complexidade e impacto para gerar uma pontuacao comparavel.",
+    "alternativas": [
+      {
+        "texto": "severidade",
+        "correta": true
+      },
+      {
+        "texto": "popularidade",
+        "correta": false
+      },
+      {
+        "texto": "idade",
+        "correta": false
+      },
+      {
+        "texto": "origem",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O cache poisoning insere dados falsos em um cache para que futuras requisicoes recebam conteudo ______.",
+    "tema": "Navegação Segura",
+    "nivel": 4,
+    "explicacao": "Ao corromper as respostas em cache (DNS ou CDN), o atacante afeta multiplos usuarios sem interagir com cada um diretamente.",
+    "alternativas": [
+      {
+        "texto": "malicioso",
+        "correta": true
+      },
+      {
+        "texto": "mais rapido apenas",
+        "correta": false
+      },
+      {
+        "texto": "compactado",
+        "correta": false
+      },
+      {
+        "texto": "duplicado",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Um ataque de canal lateral pode explorar consumo de energia ou emissao eletromagnetica para extrair informacoes sobre ______ criptograficas.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "explicacao": "Esses ataques exploram caracteristicas fisicas da implementacao em hardware, e nao falhas logicas do algoritmo.",
+    "alternativas": [
+      {
+        "texto": "chaves",
+        "correta": true
+      },
+      {
+        "texto": "interfaces",
+        "correta": false
+      },
+      {
+        "texto": "cores",
+        "correta": false
+      },
+      {
+        "texto": "fontes de texto",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O principio de Kerckhoffs afirma que um sistema criptografico deve permanecer seguro mesmo que o ______ seja publico.",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "explicacao": "A seguranca deve depender apenas do sigilo da chave, nunca da obscuridade do algoritmo, que pode e deve ser publico e auditavel.",
+    "alternativas": [
+      {
+        "texto": "algoritmo",
+        "correta": true
+      },
+      {
+        "texto": "nome do usuario",
+        "correta": false
+      },
+      {
+        "texto": "endereco IP",
+        "correta": false
+      },
+      {
+        "texto": "horario de uso",
+        "correta": false
+      }
+    ]
+  }
+]

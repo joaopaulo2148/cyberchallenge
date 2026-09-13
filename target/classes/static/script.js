@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_BASE_URL = '/api';
     const CHAVE_HISTORICO_PERGUNTAS = 'cyberchallenge_perguntas_recentes';
 
-    const NOMES_NIVEL = { 1: 'Leigo', 2: 'Usuário', 3: 'Intermediário', 4: 'Especialista' };
+    const NOMES_NIVEL = { 1: 'Leigo', 2: 'Básico', 3: 'Intermediário', 4: 'Especialista' };
 
     const ICONE_CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg>';
     const ICONE_X = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>';
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- TELAS ---
     const telas = {
         menu: document.getElementById('tela-menu'),
-        identificacao: document.getElementById('tela-identificacao'),
         nivel: document.getElementById('tela-nivel'),
         partida: document.getElementById('tela-partida'),
         resultado: document.getElementById('tela-resultado')
@@ -24,8 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // --- ESTADO DA SESSAO (sem contas -- vive apenas na memoria da pagina) ---
-    let participanteAtual = null; // { id, nickname, idade, autoavaliacao }
+    // --- ESTADO DA PARTIDA ---
     let nivelEscolhido = null;
     let perguntasAtual = [];
     let respostasEstado = [];     // 1 posicao por pergunta: null ou { escolha, alternativaEscolhidaId, tempoGasto, acertou }
@@ -35,116 +33,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let ultimoResultado = null;
 
     // ===================== MENU =====================
+    // Item 9 do briefing: "Jogar" exige uma conta (nickname + senha). Sem
+    // conta, o clique leva para auth.html; com conta, vai direto para a
+    // escolha de nivel -- os dados (nickname/idade/autoavaliacao) ja
+    // pertencem a conta e nao precisam ser preenchidos de novo.
     const btnJogar = document.getElementById('btn-jogar');
     btnJogar.addEventListener('click', () => {
-        if (participanteAtual) {
-            // Ja se identificou nesta sessao -- vai direto para a escolha de nivel.
+        if (window.CyberConta && window.CyberConta.estaLogado()) {
             mudarTela(telas.menu, telas.nivel);
         } else {
-            mudarTela(telas.menu, telas.identificacao);
-            setTimeout(() => document.getElementById('input-nickname').focus(), 250);
+            window.location.href = '/auth.html?next=jogar';
         }
     });
 
-    // ===================== IDENTIFICACAO =====================
-    const inputNickname = document.getElementById('input-nickname');
-    const inputIdade = document.getElementById('input-idade');
-    const inputAutoavaliacao = document.getElementById('input-autoavaliacao');
-    const autoavaliacaoValor = document.getElementById('autoavaliacao-valor');
-    const nicknameStatus = document.getElementById('nickname-status');
-    const erroIdentificacao = document.getElementById('erro-identificacao');
-    const erroIdentificacaoTexto = document.getElementById('erro-identificacao-texto');
-    const btnVoltarIdentificacao = document.getElementById('btn-voltar-identificacao');
-    const btnProximoIdentificacao = document.getElementById('btn-proximo-identificacao');
-
-    inputAutoavaliacao.addEventListener('input', () => {
-        autoavaliacaoValor.innerText = inputAutoavaliacao.value;
-    });
-
-    let nicknameCheckTimeout = null;
-    inputNickname.addEventListener('input', () => {
-        erroIdentificacao.classList.add('hidden');
-        const nickname = inputNickname.value.trim();
-        nicknameStatus.textContent = '';
-        nicknameStatus.style.color = '';
-
-        if (nickname.length < 3) return;
-
-        clearTimeout(nicknameCheckTimeout);
-        nicknameCheckTimeout = setTimeout(() => verificarNickname(nickname), 400);
-    });
-
-    async function verificarNickname(nickname) {
-        try {
-            const resp = await fetch(`${API_BASE_URL}/participantes/disponibilidade?nickname=${encodeURIComponent(nickname)}`);
-            if (!resp.ok) return;
-            const dados = await resp.json();
-            if (dados.disponivel) {
-                nicknameStatus.textContent = 'Nickname disponível.';
-                nicknameStatus.style.color = 'var(--success)';
-            } else {
-                nicknameStatus.textContent = 'Este nickname já está em uso. Escolha outro.';
-                nicknameStatus.style.color = 'var(--danger)';
-            }
-        } catch (e) {
-            // Feedback rapido e apenas cortesia -- se falhar, a checagem
-            // definitiva ainda acontece no envio (POST /api/participantes).
-        }
-    }
-
-    btnVoltarIdentificacao.addEventListener('click', () => mudarTela(telas.identificacao, telas.menu));
-
-    btnProximoIdentificacao.addEventListener('click', async () => {
-        erroIdentificacao.classList.add('hidden');
-
-        const nickname = inputNickname.value.trim();
-        const idade = parseInt(inputIdade.value, 10);
-        const autoavaliacao = parseInt(inputAutoavaliacao.value, 10);
-
-        if (nickname.length < 3) {
-            mostrarErroIdentificacao('Informe um nickname com pelo menos 3 caracteres.');
-            return;
-        }
-        if (isNaN(idade) || idade < 1 || idade > 120) {
-            mostrarErroIdentificacao('Informe uma idade válida.');
-            return;
-        }
-
-        btnProximoIdentificacao.disabled = true;
-        btnProximoIdentificacao.innerText = 'Verificando...';
-
-        try {
-            const resp = await fetch(`${API_BASE_URL}/participantes`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nickname, idade, autoavaliacao })
-            });
-
-            if (resp.status === 409) {
-                const corpo = await resp.json().catch(() => null);
-                mostrarErroIdentificacao((corpo && corpo.mensagem) || 'Este nickname já está em uso. Escolha outro.');
-                return;
-            }
-            if (!resp.ok) {
-                const corpo = await resp.json().catch(() => null);
-                mostrarErroIdentificacao((corpo && corpo.mensagem) || 'Não foi possível continuar. Verifique os dados informados.');
-                return;
-            }
-
-            const participante = await resp.json();
-            participanteAtual = participante;
-            mudarTela(telas.identificacao, telas.nivel);
-        } catch (erro) {
-            mostrarErroIdentificacao('Não foi possível conectar ao servidor. Tente novamente.');
-        } finally {
-            btnProximoIdentificacao.disabled = false;
-            btnProximoIdentificacao.innerText = 'Próximo';
-        }
-    });
-
-    function mostrarErroIdentificacao(mensagem) {
-        erroIdentificacaoTexto.innerText = mensagem;
-        erroIdentificacao.classList.remove('hidden');
+    // Continuacao automatica apos cadastro/login feito a partir do botao
+    // "Jogar" (auth.html redireciona de volta para cá com ?jogar=1).
+    const paramsUrl = new URLSearchParams(window.location.search);
+    if (paramsUrl.get('jogar') === '1' && window.CyberConta && window.CyberConta.estaLogado()) {
+        mudarTela(telas.menu, telas.nivel);
     }
 
     // ===================== NIVEL =====================
@@ -153,9 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnVoltarNivel = document.getElementById('btn-voltar-nivel');
 
     btnVoltarNivel.addEventListener('click', () => {
-        // Se o participante ja estava identificado antes de chegar aqui
-        // (ex: "jogar novamente"), volta direto pro menu; caso contrario,
-        // volta para a identificacao.
         mudarTela(telas.nivel, telas.menu);
     });
 
@@ -237,13 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         contadorPergunta.innerText = `Pergunta ${indiceAtual + 1} de ${perguntasAtual.length}`;
         progressBarFill.style.width = `${((indiceAtual + 1) / perguntasAtual.length) * 100}%`;
-        perguntaTema.innerText = pergunta.tema;
+        perguntaTema.innerText = pergunta.tipo === 'COMPLETAR_FRASE' ? `Complete a frase · ${pergunta.tema}` : pergunta.tema;
         textoPergunta.innerText = pergunta.texto;
 
         feedbackBox.classList.add('hidden');
         feedbackBox.classList.remove('correct', 'incorrect');
 
-        if (pergunta.tipo === 'MULTIPLA_ESCOLHA') {
+        if (pergunta.tipo !== 'VERDADEIRO_FALSO') {
             opcoesVf.classList.add('hidden');
             opcoesMultipla.classList.remove('hidden');
             renderizarOpcoesMultipla(pergunta, estado);
@@ -317,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let acertou;
-        if (pergunta.tipo === 'MULTIPLA_ESCOLHA') {
+        if (pergunta.tipo !== 'VERDADEIRO_FALSO') {
             const alt = pergunta.alternativas.find(a => a.id === escolha.alternativaEscolhidaId);
             acertou = !!(alt && alt.correta);
         } else {
@@ -401,7 +304,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ultimoResultado = { acertos, erros, tempoTotal, tempoMedio, percentual, nivel: nivelEscolhido };
 
-        resNickname.innerText = participanteAtual.nickname;
+        const conta = window.CyberConta.obterConta();
+        resNickname.innerText = conta.nickname;
         resNotaFinal.innerText = String(acertos);
         resAcertos.innerText = `${acertos} / ${total}`;
         resErros.innerText = `${erros} / ${total}`;
@@ -411,14 +315,14 @@ document.addEventListener('DOMContentLoaded', () => {
         resNivel.innerText = `${nivelEscolhido} · ${NOMES_NIVEL[nivelEscolhido]}`;
 
         const payload = {
-            participanteId: participanteAtual.id,
+            participanteId: conta.id,
             nivel: nivelEscolhido,
             respostas: perguntasAtual.map((p, i) => {
                 const e = respostasEstado[i];
                 return {
                     perguntaId: p.id,
                     respostaEscolhida: p.tipo === 'VERDADEIRO_FALSO' ? e.escolha : null,
-                    alternativaEscolhidaId: p.tipo === 'MULTIPLA_ESCOLHA' ? e.alternativaEscolhidaId : null,
+                    alternativaEscolhidaId: p.tipo !== 'VERDADEIRO_FALSO' ? e.alternativaEscolhidaId : null,
                     tempoGasto: e.tempoGasto
                 };
             })

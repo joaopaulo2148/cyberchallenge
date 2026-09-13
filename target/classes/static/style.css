@@ -106,7 +106,10 @@ a { color: var(--accent); }
     z-index: 50;
     background: var(--bg-elevated);
     border-bottom: 1px solid var(--border);
+    transition: transform 0.28s ease;
 }
+
+.site-header.header-oculto { transform: translateY(-100%); }
 
 .site-header__inner {
     max-width: 1000px;
@@ -149,6 +152,51 @@ a { color: var(--accent); }
     font-size: 1.05rem;
     letter-spacing: -0.01em;
 }
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.account-control a, .account-control button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+}
+
+.account-control a:hover, .account-control button:hover { border-color: var(--accent); }
+
+.account-control .conta-logada {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.account-control .conta-nickname {
+    color: var(--accent-hover);
+}
+
+.account-control .btn-sair {
+    background: transparent;
+    border: none;
+    padding: 0.2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+}
+.account-control .btn-sair:hover { color: var(--danger); }
 
 .site-footer {
     width: 100%;
@@ -649,3 +697,48 @@ a { color: var(--accent); }
    area de toque confortavel (item de responsividade/toque). */
 input, select, textarea, button { font-size: 16px; }
 .btn, .opcao-btn, .nivel-card, .menu-item, .ranking-tab { min-height: 44px; }
+
+/* ---------------- Autenticacao (cadastro/login) ---------------- */
+.auth-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 0.75rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.auth-tab.ativo { color: var(--accent-hover); border-bottom-color: var(--accent); }
+
+.password-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: left;
+}
+
+.password-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.password-checklist li svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--border); }
+.password-checklist li.atendido { color: var(--success); }
+.password-checklist li.atendido svg { color: var(--success); }

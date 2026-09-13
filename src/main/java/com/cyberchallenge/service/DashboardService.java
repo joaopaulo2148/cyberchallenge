@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class DashboardService {
 
     private static final Map<Integer, String> NOMES_NIVEL = Map.of(
-        1, "Leigo", 2, "Usuario", 3, "Intermediario", 4, "Especialista"
+        1, "Leigo", 2, "Basico", 3, "Intermediario", 4, "Especialista"
     );
 
     private final PartidaRepository partidaRepository;

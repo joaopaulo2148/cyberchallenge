@@ -163,7 +163,10 @@ public class PartidaService {
     }
 
     private boolean avaliarResposta(Pergunta pergunta, RespostaSubmitDTO resDto, Resposta resposta) {
-        if (pergunta.getTipo() == TipoPergunta.MULTIPLA_ESCOLHA) {
+        // MULTIPLA_ESCOLHA e COMPLETAR_FRASE sao avaliadas da mesma forma:
+        // as duas usam a lista de alternativas (a diferenca entre elas e
+        // apenas visual no front-end -- ver TipoPergunta).
+        if (pergunta.getTipo() == TipoPergunta.MULTIPLA_ESCOLHA || pergunta.getTipo() == TipoPergunta.COMPLETAR_FRASE) {
             if (resDto.alternativaEscolhidaId() == null) {
                 throw new RegraDeNegocioException(
                     "A pergunta " + pergunta.getId() + " e de multipla escolha: informe alternativaEscolhidaId."

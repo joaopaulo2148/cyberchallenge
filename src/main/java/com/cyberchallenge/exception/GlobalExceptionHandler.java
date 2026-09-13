@@ -69,6 +69,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(corpoErro(HttpStatus.CONFLICT, ex.getMessage(), null));
     }
 
+    // MELHORIA (item 7): nickname/senha invalidos no login retornam 401
+    // com uma mensagem generica.
+    @ExceptionHandler(CredenciaisInvalidasException.class)
+    public ResponseEntity<Map<String, Object>> handleCredenciaisInvalidas(CredenciaisInvalidasException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(corpoErro(HttpStatus.UNAUTHORIZED, ex.getMessage(), null));
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenerica(Exception ex) {
         return ResponseEntity.internalServerError()

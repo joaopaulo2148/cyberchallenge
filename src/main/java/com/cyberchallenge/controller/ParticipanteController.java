@@ -1,5 +1,6 @@
 package com.cyberchallenge.controller;
 
+import com.cyberchallenge.dto.LoginDTO;
 import com.cyberchallenge.dto.ParticipanteCadastroDTO;
 import com.cyberchallenge.dto.ParticipanteDTO;
 import com.cyberchallenge.service.ParticipanteService;
@@ -20,13 +21,20 @@ public class ParticipanteController {
         this.participanteService = participanteService;
     }
 
-    // POST /api/participantes -> cadastra nickname/idade/autoavaliacao
-    // antes de iniciar a partida (secao 3). Retorna 409 se o nickname ja
-    // estiver em uso (ver GlobalExceptionHandler/ConflitoException).
+    // POST /api/participantes -> cria a conta (nickname/idade/autoavaliacao/senha).
+    // Retorna 409 se o nickname ja estiver em uso.
     @PostMapping
     public ResponseEntity<ParticipanteDTO> cadastrar(@Valid @RequestBody ParticipanteCadastroDTO dto) {
         ParticipanteDTO participante = participanteService.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(participante);
+    }
+
+    // POST /api/participantes/login -> autentica com nickname + senha.
+    // Retorna 401 com mensagem generica em caso de erro (ver ParticipanteService).
+    @PostMapping("/login")
+    public ResponseEntity<ParticipanteDTO> login(@Valid @RequestBody LoginDTO dto) {
+        ParticipanteDTO participante = participanteService.login(dto);
+        return ResponseEntity.ok(participante);
     }
 
     // GET /api/participantes/disponibilidade?nickname=xxx -> feedback

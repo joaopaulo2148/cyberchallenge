@@ -10,6 +10,7 @@ C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallen
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\dashboard\NivelEstatisticaDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\dashboard\PerguntaEstatisticaDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\dashboard\TemaEstatisticaDTO.java
+C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\LoginDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\ParticipanteCadastroDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\ParticipanteDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\PartidaSubmitDTO.java
@@ -17,6 +18,7 @@ C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallen
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\RankingDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\dto\RespostaSubmitDTO.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\exception\ConflitoException.java
+C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\exception\CredenciaisInvalidasException.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\exception\GlobalExceptionHandler.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\exception\RecursoNaoEncontradoException.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\exception\RegraDeNegocioException.java
@@ -33,3 +35,4 @@ C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallen
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\service\DashboardService.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\service\ParticipanteService.java
 C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\service\PartidaService.java
+C:\Trabalhos Facul\Extenção\Extensão 6 Periodo\cyberchallenge_v2\cyberchallenge\src\main\java\com\cyberchallenge\service\PasswordValidator.java

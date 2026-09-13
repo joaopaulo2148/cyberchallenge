@@ -6,15 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MELHORIA (ajuste de banco de dados): entidade de IDENTIDADE do
- * participante, separada da partida em si (cada jogada agora e um registro
- * "Partida" proprio, com FK para este Participante). Isso evita duplicar
- * nickname/idade/autoavaliacao a cada partida e permite aplicar a
- * restricao de unicidade do nickname num unico lugar.
+ * Entidade de IDENTIDADE do participante (conta), separada da partida em
+ * si (cada jogada e um registro "Partida" proprio, com FK para este
+ * Participante). Isso evita duplicar nickname/idade/autoavaliacao a cada
+ * partida e permite aplicar a restricao de unicidade do nickname num
+ * unico lugar.
  *
- * O jogo continua sem nenhum sistema de contas/login: nickname, idade e
- * autoavaliacao sao informados uma vez, antes da primeira partida daquela
- * "sessao" de uso, sem senha nem qualquer credencial.
+ * O sistema de contas e propositalmente simples: nickname + senha, sem
+ * e-mail, sem verificacao de conta, sem recuperacao de senha e sem um
+ * mecanismo de sessao no servidor (ver README, secao "Autenticacao", para
+ * a explicacao completa do funcionamento e das limitacoes assumidas
+ * conscientemente por essa simplicidade).
  */
 @Entity
 @Table(name = "participantes")
@@ -34,6 +36,11 @@ public class Participante {
 
     // Autoavaliacao de conhecimento em ciberseguranca, de 1 a 10
     private Integer autoavaliacao;
+
+    // Hash da senha (BCrypt). NUNCA armazenar a senha em texto puro, e
+    // NUNCA incluir este campo em nenhum DTO de resposta da API.
+    @Column(name = "senha_hash", nullable = false)
+    private String senhaHash;
 
     @Column(name = "data_cadastro", nullable = false)
     private LocalDateTime dataCadastro;
@@ -56,6 +63,8 @@ public class Participante {
     public void setIdade(Integer idade) { this.idade = idade; }
     public Integer getAutoavaliacao() { return autoavaliacao; }
     public void setAutoavaliacao(Integer autoavaliacao) { this.autoavaliacao = autoavaliacao; }
+    public String getSenhaHash() { return senhaHash; }
+    public void setSenhaHash(String senhaHash) { this.senhaHash = senhaHash; }
     public LocalDateTime getDataCadastro() { return dataCadastro; }
     public void setDataCadastro(LocalDateTime dataCadastro) { this.dataCadastro = dataCadastro; }
     public List<Partida> getPartidas() { return partidas; }

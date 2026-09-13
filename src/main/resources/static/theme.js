@@ -54,5 +54,39 @@
             aplicarTema(document.documentElement.getAttribute('data-theme'));
             botao.addEventListener('click', alternarTema);
         }
+        configurarComportamentoDeRolagem();
     });
+
+    /**
+     * Item 2 do briefing: a barra superior soma-se suavemente ao rolar
+     * para baixo (liberando espaco de leitura) e reaparece ao rolar para
+     * cima. Em paginas curtas, sem rolagem, ela permanece sempre visivel.
+     */
+    function configurarComportamentoDeRolagem() {
+        const header = document.querySelector('.site-header');
+        if (!header) return;
+
+        let ultimaPosicao = window.scrollY;
+        // Limiar minimo de movimento para nao reagir a pequenos tremores
+        // de rolagem (ex: bounce do iOS Safari).
+        const LIMIAR = 6;
+
+        function aoRolar() {
+            const posicaoAtual = window.scrollY;
+            const diferenca = posicaoAtual - ultimaPosicao;
+
+            // Perto do topo, a barra sempre fica visivel.
+            if (posicaoAtual < 80) {
+                header.classList.remove('header-oculto');
+            } else if (diferenca > LIMIAR) {
+                header.classList.add('header-oculto');
+            } else if (diferenca < -LIMIAR) {
+                header.classList.remove('header-oculto');
+            }
+
+            ultimaPosicao = posicaoAtual;
+        }
+
+        window.addEventListener('scroll', aoRolar, { passive: true });
+    }
 })();

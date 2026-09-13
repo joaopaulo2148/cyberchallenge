@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar-se / Entrar - Cyber Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Alternar tema"></button>
+            <div class="header-right">
+                <a href="/index.html" class="brand">
+                    <svg class="brand-logo icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2 L20 5.5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5.5 Z"></path>
+                        <path d="M9 12 L11 14 L15.5 9"></path>
+                    </svg>
+                    <span class="brand-name">Cyber Challenge</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="screen active">
+            <div class="card">
+                <h2>Sua conta</h2>
+                <p class="subtitle">Crie uma conta ou entre para jogar e aparecer no ranking.</p>
+
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab ativo" data-aba="cadastro">Cadastrar-se</button>
+                    <button type="button" class="auth-tab" data-aba="login">Entrar</button>
+                </div>
+
+                <!-- CADASTRO -->
+                <form id="form-cadastro">
+                    <div class="field">
+                        <label for="cad-nickname">Nickname</label>
+                        <input type="text" id="cad-nickname" placeholder="Como você quer ser chamado" autocomplete="username" maxlength="30">
+                        <span id="cad-nickname-status" class="field-hint"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="cad-idade">Idade</label>
+                        <input type="number" id="cad-idade" placeholder="Sua idade" min="1" max="120" autocomplete="off">
+                    </div>
+
+                    <div class="field">
+                        <label for="cad-autoavaliacao">De 1 a 10, o quanto você entende de segurança digital?</label>
+                        <div class="slider-row">
+                            <input type="range" id="cad-autoavaliacao" min="1" max="10" value="5">
+                            <span id="cad-autoavaliacao-valor" class="slider-badge">5</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="cad-senha">Senha</label>
+                        <input type="password" id="cad-senha" placeholder="Crie uma senha forte" autocomplete="new-password">
+                    </div>
+
+                    <ul class="password-checklist" id="password-checklist">
+                        <li data-regra="tamanho"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg> Mínimo de 8 caracteres</li>
+                        <li data-regra="maiuscula"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg> Uma letra maiúscula</li>
+                        <li data-regra="minuscula"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg> Uma letra minúscula</li>
+                        <li data-regra="numero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg> Um número</li>
+                        <li data-regra="especial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg> Um caractere especial</li>
+                    </ul>
+
+                    <div class="field">
+                        <label for="cad-confirmar">Confirmar senha</label>
+                        <input type="password" id="cad-confirmar" placeholder="Repita a senha" autocomplete="new-password">
+                    </div>
+
+                    <div id="erro-cadastro" class="msg msg-error hidden">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+                        <span id="erro-cadastro-texto">Verifique os dados informados.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Criar conta</button>
+                </form>
+
+                <!-- LOGIN -->
+                <form id="form-login" class="hidden">
+                    <div class="field">
+                        <label for="log-nickname">Nickname</label>
+                        <input type="text" id="log-nickname" placeholder="Seu nickname" autocomplete="username">
+                    </div>
+
+                    <div class="field">
+                        <label for="log-senha">Senha</label>
+                        <input type="password" id="log-senha" placeholder="Sua senha" autocomplete="current-password">
+                    </div>
+
+                    <div id="erro-login" class="msg msg-error hidden">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+                        <span>Nickname ou senha incorretos.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </form>
+
+                <div class="btn-row">
+                    <a href="/index.html" class="btn btn-secondary btn-sm">Voltar ao Menu</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Cyber Challenge — jogo educativo de conscientização em segurança cibernética.</p>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script src="conta.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

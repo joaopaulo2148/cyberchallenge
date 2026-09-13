@@ -20,18 +20,18 @@ import java.util.Map;
  * O seed roda apenas se a tabela estiver vazia, entao e seguro reiniciar a
  * aplicacao varias vezes sem duplicar perguntas.
  *
- * O estoque original (~240 perguntas Verdadeiro/Falso, seed/perguntas-seed.json)
- * foi mantido sem nenhuma alteracao, como pedido explicitamente na
- * reformulacao. O novo formato de multipla escolha (item 8) foi adicionado
- * como um segundo arquivo de seed (seed/perguntas-multipla-escolha.json),
- * carregado logo em seguida -- assim as perguntas antigas continuam
- * exatamente como estavam, e as novas apenas se somam ao estoque.
+ * O estoque original (240 perguntas Verdadeiro/Falso, seed/perguntas-seed.json)
+ * foi mantido sem nenhuma alteracao. As perguntas de multipla escolha (41,
+ * seed/perguntas-multipla-escolha.json) e de completar a frase (120,
+ * seed/perguntas-completar-frase.json) foram adicionadas por cima, sem
+ * remover ou modificar nada do estoque original -- total de 401 perguntas.
  */
 @Component
 public class DataSeeder implements CommandLineRunner {
 
     private static final String CAMINHO_SEED_VF = "seed/perguntas-seed.json";
     private static final String CAMINHO_SEED_MULTIPLA = "seed/perguntas-multipla-escolha.json";
+    private static final String CAMINHO_SEED_COMPLETAR = "seed/perguntas-completar-frase.json";
 
     private final PerguntaRepository perguntaRepository;
     private final ObjectMapper objectMapper;
@@ -49,7 +49,8 @@ public class DataSeeder implements CommandLineRunner {
 
         List<Pergunta> perguntas = new ArrayList<>();
         perguntas.addAll(carregarPerguntasVerdadeiroFalso());
-        perguntas.addAll(carregarPerguntasMultiplaEscolha());
+        perguntas.addAll(carregarPerguntasComAlternativas(CAMINHO_SEED_MULTIPLA, TipoPergunta.MULTIPLA_ESCOLHA));
+        perguntas.addAll(carregarPerguntasComAlternativas(CAMINHO_SEED_COMPLETAR, TipoPergunta.COMPLETAR_FRASE));
 
         perguntaRepository.saveAll(perguntas);
     }
@@ -72,16 +73,19 @@ public class DataSeeder implements CommandLineRunner {
         return perguntas;
     }
 
+    // MULTIPLA_ESCOLHA e COMPLETAR_FRASE usam exatamente o mesmo formato de
+    // arquivo (texto/tema/nivel/explicacao/alternativas), entao carregamos
+    // as duas com o mesmo metodo, so trocando o tipo atribuido a pergunta.
     @SuppressWarnings("unchecked")
-    private List<Pergunta> carregarPerguntasMultiplaEscolha() throws Exception {
-        List<Map<String, Object>> itens = lerJsonComoLista(CAMINHO_SEED_MULTIPLA);
+    private List<Pergunta> carregarPerguntasComAlternativas(String caminhoClasspath, TipoPergunta tipo) throws Exception {
+        List<Map<String, Object>> itens = lerJsonComoLista(caminhoClasspath);
         List<Pergunta> perguntas = new ArrayList<>();
 
         for (Map<String, Object> item : itens) {
             Pergunta p = new Pergunta();
             p.setTexto((String) item.get("texto"));
             p.setTema((String) item.get("tema"));
-            p.setTipo(TipoPergunta.MULTIPLA_ESCOLHA);
+            p.setTipo(tipo);
             p.setRespostaCorreta(null);
             p.setExplicacao((String) item.get("explicacao"));
             p.setNivel((Integer) item.get("nivel"));

@@ -6,9 +6,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-// Cadastro simples do participante (sem conta): nickname, idade e
-// autoavaliacao de 1 a 10. O nickname precisa ser unico -- ver
-// ParticipanteService e ConflitoException.
+// Cadastro de conta: nickname, idade, autoavaliacao de 1 a 10 e senha. O
+// nickname precisa ser unico -- ver ParticipanteService e ConflitoException.
+// A forca da senha e verificada em PasswordValidator (mensagens de erro
+// especificas por requisito nao atendido).
 public record ParticipanteCadastroDTO(
 
     @NotBlank(message = "nickname e obrigatorio")
@@ -23,5 +24,8 @@ public record ParticipanteCadastroDTO(
     @NotNull(message = "autoavaliacao e obrigatoria")
     @Min(value = 1, message = "autoavaliacao deve estar entre 1 e 10")
     @Max(value = 10, message = "autoavaliacao deve estar entre 1 e 10")
-    Integer autoavaliacao
+    Integer autoavaliacao,
+
+    @NotBlank(message = "senha e obrigatoria")
+    String senha
 ) {}
