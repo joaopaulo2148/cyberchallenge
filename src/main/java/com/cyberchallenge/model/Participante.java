@@ -5,6 +5,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entidade de IDENTIDADE do participante (conta), separada da partida em
+ * si (cada jogada e um registro "Partida" proprio, com FK para este
+ * Participante). Isso evita duplicar nickname/idade/autoavaliacao a cada
+ * partida e permite aplicar a restricao de unicidade do nickname num
+ * unico lugar.
+ *
+ * O sistema de contas e propositalmente simples: nickname + senha, sem
+ * e-mail, sem verificacao de conta, sem recuperacao de senha e sem um
+ * mecanismo de sessao no servidor (ver README, secao "Autenticacao", para
+ * a explicacao completa do funcionamento e das limitacoes assumidas
+ * conscientemente por essa simplicidade).
+ */
 @Entity
 @Table(name = "participantes")
 public class Participante {
@@ -13,44 +26,47 @@ public class Participante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String nome;
+    // Restricao de unicidade tambem no banco (alem das validacoes de
+    // frontend/backend) -- ver ParticipanteService para a mensagem de erro
+    // amigavel exibida quando o nickname ja esta em uso.
+    @Column(nullable = false, unique = true, length = 30)
+    private String nickname;
 
-    @Column(name = "data_participacao", nullable = false)
-    private LocalDateTime dataParticipacao;
+    private Integer idade;
 
-    private Integer pontuacao;
+    // Autoavaliacao de conhecimento em ciberseguranca, de 1 a 10
+    private Integer autoavaliacao;
 
-    @Column(name = "tempo_total")
-    private Double tempoTotal;
+    // Hash da senha (BCrypt). NUNCA armazenar a senha em texto puro, e
+    // NUNCA incluir este campo em nenhum DTO de resposta da API.
+    @Column(name = "senha_hash", nullable = false)
+    private String senhaHash;
 
-    @Column(name = "tempo_medio")
-    private Double tempoMedio;
+    @Column(name = "data_cadastro", nullable = false)
+    private LocalDateTime dataCadastro;
 
-    // Relacionamento 1 para N: Um participante possui varias respostas
     @OneToMany(mappedBy = "participante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Resposta> respostas = new ArrayList<>();
+    private List<Partida> partidas = new ArrayList<>();
 
     public Participante() {}
 
     @PrePersist
     protected void onCreate() {
-        this.dataParticipacao = LocalDateTime.now();
+        this.dataCadastro = LocalDateTime.now();
     }
 
-    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
-    public LocalDateTime getDataParticipacao() { return dataParticipacao; }
-    public void setDataParticipacao(LocalDateTime dataParticipacao) { this.dataParticipacao = dataParticipacao; }
-    public Integer getPontuacao() { return pontuacao; }
-    public void setPontuacao(Integer pontuacao) { this.pontuacao = pontuacao; }
-    public Double getTempoTotal() { return tempoTotal; }
-    public void setTempoTotal(Double tempoTotal) { this.tempoTotal = tempoTotal; }
-    public Double getTempoMedio() { return tempoMedio; }
-    public void setTempoMedio(Double tempoMedio) { this.tempoMedio = tempoMedio; }
-    public List<Resposta> getRespostas() { return respostas; }
-    public void setRespostas(List<Resposta> respostas) { this.respostas = respostas; }
+    public String getNickname() { return nickname; }
+    public void setNickname(String nickname) { this.nickname = nickname; }
+    public Integer getIdade() { return idade; }
+    public void setIdade(Integer idade) { this.idade = idade; }
+    public Integer getAutoavaliacao() { return autoavaliacao; }
+    public void setAutoavaliacao(Integer autoavaliacao) { this.autoavaliacao = autoavaliacao; }
+    public String getSenhaHash() { return senhaHash; }
+    public void setSenhaHash(String senhaHash) { this.senhaHash = senhaHash; }
+    public LocalDateTime getDataCadastro() { return dataCadastro; }
+    public void setDataCadastro(LocalDateTime dataCadastro) { this.dataCadastro = dataCadastro; }
+    public List<Partida> getPartidas() { return partidas; }
+    public void setPartidas(List<Partida> partidas) { this.partidas = partidas; }
 }

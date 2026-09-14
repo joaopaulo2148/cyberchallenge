@@ -3,8 +3,10 @@ package com.cyberchallenge.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -38,9 +40,40 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(corpoErro(HttpStatus.BAD_REQUEST, ex.getMessage(), null));
     }
 
+    // MELHORIA: parametros de query obrigatorios (ex: "nivel" em
+    // /api/partidas/iniciar) agora retornam uma mensagem clara em vez de um
+    // erro 500 generico quando estao ausentes ou tem um tipo invalido.
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<Map<String, Object>> handleParametroFaltando(MissingServletRequestParameterException ex) {
+        return ResponseEntity.badRequest().body(
+            corpoErro(HttpStatus.BAD_REQUEST, "O parametro obrigatorio '" + ex.getParameterName() + "' nao foi informado.", null)
+        );
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Map<String, Object>> handleParametroInvalido(MethodArgumentTypeMismatchException ex) {
+        return ResponseEntity.badRequest().body(
+            corpoErro(HttpStatus.BAD_REQUEST, "O parametro '" + ex.getName() + "' recebeu um valor invalido.", null)
+        );
+    }
+
     @ExceptionHandler(RecursoNaoEncontradoException.class)
     public ResponseEntity<Map<String, Object>> handleNaoEncontrado(RecursoNaoEncontradoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(corpoErro(HttpStatus.NOT_FOUND, ex.getMessage(), null));
+    }
+
+    // MELHORIA (item 3/6): nickname duplicado retorna 409, em vez de um
+    // 500 generico vindo de uma violacao de constraint unica no banco.
+    @ExceptionHandler(ConflitoException.class)
+    public ResponseEntity<Map<String, Object>> handleConflito(ConflitoException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(corpoErro(HttpStatus.CONFLICT, ex.getMessage(), null));
+    }
+
+    // MELHORIA (item 7): nickname/senha invalidos no login retornam 401
+    // com uma mensagem generica.
+    @ExceptionHandler(CredenciaisInvalidasException.class)
+    public ResponseEntity<Map<String, Object>> handleCredenciaisInvalidas(CredenciaisInvalidasException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(corpoErro(HttpStatus.UNAUTHORIZED, ex.getMessage(), null));
     }
 
     @ExceptionHandler(Exception.class)

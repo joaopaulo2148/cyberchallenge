@@ -5,6 +5,8 @@ import java.util.List;
 public record DashboardDTO(
     IndicadoresGeraisDTO indicadoresGerais,
 
+    List<NivelEstatisticaDTO> niveis,
+
     List<PerguntaEstatisticaDTO> perguntas,
     PerguntaEstatisticaDTO perguntaMaisAcertada,
     PerguntaEstatisticaDTO perguntaMaisErrada,

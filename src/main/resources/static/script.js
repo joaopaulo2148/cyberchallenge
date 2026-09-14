@@ -1,320 +1,351 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- CONFIGURAÇÃO DA API ---
-    // Caminho relativo: funciona tanto quando o front é servido pelo próprio
-    // Spring Boot (src/main/resources/static) quanto quando aberto via um
-    // proxy no mesmo domínio. Se for hospedar o front em outro domínio,
-    // troque por uma URL absoluta (ex: 'https://meu-backend:8080/api').
     const API_BASE_URL = '/api';
+    const CHAVE_HISTORICO_PERGUNTAS = 'cyberchallenge_perguntas_recentes';
 
-    // --- ELEMENTOS DAS TELAS ---
-    const telaInicial = document.getElementById('tela-inicial');
-    const telaCadastro = document.getElementById('tela-cadastro');
-    const telaPartida = document.getElementById('tela-partida');
-    const telaResultado = document.getElementById('tela-resultado');
+    const NOMES_NIVEL = { 1: 'Leigo', 2: 'Básico', 3: 'Intermediário', 4: 'Especialista' };
 
-    // --- ELEMENTOS CADASTRO ---
-    const btnIniciar = document.getElementById('btn-iniciar');
-    const btnContinuar = document.getElementById('btn-continuar');
-    const inputNome = document.getElementById('input-nome');
-    const erroNome = document.getElementById('erro-nome');
-    const erroApi = document.getElementById('erro-api');
+    const ICONE_CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4,12 9,17 20,6"></polyline></svg>';
+    const ICONE_X = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>';
 
-    // --- ELEMENTOS PARTIDA ---
+    // --- TELAS ---
+    const telas = {
+        menu: document.getElementById('tela-menu'),
+        nivel: document.getElementById('tela-nivel'),
+        partida: document.getElementById('tela-partida'),
+        resultado: document.getElementById('tela-resultado')
+    };
+
+    function mudarTela(de, para) {
+        de.classList.add('hidden');
+        de.classList.remove('active');
+        para.classList.remove('hidden');
+        para.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- ESTADO DA PARTIDA ---
+    let nivelEscolhido = null;
+    let perguntasAtual = [];
+    let respostasEstado = [];     // 1 posicao por pergunta: null ou { escolha, alternativaEscolhidaId, tempoGasto, acertou }
+    let indiceAtual = 0;
+    let tempoInicioPergunta = null;
+    let intervaloCronometro = null;
+    let ultimoResultado = null;
+
+    // ===================== MENU =====================
+    // Item 9 do briefing: "Jogar" exige uma conta (nickname + senha). Sem
+    // conta, o clique leva para auth.html; com conta, vai direto para a
+    // escolha de nivel -- os dados (nickname/idade/autoavaliacao) ja
+    // pertencem a conta e nao precisam ser preenchidos de novo.
+    const btnJogar = document.getElementById('btn-jogar');
+    btnJogar.addEventListener('click', () => {
+        if (window.CyberConta && window.CyberConta.estaLogado()) {
+            mudarTela(telas.menu, telas.nivel);
+        } else {
+            window.location.href = '/auth.html?next=jogar';
+        }
+    });
+
+    // Continuacao automatica apos cadastro/login feito a partir do botao
+    // "Jogar" (auth.html redireciona de volta para cá com ?jogar=1).
+    const paramsUrl = new URLSearchParams(window.location.search);
+    if (paramsUrl.get('jogar') === '1' && window.CyberConta && window.CyberConta.estaLogado()) {
+        mudarTela(telas.menu, telas.nivel);
+    }
+
+    // ===================== NIVEL =====================
+    const cardsNivel = document.querySelectorAll('.nivel-card');
+    const erroNivel = document.getElementById('erro-nivel');
+    const btnVoltarNivel = document.getElementById('btn-voltar-nivel');
+
+    btnVoltarNivel.addEventListener('click', () => {
+        mudarTela(telas.nivel, telas.menu);
+    });
+
+    cardsNivel.forEach(card => {
+        card.addEventListener('click', () => selecionarNivel(parseInt(card.dataset.nivel, 10)));
+    });
+
+    async function selecionarNivel(nivel) {
+        nivelEscolhido = nivel;
+        erroNivel.classList.add('hidden');
+        cardsNivel.forEach(c => c.disabled = true);
+
+        try {
+            await carregarPerguntas(nivel);
+            iniciarPartida();
+        } catch (erro) {
+            console.error('Falha ao buscar perguntas:', erro);
+            erroNivel.classList.remove('hidden');
+        } finally {
+            cardsNivel.forEach(c => c.disabled = false);
+        }
+    }
+
+    function obterPerguntasRecentes(nivel) {
+        try {
+            const historico = JSON.parse(localStorage.getItem(CHAVE_HISTORICO_PERGUNTAS) || '{}');
+            return historico[nivel] || [];
+        } catch (e) { return []; }
+    }
+
+    function salvarPerguntasRecentes(nivel, ids) {
+        try {
+            const historico = JSON.parse(localStorage.getItem(CHAVE_HISTORICO_PERGUNTAS) || '{}');
+            historico[nivel] = ids;
+            localStorage.setItem(CHAVE_HISTORICO_PERGUNTAS, JSON.stringify(historico));
+        } catch (e) { /* sem problema se localStorage nao estiver disponivel */ }
+    }
+
+    async function carregarPerguntas(nivel) {
+        const idsRecentes = obterPerguntasRecentes(nivel);
+        const params = new URLSearchParams({ nivel: String(nivel) });
+        idsRecentes.forEach(id => params.append('excluir', id));
+
+        const resp = await fetch(`${API_BASE_URL}/partidas/iniciar?${params.toString()}`);
+        if (!resp.ok) throw new Error(`status ${resp.status}`);
+        const perguntas = await resp.json();
+        if (!Array.isArray(perguntas) || perguntas.length === 0) throw new Error('sem perguntas');
+
+        perguntasAtual = perguntas;
+        salvarPerguntasRecentes(nivel, perguntas.map(p => p.id));
+    }
+
+    // ===================== PARTIDA =====================
+    const badgeNivel = document.getElementById('badge-nivel');
     const contadorPergunta = document.getElementById('contador-pergunta');
     const cronometroDisplay = document.getElementById('cronometro');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const perguntaTema = document.getElementById('pergunta-tema');
     const textoPergunta = document.getElementById('texto-pergunta');
-    const btnVerdadeiro = document.getElementById('btn-verdadeiro');
-    const btnFalso = document.getElementById('btn-falso');
+    const opcoesVf = document.getElementById('opcoes-vf');
+    const opcoesMultipla = document.getElementById('opcoes-multipla');
     const feedbackBox = document.getElementById('feedback-box');
     const feedbackTitulo = document.getElementById('feedback-titulo');
     const feedbackExplicacao = document.getElementById('feedback-explicacao');
-    const btnAvancar = document.getElementById('btn-avancar');
+    const btnPerguntaAnterior = document.getElementById('btn-pergunta-anterior');
+    const btnProximaPergunta = document.getElementById('btn-proxima-pergunta');
 
-    // --- ELEMENTOS RESULTADO & RANKING ---
-    const resNome = document.getElementById('res-nome');
-    const resPontuacao = document.getElementById('res-pontuacao');
-    const resAcertos = document.getElementById('res-acertos');
-    const resErros = document.getElementById('res-erros');
-    const resTempo = document.getElementById('res-tempo');
-    const resMedia = document.getElementById('res-media');
-    const resMensagem = document.getElementById('res-mensagem');
-    const resMensagemBox = document.getElementById('res-mensagem-box');
-    const erroEnvio = document.getElementById('erro-envio');
-    const rankingList = document.getElementById('ranking-list');
-    const btnNovoJogador = document.getElementById('btn-novo-jogador');
-
-    // --- VARIÁVEIS DE JOGO E MEMÓRIA ---
-    let nomeJogador = "";
-    let indicePerguntaAtual = 0;
-    let pontuacao = 0;
-    let acertos = 0;
-    let tempoInicio;
-    let intervaloCronometro;
-    let temposRespostas = [];
-
-    // Perguntas da partida atual, vindas da API (GET /api/partidas/iniciar).
-    // Cada item: { id, texto, tema, respostaCorreta, explicacao }
-    let perguntasAtual = [];
-
-    // Respostas que serão enviadas para POST /api/partidas/finalizar
-    // Cada item: { perguntaId, respostaEscolhida, tempoGasto }
-    let respostasParaEnviar = [];
-
-    // --- FLUXOS DE NAVEGAÇÃO ---
-    btnIniciar.addEventListener('click', () => {
-        mudarTela(telaInicial, telaCadastro);
-        setTimeout(() => inputNome.focus(), 300);
-    });
-
-    btnContinuar.addEventListener('click', processarCadastro);
-    inputNome.addEventListener('keypress', (e) => { if (e.key === 'Enter') processarCadastro(); });
-    inputNome.addEventListener('input', () => {
-        erroNome.classList.add('hidden');
-        erroApi.classList.add('hidden');
-    });
-
-    btnNovoJogador.addEventListener('click', () => {
-        // Zera o input e volta direto para o cadastro sem perder o ranking
-        inputNome.value = '';
-        mudarTela(telaResultado, telaCadastro);
-        setTimeout(() => inputNome.focus(), 300);
-    });
-
-    function mudarTela(telaAtual, novaTela) {
-        telaAtual.classList.add('hidden');
-        telaAtual.classList.remove('active');
-        novaTela.classList.remove('hidden');
-        novaTela.classList.add('active');
-    }
-
-    async function processarCadastro() {
-        const nome = inputNome.value.trim();
-        erroNome.classList.add('hidden');
-        erroApi.classList.add('hidden');
-
-        if (nome === '') {
-            erroNome.classList.remove('hidden');
-            return;
-        }
-
-        nomeJogador = nome;
-
-        btnContinuar.disabled = true;
-        btnContinuar.innerText = 'CARREGANDO...';
-
-        try {
-            await carregarPerguntasDaApi();
-            iniciarPartida();
-        } catch (erro) {
-            console.error('Falha ao buscar perguntas da API:', erro);
-            erroApi.classList.remove('hidden');
-        } finally {
-            btnContinuar.disabled = false;
-            btnContinuar.innerText = 'CONTINUAR';
-        }
-    }
-
-    // --- INTEGRAÇÃO COM A API ---
-
-    async function carregarPerguntasDaApi() {
-        const resposta = await fetch(`${API_BASE_URL}/partidas/iniciar`);
-        if (!resposta.ok) {
-            throw new Error(`GET /partidas/iniciar retornou status ${resposta.status}`);
-        }
-        const perguntas = await resposta.json();
-        if (!Array.isArray(perguntas) || perguntas.length === 0) {
-            throw new Error('A API não retornou nenhuma pergunta.');
-        }
-        perguntasAtual = perguntas;
-    }
-
-    async function enviarResultadoParaApi() {
-        const payload = {
-            nomeParticipante: nomeJogador,
-            respostas: respostasParaEnviar
-        };
-
-        const resposta = await fetch(`${API_BASE_URL}/partidas/finalizar`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (!resposta.ok) {
-            const corpo = await resposta.json().catch(() => null);
-            const mensagem = corpo && corpo.mensagem ? corpo.mensagem : `status ${resposta.status}`;
-            throw new Error(`POST /partidas/finalizar falhou: ${mensagem}`);
-        }
-    }
-
-    async function carregarRankingDaApi() {
-        const resposta = await fetch(`${API_BASE_URL}/partidas/ranking`);
-        if (!resposta.ok) {
-            throw new Error(`GET /partidas/ranking retornou status ${resposta.status}`);
-        }
-        return resposta.json();
-    }
-
-    // --- LÓGICA DO JOGO ---
     function iniciarPartida() {
-        mudarTela(telaCadastro, telaPartida);
-        indicePerguntaAtual = 0;
-        pontuacao = 0;
-        acertos = 0;
-        temposRespostas = [];
-        respostasParaEnviar = [];
-        carregarPergunta();
+        mudarTela(telas.nivel, telas.partida);
+        indiceAtual = 0;
+        respostasEstado = new Array(perguntasAtual.length).fill(null);
+        badgeNivel.innerText = `Nível ${nivelEscolhido} · ${NOMES_NIVEL[nivelEscolhido]}`;
+        renderizarPergunta();
     }
 
-    function carregarPergunta() {
-        feedbackBox.classList.add('hidden');
-        btnAvancar.classList.add('hidden');
-        btnVerdadeiro.disabled = false;
-        btnFalso.disabled = false;
-        btnVerdadeiro.classList.remove('selected-true', 'selected-false');
-        btnFalso.classList.remove('selected-true', 'selected-false');
-        feedbackBox.classList.remove('correct', 'incorrect');
+    function renderizarPergunta() {
+        const pergunta = perguntasAtual[indiceAtual];
+        const estado = respostasEstado[indiceAtual];
 
-        const pergunta = perguntasAtual[indicePerguntaAtual];
-        contadorPergunta.innerText = `PERGUNTA ${indicePerguntaAtual + 1} DE ${perguntasAtual.length}`;
+        contadorPergunta.innerText = `Pergunta ${indiceAtual + 1} de ${perguntasAtual.length}`;
+        progressBarFill.style.width = `${((indiceAtual + 1) / perguntasAtual.length) * 100}%`;
+        perguntaTema.innerText = pergunta.tipo === 'COMPLETAR_FRASE' ? `Complete a frase · ${pergunta.tema}` : pergunta.tema;
         textoPergunta.innerText = pergunta.texto;
 
-        iniciarCronometro();
+        feedbackBox.classList.add('hidden');
+        feedbackBox.classList.remove('correct', 'incorrect');
+
+        if (pergunta.tipo !== 'VERDADEIRO_FALSO') {
+            opcoesVf.classList.add('hidden');
+            opcoesMultipla.classList.remove('hidden');
+            renderizarOpcoesMultipla(pergunta, estado);
+        } else {
+            opcoesMultipla.classList.add('hidden');
+            opcoesVf.classList.remove('hidden');
+            renderizarOpcoesVf(pergunta, estado);
+        }
+
+        btnPerguntaAnterior.disabled = (indiceAtual === 0);
+        btnProximaPergunta.disabled = (estado === null);
+        btnProximaPergunta.innerHTML = (indiceAtual === perguntasAtual.length - 1)
+            ? 'Ver resultado'
+            : 'Próxima <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12,5 19,12 12,19"></polyline></svg>';
+
+        if (estado) {
+            mostrarFeedback(pergunta, estado);
+            pararCronometro();
+            cronometroDisplay.innerText = `${estado.tempoGasto.toFixed(1)}s`;
+        } else {
+            iniciarCronometro();
+        }
+    }
+
+    function renderizarOpcoesVf(pergunta, estado) {
+        const botoes = opcoesVf.querySelectorAll('.opcao-btn');
+        botoes.forEach(botao => {
+            const valor = botao.dataset.valor === 'true';
+            botao.className = 'opcao-btn';
+            botao.disabled = false;
+            botao.onclick = () => registrarResposta({ escolha: valor });
+
+            if (estado) {
+                if (valor === pergunta.respostaCorreta) botao.classList.add('correta');
+                else if (valor === estado.escolha) botao.classList.add('incorreta');
+                else botao.classList.add('neutra-desabilitada');
+            }
+        });
+    }
+
+    function renderizarOpcoesMultipla(pergunta, estado) {
+        opcoesMultipla.innerHTML = '';
+        pergunta.alternativas.forEach(alt => {
+            const botao = document.createElement('button');
+            botao.type = 'button';
+            botao.className = 'opcao-btn';
+            botao.innerText = alt.texto;
+            botao.onclick = () => registrarResposta({ alternativaEscolhidaId: alt.id });
+
+            if (estado) {
+                if (alt.correta) botao.classList.add('correta');
+                else if (estado.alternativaEscolhidaId === alt.id) botao.classList.add('incorreta');
+                else botao.classList.add('neutra-desabilitada');
+            }
+            opcoesMultipla.appendChild(botao);
+        });
+    }
+
+    function registrarResposta(escolha) {
+        const pergunta = perguntasAtual[indiceAtual];
+        const estadoAnterior = respostasEstado[indiceAtual];
+
+        // Ao responder pela primeira vez, marca o tempo gasto. Ao voltar
+        // numa pergunta ja respondida e trocar a escolha, mantemos o tempo
+        // original (nao ha novo cronometro rodando em modo de revisao).
+        let tempoGasto;
+        if (estadoAnterior) {
+            tempoGasto = estadoAnterior.tempoGasto;
+        } else {
+            tempoGasto = parseFloat(pararCronometro());
+        }
+
+        let acertou;
+        if (pergunta.tipo !== 'VERDADEIRO_FALSO') {
+            const alt = pergunta.alternativas.find(a => a.id === escolha.alternativaEscolhidaId);
+            acertou = !!(alt && alt.correta);
+        } else {
+            acertou = (escolha.escolha === pergunta.respostaCorreta);
+        }
+
+        respostasEstado[indiceAtual] = {
+            escolha: escolha.escolha,
+            alternativaEscolhidaId: escolha.alternativaEscolhidaId,
+            tempoGasto,
+            acertou
+        };
+
+        renderizarPergunta();
+    }
+
+    function mostrarFeedback(pergunta, estado) {
+        feedbackBox.classList.remove('hidden');
+        if (estado.acertou) {
+            feedbackBox.classList.add('correct');
+            feedbackTitulo.innerHTML = `${ICONE_CHECK} Resposta correta`;
+        } else {
+            feedbackBox.classList.add('incorrect');
+            feedbackTitulo.innerHTML = `${ICONE_X} Resposta incorreta`;
+        }
+        feedbackExplicacao.innerText = pergunta.explicacao;
     }
 
     function iniciarCronometro() {
-        tempoInicio = Date.now();
-        cronometroDisplay.innerText = "0.00s";
+        tempoInicioPergunta = Date.now();
+        cronometroDisplay.innerText = '0.0s';
         intervaloCronometro = setInterval(() => {
-            const tempoDecorrido = (Date.now() - tempoInicio) / 1000;
-            cronometroDisplay.innerText = tempoDecorrido.toFixed(2) + "s";
-        }, 50);
+            cronometroDisplay.innerText = `${((Date.now() - tempoInicioPergunta) / 1000).toFixed(1)}s`;
+        }, 100);
     }
 
     function pararCronometro() {
         clearInterval(intervaloCronometro);
-        return ((Date.now() - tempoInicio) / 1000).toFixed(2);
+        return tempoInicioPergunta ? ((Date.now() - tempoInicioPergunta) / 1000).toFixed(2) : '0.00';
     }
 
-    btnVerdadeiro.addEventListener('click', () => registrarResposta(true, btnVerdadeiro));
-    btnFalso.addEventListener('click', () => registrarResposta(false, btnFalso));
-
-    function registrarResposta(escolha, botaoClicado) {
-        const tempoGasto = parseFloat(pararCronometro());
-        temposRespostas.push(tempoGasto);
-
-        btnVerdadeiro.disabled = true;
-        btnFalso.disabled = true;
-
-        const pergunta = perguntasAtual[indicePerguntaAtual];
-        const acertou = (escolha === pergunta.respostaCorreta);
-
-        // Guarda a resposta para enviar ao back-end no final da partida.
-        // O servidor recalcula o acerto e a pontuação a partir do banco de
-        // perguntas oficial — o valor calculado aqui é só para feedback
-        // imediato na tela.
-        respostasParaEnviar.push({
-            perguntaId: pergunta.id,
-            respostaEscolhida: escolha,
-            tempoGasto: tempoGasto
-        });
-
-        botaoClicado.classList.add(acertou ? 'selected-true' : 'selected-false');
-
-        if (acertou) {
-            pontuacao += 2;
-            acertos++;
-            feedbackTitulo.innerText = `[ ACESSO PERMITIDO ] RESPOSTA CORRETA`;
-            feedbackBox.classList.add('correct');
-        } else {
-            feedbackTitulo.innerText = `[ ALERTA ] RESPOSTA INCORRETA`;
-            feedbackBox.classList.add('incorrect');
+    btnPerguntaAnterior.addEventListener('click', () => {
+        if (indiceAtual > 0) {
+            indiceAtual--;
+            renderizarPergunta();
         }
+    });
 
-        feedbackExplicacao.innerHTML = `<strong>A afirmação era ${pergunta.respostaCorreta ? 'Verdadeira' : 'Falsa'}.</strong><br><br>${pergunta.explicacao}`;
-        feedbackBox.classList.remove('hidden');
-        btnAvancar.classList.remove('hidden');
-    }
-
-    btnAvancar.addEventListener('click', () => {
-        indicePerguntaAtual++;
-        if (indicePerguntaAtual < perguntasAtual.length) {
-            carregarPergunta();
+    btnProximaPergunta.addEventListener('click', () => {
+        if (indiceAtual < perguntasAtual.length - 1) {
+            indiceAtual++;
+            renderizarPergunta();
         } else {
             finalizarPartida();
         }
     });
 
-    // --- CÁLCULO, ENVIO E TELA DE RESULTADOS ---
+    // ===================== RESULTADO =====================
+    const resNickname = document.getElementById('res-nickname');
+    const resNotaFinal = document.getElementById('res-nota-final');
+    const resAcertos = document.getElementById('res-acertos');
+    const resErros = document.getElementById('res-erros');
+    const resPercentual = document.getElementById('res-percentual');
+    const resTempoMedio = document.getElementById('res-tempo-medio');
+    const resTempoTotal = document.getElementById('res-tempo-total');
+    const resNivel = document.getElementById('res-nivel');
+    const erroEnvio = document.getElementById('erro-envio');
+    const btnJogarNovamente = document.getElementById('btn-jogar-novamente');
+    const btnVoltarMenuResultado = document.getElementById('btn-voltar-menu-resultado');
+
     async function finalizarPartida() {
-        mudarTela(telaPartida, telaResultado);
+        mudarTela(telas.partida, telas.resultado);
         erroEnvio.classList.add('hidden');
 
-        // Cálculos locais para exibição imediata (não dependem de round-trip
-        // com o servidor). O servidor recalcula os mesmos valores a partir
-        // do banco de perguntas oficial ao salvar o participante.
-        const totalPerguntas = perguntasAtual.length;
-        const erros = totalPerguntas - acertos;
-        const tempoTotal = temposRespostas.reduce((a, b) => a + b, 0);
-        const tempoMedio = tempoTotal / totalPerguntas;
+        const total = perguntasAtual.length;
+        const acertos = respostasEstado.filter(e => e && e.acertou).length;
+        const erros = total - acertos;
+        const tempoTotal = respostasEstado.reduce((soma, e) => soma + (e ? e.tempoGasto : 0), 0);
+        const tempoMedio = tempoTotal / total;
+        const percentual = (acertos / total) * 100;
 
-        resNome.innerText = `Agente: ${nomeJogador}`;
-        resPontuacao.innerText = `${pontuacao} / ${totalPerguntas * 2}`;
-        resAcertos.innerText = `${acertos} / ${totalPerguntas}`;
-        resErros.innerText = `${erros} / ${totalPerguntas}`;
-        resTempo.innerText = `${tempoTotal.toFixed(2)}s`;
-        resMedia.innerText = `${tempoMedio.toFixed(2)}s`;
+        ultimoResultado = { acertos, erros, tempoTotal, tempoMedio, percentual, nivel: nivelEscolhido };
 
-        // Regra da Mensagem Dinâmica (Item 10)
-        resMensagemBox.className = 'feedback-box';
-        if (pontuacao === 10) {
-            resMensagem.innerText = "Excelente! Você demonstrou ótimo conhecimento em Segurança Cibernética.";
-            resMensagemBox.classList.add('correct');
-        } else if (pontuacao >= 8) {
-            resMensagem.innerText = "Muito bom! Você possui bons conhecimentos, mas ainda existem alguns pontos para revisar.";
-            resMensagemBox.classList.add('correct');
-        } else if (pontuacao >= 6) {
-            resMensagem.innerText = "Bom começo! Algumas práticas de segurança ainda merecem atenção.";
-            resMensagemBox.classList.add('incorrect');
-        } else {
-            resMensagem.innerText = "Você identificou alguns conceitos importantes. Aproveite as explicações para melhorar seus conhecimentos.";
-            resMensagemBox.classList.add('incorrect');
-        }
+        const conta = window.CyberConta.obterConta();
+        resNickname.innerText = conta.nickname;
+        resNotaFinal.innerText = String(acertos);
+        resAcertos.innerText = `${acertos} / ${total}`;
+        resErros.innerText = `${erros} / ${total}`;
+        resPercentual.innerText = `${percentual.toFixed(0)}%`;
+        resTempoMedio.innerText = `${tempoMedio.toFixed(1)}s`;
+        resTempoTotal.innerText = `${tempoTotal.toFixed(1)}s`;
+        resNivel.innerText = `${nivelEscolhido} · ${NOMES_NIVEL[nivelEscolhido]}`;
 
-        // Envia o resultado para persistência e, se der certo, busca o
-        // ranking atualizado direto do servidor (compartilhado entre todos
-        // os participantes da atividade).
+        const payload = {
+            participanteId: conta.id,
+            nivel: nivelEscolhido,
+            respostas: perguntasAtual.map((p, i) => {
+                const e = respostasEstado[i];
+                return {
+                    perguntaId: p.id,
+                    respostaEscolhida: p.tipo === 'VERDADEIRO_FALSO' ? e.escolha : null,
+                    alternativaEscolhidaId: p.tipo !== 'VERDADEIRO_FALSO' ? e.alternativaEscolhidaId : null,
+                    tempoGasto: e.tempoGasto
+                };
+            })
+        };
+
         try {
-            await enviarResultadoParaApi();
-            const ranking = await carregarRankingDaApi();
-            renderizarRanking(ranking);
+            const resp = await fetch(`${API_BASE_URL}/partidas/finalizar`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!resp.ok) throw new Error(`status ${resp.status}`);
         } catch (erro) {
-            console.error('Falha ao salvar/consultar dados no servidor:', erro);
+            console.error('Falha ao salvar o resultado:', erro);
             erroEnvio.classList.remove('hidden');
         }
     }
 
-    // --- LÓGICA DO RANKING (Item 11) ---
-    // O ranking agora vem pronto (já ordenado pela regra de negócio) do
-    // back-end via GET /api/partidas/ranking, então aqui só renderizamos.
-    function renderizarRanking(ranking) {
-        rankingList.innerHTML = '';
-        ranking.forEach((jogador, index) => {
-            const li = document.createElement('li');
-            li.className = 'ranking-item';
+    btnJogarNovamente.addEventListener('click', () => {
+        mudarTela(telas.resultado, telas.nivel);
+    });
 
-            // Destaca os 3 primeiros colocados
-            if (index === 0) li.classList.add('top-1');
-            else if (index === 1) li.classList.add('top-2');
-            else if (index === 2) li.classList.add('top-3');
-
-            li.innerHTML = `
-                <span>${index + 1}º</span>
-                <span>${jogador.nome}</span>
-                <span>${jogador.pontuacao} pts</span>
-                <span>${jogador.tempoTotal.toFixed(2)}s</span>
-            `;
-            rankingList.appendChild(li);
-        });
-    }
+    btnVoltarMenuResultado.addEventListener('click', () => {
+        mudarTela(telas.resultado, telas.menu);
+    });
 });

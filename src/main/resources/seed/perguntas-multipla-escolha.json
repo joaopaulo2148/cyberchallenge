@@ -1,0 +1,1027 @@
+[
+  {
+    "texto": "O que e phishing?",
+    "tema": "Phishing",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Phishing e uma fraude que usa mensagens (e-mail, SMS, redes sociais) disfarcadas de comunicacao legitima para roubar dados como senhas e numeros de cartao.",
+    "alternativas": [
+      {
+        "texto": "Um tipo de exercicio fisico online",
+        "correta": false
+      },
+      {
+        "texto": "Uma tentativa de enganar a vitima para roubar dados, geralmente por e-mail ou mensagem falsa",
+        "correta": true
+      },
+      {
+        "texto": "Um programa que acelera o computador",
+        "correta": false
+      },
+      {
+        "texto": "Um metodo de backup automatico",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Qual das opcoes abaixo e considerada uma senha forte?",
+    "tema": "Senhas",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Uma senha forte combina letras maiusculas, minusculas, numeros e simbolos, sem seguir um padrao previsivel ou dado pessoal.",
+    "alternativas": [
+      {
+        "texto": "123456",
+        "correta": false
+      },
+      {
+        "texto": "nomedapessoa",
+        "correta": false
+      },
+      {
+        "texto": "Tr#9vL!2qXo",
+        "correta": true
+      },
+      {
+        "texto": "senha123",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que significa a sigla 2FA (ou MFA)?",
+    "tema": "Autenticação Multifator",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "2FA/MFA exige um segundo fator alem da senha (como um codigo no celular), dificultando o acesso mesmo que a senha vaze.",
+    "alternativas": [
+      {
+        "texto": "Dois provedores de internet ao mesmo tempo",
+        "correta": false
+      },
+      {
+        "texto": "Autenticacao em duas (ou mais) etapas, alem da senha",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de firewall",
+        "correta": false
+      },
+      {
+        "texto": "Duas contas de e-mail conectadas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e um malware?",
+    "tema": "Malware",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Malware e qualquer software malicioso -- virus, ransomware, spyware, trojans -- criado para causar dano, roubar dados ou espionar o usuario.",
+    "alternativas": [
+      {
+        "texto": "Um programa malicioso criado para prejudicar ou espionar um sistema",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de antivirus gratuito",
+        "correta": false
+      },
+      {
+        "texto": "Uma extensao de arquivo de imagem",
+        "correta": false
+      },
+      {
+        "texto": "Um protocolo de rede sem fio",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ao usar uma rede Wi-Fi publica, qual atitude e mais segura?",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Redes publicas facilitam a interceptacao de dados; evitar acessos sensiveis ou usar uma VPN reduz bastante o risco.",
+    "alternativas": [
+      {
+        "texto": "Fazer login no banco normalmente",
+        "correta": false
+      },
+      {
+        "texto": "Evitar acessar contas sensiveis ou usar uma VPN",
+        "correta": true
+      },
+      {
+        "texto": "Desativar o antivirus para navegar mais rapido",
+        "correta": false
+      },
+      {
+        "texto": "Compartilhar a senha da rede com estranhos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Por que e importante manter aplicativos e sistemas atualizados?",
+    "tema": "Atualizações",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Atualizacoes frequentemente corrigem vulnerabilidades ja descobertas, reduzindo a chance de um ataque explorar essas falhas.",
+    "alternativas": [
+      {
+        "texto": "Atualizacoes deixam o aparelho mais bonito",
+        "correta": false
+      },
+      {
+        "texto": "Atualizacoes corrigem falhas de seguranca ja conhecidas",
+        "correta": true
+      },
+      {
+        "texto": "Atualizar nunca traz nenhum beneficio real",
+        "correta": false
+      },
+      {
+        "texto": "Apenas para ocupar mais espaco no dispositivo",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que caracteriza um golpe de engenharia social?",
+    "tema": "Engenharia Social",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Engenharia social explora confianca, urgencia ou medo para convencer a propria vitima a agir contra seus interesses.",
+    "alternativas": [
+      {
+        "texto": "Um ataque que explora falhas de codigo em um site",
+        "correta": false
+      },
+      {
+        "texto": "Manipular emocionalmente a vitima para que ela mesma entregue informacoes ou acesso",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de proteção de firewall",
+        "correta": false
+      },
+      {
+        "texto": "Uma tecnica de criptografia de dados",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e recomendado fazer com backups importantes?",
+    "tema": "Backups",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Guardar copias em locais diferentes protege contra perda por roubo, defeito de hardware ou ataques de ransomware no local original.",
+    "alternativas": [
+      {
+        "texto": "Guardar apenas no mesmo HD do computador principal",
+        "correta": false
+      },
+      {
+        "texto": "Manter copias em locais diferentes (ex: nuvem e um dispositivo externo)",
+        "correta": true
+      },
+      {
+        "texto": "Nunca testar se o backup realmente funciona",
+        "correta": false
+      },
+      {
+        "texto": "Fazer backup uma unica vez na vida",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que o cadeado (HTTPS) na barra de enderecos do navegador garante?",
+    "tema": "Navegação Segura",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "O HTTPS garante apenas que os dados trafegam criptografados; nao garante por si so que o conteudo ou a empresa por tras do site sejam legitimos.",
+    "alternativas": [
+      {
+        "texto": "Que o site jamais pode ser falso",
+        "correta": false
+      },
+      {
+        "texto": "Que a conexao entre o navegador e o site esta criptografada",
+        "correta": true
+      },
+      {
+        "texto": "Que o site nao tem anuncios",
+        "correta": false
+      },
+      {
+        "texto": "Que o site foi aprovado pelo governo",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que fazer ao receber uma mensagem pedindo dados bancarios com urgencia?",
+    "tema": "Golpes Digitais",
+    "nivel": 1,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Urgencia e pressao emocional sao táticas classicas de golpe; verificar por um canal oficial (telefone conhecido, app do banco) evita cair nessa armadilha.",
+    "alternativas": [
+      {
+        "texto": "Responder imediatamente para nao perder o prazo",
+        "correta": false
+      },
+      {
+        "texto": "Desconfiar, verificar por um canal oficial antes de agir",
+        "correta": true
+      },
+      {
+        "texto": "Encaminhar para varios contatos por seguranca",
+        "correta": false
+      },
+      {
+        "texto": "Enviar os dados e conferir depois",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Qual das opcoes e uma boa pratica ao usar um gerenciador de senhas?",
+    "tema": "Senhas",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Gerenciadores de senha criam e guardam senhas unicas e fortes para cada servico, eliminando a necessidade de reutilizar ou memorizar senhas fracas.",
+    "alternativas": [
+      {
+        "texto": "Usar a mesma senha mestra em varios servicos",
+        "correta": false
+      },
+      {
+        "texto": "Gerar senhas unicas e complexas para cada conta com o gerenciador",
+        "correta": true
+      },
+      {
+        "texto": "Anotar a senha mestra em um post-it no monitor",
+        "correta": false
+      },
+      {
+        "texto": "Compartilhar a senha mestra com colegas de trabalho",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e o golpe conhecido como 'SIM swap'?",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "No SIM swap, o golpista convence a operadora a portar o numero da vitima, passando a receber SMS de verificacao e podendo invadir contas.",
+    "alternativas": [
+      {
+        "texto": "Trocar o aparelho de celular por um modelo mais novo",
+        "correta": false
+      },
+      {
+        "texto": "Um criminoso transferir o numero de telefone da vitima para um chip proprio",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de virus que apaga o cartao SIM",
+        "correta": false
+      },
+      {
+        "texto": "Uma promocao legitima de operadoras de telefonia",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Qual e a principal diferenca entre phishing comum e spear phishing?",
+    "tema": "Phishing",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Diferente do phishing em massa, o spear phishing usa informacoes especificas sobre a vitima (cargo, empresa, contatos) para parecer mais convincente.",
+    "alternativas": [
+      {
+        "texto": "Nao ha diferenca, sao sinonimos",
+        "correta": false
+      },
+      {
+        "texto": "O spear phishing e direcionado e personalizado para uma vitima especifica",
+        "correta": true
+      },
+      {
+        "texto": "Spear phishing so acontece por telefone",
+        "correta": false
+      },
+      {
+        "texto": "Phishing comum e sempre mais perigoso",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que caracteriza um ataque de ransomware?",
+    "tema": "Ransomware",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "O ransomware sequestra os dados da vitima criptografando-os e cobra um resgate, geralmente em criptomoeda, pela suposta liberacao.",
+    "alternativas": [
+      {
+        "texto": "Um anuncio invasivo no navegador",
+        "correta": false
+      },
+      {
+        "texto": "Um malware que criptografa arquivos e exige pagamento para libera-los",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de spam por e-mail",
+        "correta": false
+      },
+      {
+        "texto": "Uma falha de hardware do computador",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Ao configurar um roteador domestico novo, qual e a pratica mais segura?",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Senhas padrao de fabrica sao amplamente conhecidas; troca-las e manter o firmware atualizado fecha portas de entrada comuns para invasores.",
+    "alternativas": [
+      {
+        "texto": "Manter a senha padrao de fabrica",
+        "correta": false
+      },
+      {
+        "texto": "Trocar a senha padrao e manter o firmware atualizado",
+        "correta": true
+      },
+      {
+        "texto": "Deixar a rede sem nenhuma senha para facilitar visitas",
+        "correta": false
+      },
+      {
+        "texto": "Desativar todas as atualizacoes automaticas do roteador",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e um aplicativo de autenticacao (como um gerador de codigos TOTP)?",
+    "tema": "Autenticação Multifator",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Apps autenticadores geram codigos de uso unico localmente no aparelho, sendo mais resistentes a interceptacao do que codigos por SMS.",
+    "alternativas": [
+      {
+        "texto": "Um app que armazena fotos de documentos",
+        "correta": false
+      },
+      {
+        "texto": "Um app que gera codigos temporarios para o segundo fator de autenticacao",
+        "correta": true
+      },
+      {
+        "texto": "Um antivirus para celular",
+        "correta": false
+      },
+      {
+        "texto": "Um aplicativo de mensagens criptografadas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Por que golpes de 'emprego falso' costumam pedir pagamento antecipado?",
+    "tema": "Golpes Digitais",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Empregos legitimos nao cobram taxas antecipadas do candidato; esse pedido e um forte indicio de fraude.",
+    "alternativas": [
+      {
+        "texto": "Porque e uma exigencia legal para qualquer contratacao",
+        "correta": false
+      },
+      {
+        "texto": "Para dar mais credibilidade ao anuncio de vaga",
+        "correta": false
+      },
+      {
+        "texto": "Porque essa e a forma do golpista lucrar antes de sumir com o dinheiro",
+        "correta": true
+      },
+      {
+        "texto": "Para cobrir custos reais de treinamento da empresa",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e 'clickjacking'?",
+    "tema": "Navegação Segura",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "No clickjacking, elementos invisiveis sao sobrepostos a botoes legitimos, fazendo o clique do usuario acionar uma acao maliciosa sem perceber.",
+    "alternativas": [
+      {
+        "texto": "Um metodo legitimo de propaganda online",
+        "correta": false
+      },
+      {
+        "texto": "Uma tecnica que engana o usuario a clicar em algo diferente do que aparenta, usando camadas invisiveis",
+        "correta": true
+      },
+      {
+        "texto": "Um atalho de teclado do navegador",
+        "correta": false
+      },
+      {
+        "texto": "Um tipo de certificado de seguranca",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Qual e uma boa pratica ao usar redes sociais para preservar a privacidade?",
+    "tema": "Privacidade",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Revisar as configuracoes de privacidade regularmente evita exposicao indesejada de conteudo apos mudancas na plataforma.",
+    "alternativas": [
+      {
+        "texto": "Aceitar qualquer solicitacao de amizade sem verificar",
+        "correta": false
+      },
+      {
+        "texto": "Revisar periodicamente quem pode ver as postagens e informacoes do perfil",
+        "correta": true
+      },
+      {
+        "texto": "Publicar a localizacao em tempo real para todos verem",
+        "correta": false
+      },
+      {
+        "texto": "Compartilhar documentos pessoais em grupos publicos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e recomendado ao identificar um e-mail suspeito de phishing no trabalho?",
+    "tema": "Segurança de E-mail",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Reportar ao time de seguranca/TI permite bloquear a ameaca para todos, sem arriscar clicar em links ou anexos maliciosos.",
+    "alternativas": [
+      {
+        "texto": "Responder pedindo mais detalhes ao remetente",
+        "correta": false
+      },
+      {
+        "texto": "Clicar no link para verificar se e realmente falso",
+        "correta": false
+      },
+      {
+        "texto": "Nao clicar em nada e reportar ao setor de TI/seguranca",
+        "correta": true
+      },
+      {
+        "texto": "Encaminhar para a lista de e-mails de toda a empresa",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e uma VPN e para que serve basicamente?",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 2,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "A VPN protege o trafego contra interceptacao, criptografando a conexao entre o dispositivo do usuario e o servidor remoto.",
+    "alternativas": [
+      {
+        "texto": "Um programa para aumentar a velocidade da internet",
+        "correta": false
+      },
+      {
+        "texto": "Uma ferramenta que cria um tunel criptografado entre o dispositivo e um servidor remoto",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de antivirus gratuito",
+        "correta": false
+      },
+      {
+        "texto": "Um servico de armazenamento em nuvem",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e 'salt' no armazenamento de senhas?",
+    "tema": "Senhas",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "O salt garante que senhas iguais gerem hashes diferentes, tornando inuteis tabelas pre-computadas de hashes conhecidos (rainbow tables).",
+    "alternativas": [
+      {
+        "texto": "Um algoritmo de compactacao de arquivos",
+        "correta": false
+      },
+      {
+        "texto": "Um valor aleatorio adicionado a senha antes do hashing, para dificultar ataques de rainbow table",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de criptografia reversivel",
+        "correta": false
+      },
+      {
+        "texto": "Um protocolo de autenticacao de rede",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que diferencia vishing de phishing tradicional?",
+    "tema": "Phishing",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Vishing (voice phishing) usa ligacoes telefonicas, muitas vezes com numero falsificado, para induzir a vitima a fornecer dados.",
+    "alternativas": [
+      {
+        "texto": "Vishing ocorre exclusivamente por redes sociais",
+        "correta": false
+      },
+      {
+        "texto": "Vishing e a variante do golpe aplicada por chamada de voz (telefone)",
+        "correta": true
+      },
+      {
+        "texto": "Nao existe diferenca real entre os dois termos",
+        "correta": false
+      },
+      {
+        "texto": "Vishing so afeta empresas, nunca pessoas fisicas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que caracteriza um ataque de 'credential stuffing'?",
+    "tema": "Senhas",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Esse ataque explora a reutilizacao de senhas: credenciais vazadas em um servico sao testadas em massa em outras plataformas.",
+    "alternativas": [
+      {
+        "texto": "Testar senhas vazadas de outros servicos em varias contas diferentes",
+        "correta": true
+      },
+      {
+        "texto": "Adivinhar senhas por tentativa aleatoria pura",
+        "correta": false
+      },
+      {
+        "texto": "Interceptar senhas durante a digitacao no teclado fisico",
+        "correta": false
+      },
+      {
+        "texto": "Quebrar fisicamente o dispositivo para acessar senhas salvas",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e um ataque de 'man-in-the-middle'?",
+    "tema": "Segurança em Redes Wi-Fi",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Nesse ataque, comum em redes Wi-Fi publicas nao criptografadas, o atacante se posiciona entre o usuario e o destino da conexao para espionar ou alterar os dados.",
+    "alternativas": [
+      {
+        "texto": "Um virus que se replica sozinho pela rede",
+        "correta": false
+      },
+      {
+        "texto": "Um invasor que intercepta a comunicacao entre duas partes sem que elas percebam",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de firewall corporativo",
+        "correta": false
+      },
+      {
+        "texto": "Um metodo de backup em nuvem",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e o principio do 'menor privilegio' em seguranca da informacao?",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Esse principio reduz o impacto de uma conta comprometida, ja que o acesso do invasor fica limitado ao que aquela conta podia acessar.",
+    "alternativas": [
+      {
+        "texto": "Dar acesso total a todos os funcionarios para agilizar o trabalho",
+        "correta": false
+      },
+      {
+        "texto": "Conceder a cada usuario/sistema apenas as permissoes minimas necessarias para sua funcao",
+        "correta": true
+      },
+      {
+        "texto": "Restringir o acesso apenas aos administradores de TI",
+        "correta": false
+      },
+      {
+        "texto": "Eliminar toda e qualquer senha de acesso",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e 'typosquatting'?",
+    "tema": "Phishing",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Exemplo: registrar um dominio parecido com o de um site popular, mas com uma letra trocada, esperando que o usuario digite errado o endereco.",
+    "alternativas": [
+      {
+        "texto": "Um erro comum de digitacao sem nenhuma intencao maliciosa",
+        "correta": false
+      },
+      {
+        "texto": "Registrar dominios com erros de digitacao proximos a sites populares para enganar usuarios",
+        "correta": true
+      },
+      {
+        "texto": "Uma tecnica de otimizacao de mecanismos de busca (SEO)",
+        "correta": false
+      },
+      {
+        "texto": "Um tipo de teclado virtual mais seguro",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Em um ataque de ransomware do tipo 'double extortion', o que acontece alem da criptografia dos arquivos?",
+    "tema": "Ransomware",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Na extorsao dupla, o criminoso rouba os dados antes de criptografa-los e ameaca vaza-los publicamente, aumentando a pressao para o pagamento.",
+    "alternativas": [
+      {
+        "texto": "O atacante tambem rouba os dados e ameaca publica-los caso o resgate nao seja pago",
+        "correta": true
+      },
+      {
+        "texto": "O ataque se limita a apagar arquivos sem copia-los",
+        "correta": false
+      },
+      {
+        "texto": "O atacante devolve o acesso automaticamente apos 24 horas",
+        "correta": false
+      },
+      {
+        "texto": "Nada alem da criptografia acontece nesse tipo de ataque",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e um 'honeypot' em seguranca da informacao?",
+    "tema": "Incidentes de Segurança",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Honeypots ajudam equipes de seguranca a observar tecnicas reais de ataque em um ambiente controlado, sem expor sistemas de producao.",
+    "alternativas": [
+      {
+        "texto": "Um tipo de malware que rouba senhas de mel virtual (games)",
+        "correta": false
+      },
+      {
+        "texto": "Um sistema propositalmente vulneravel usado para atrair e estudar atacantes",
+        "correta": true
+      },
+      {
+        "texto": "Um antivirus com interface simplificada",
+        "correta": false
+      },
+      {
+        "texto": "Uma politica de senha obrigatoria",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Por que chaves de seguranca fisicas (como um token U2F) sao consideradas mais resistentes a phishing do que codigos por SMS?",
+    "tema": "Autenticação Multifator",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Tokens fisicos verificam criptograficamente a origem da solicitacao de login, tornando dificil reutiliza-los em uma pagina de phishing, diferente de um codigo SMS que pode ser digitado em qualquer lugar.",
+    "alternativas": [
+      {
+        "texto": "Porque nunca podem ser perdidas fisicamente",
+        "correta": false
+      },
+      {
+        "texto": "Porque verificam a origem real do site antes de autenticar, dificultando o uso em um site falso",
+        "correta": true
+      },
+      {
+        "texto": "Porque sao mais baratas que qualquer outro metodo",
+        "correta": false
+      },
+      {
+        "texto": "Na pratica nao ha nenhuma diferenca de seguranca",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e 'segmentacao de rede' e por que e usada em seguranca corporativa?",
+    "tema": "Segurança Corporativa",
+    "nivel": 3,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Ao dividir a rede em segmentos isolados, um invasor que comprometa uma parte tem mais dificuldade de alcancar diretamente outras areas criticas.",
+    "alternativas": [
+      {
+        "texto": "Dividir a rede em partes isoladas para limitar o alcance de um invasor em caso de comprometimento",
+        "correta": true
+      },
+      {
+        "texto": "Aumentar a velocidade da internet corporativa",
+        "correta": false
+      },
+      {
+        "texto": "Um tipo de licenca de software antivirus",
+        "correta": false
+      },
+      {
+        "texto": "Reduzir o numero de funcionarios com acesso a internet",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que descreve melhor um ataque de 'zero-day'?",
+    "tema": "Malware",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Zero-day se refere ao fato de o fabricante ter 'zero dias' de aviso previo: a falha e explorada antes de existir uma correcao publica.",
+    "alternativas": [
+      {
+        "texto": "Um ataque que so funciona no primeiro dia apos a instalacao do sistema",
+        "correta": false
+      },
+      {
+        "texto": "A exploracao de uma vulnerabilidade ainda desconhecida pelo fabricante ou sem correcao disponivel",
+        "correta": true
+      },
+      {
+        "texto": "Um ataque de forca bruta que dura exatamente 24 horas",
+        "correta": false
+      },
+      {
+        "texto": "Um tipo de backup automatico diario",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e o principio de Kerckhoffs em criptografia?",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Esse principio classico defende que a seguranca deve residir na chave secreta, nao na obscuridade do algoritmo, que pode e deve ser publico e auditavel.",
+    "alternativas": [
+      {
+        "texto": "A seguranca de um sistema deve depender do segredo do algoritmo em si",
+        "correta": false
+      },
+      {
+        "texto": "Um sistema criptografico deve permanecer seguro mesmo que o algoritmo seja publico, desde que a chave permaneca secreta",
+        "correta": true
+      },
+      {
+        "texto": "Toda criptografia deve ser trocada a cada 24 horas",
+        "correta": false
+      },
+      {
+        "texto": "Algoritmos de criptografia nunca devem ser publicados",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que caracteriza um ataque de 'lateral movement' apos uma invasao inicial?",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Apos o acesso inicial, o atacante busca ampliar seu alcance dentro da rede interna, geralmente em busca de sistemas com privilegios mais altos.",
+    "alternativas": [
+      {
+        "texto": "O atacante imediatamente apaga todos os logs do sistema invadido",
+        "correta": false
+      },
+      {
+        "texto": "O atacante se desloca de um sistema comprometido para outros sistemas internos da rede",
+        "correta": true
+      },
+      {
+        "texto": "O atacante encerra o ataque assim que obtem o primeiro acesso",
+        "correta": false
+      },
+      {
+        "texto": "Um tipo de ataque que afeta apenas dispositivos moveis",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e 'defesa em profundidade' (defense in depth)?",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Esse conceito recomenda multiplas barreiras de seguranca sobrepostas, de forma que a falha isolada de uma camada nao resulte em comprometimento total.",
+    "alternativas": [
+      {
+        "texto": "Depender de uma unica camada de seguranca extremamente robusta",
+        "correta": false
+      },
+      {
+        "texto": "Usar multiplas camadas de seguranca independentes, para que a falha de uma nao comprometa todo o sistema",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de criptografia de disco completo",
+        "correta": false
+      },
+      {
+        "texto": "Um metodo de recuperacao de senha",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e 'living off the land' em tecnicas de ataque?",
+    "tema": "Malware",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Ao usar ferramentas nativas do sistema operacional (como PowerShell) em vez de malware customizado, o atacante reduz a chance de deteccao por assinaturas conhecidas.",
+    "alternativas": [
+      {
+        "texto": "Um ataque que depende exclusivamente de engenharia social presencial",
+        "correta": false
+      },
+      {
+        "texto": "O uso de ferramentas e binarios legitimos ja presentes no sistema para evitar deteccao por antivirus",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de malware que so afeta dispositivos rurais/IoT agricola",
+        "correta": false
+      },
+      {
+        "texto": "Uma tecnica de backup distribuido",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Em criptografia de curva eliptica (ECC), qual e a principal vantagem sobre o RSA tradicional?",
+    "tema": "Boas Práticas de Segurança da Informação",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "A ECC e mais eficiente computacionalmente, permitindo chaves bem menores com um nivel de seguranca comparavel ao RSA de chaves muito maiores.",
+    "alternativas": [
+      {
+        "texto": "A ECC nao exige nenhuma chave privada",
+        "correta": false
+      },
+      {
+        "texto": "A ECC oferece seguranca equivalente usando chaves significativamente menores",
+        "correta": true
+      },
+      {
+        "texto": "A ECC e sempre mais lenta em qualquer cenario",
+        "correta": false
+      },
+      {
+        "texto": "A ECC elimina a necessidade de qualquer autenticacao",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e um 'insider threat' (ameaca interna)?",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Ameacas internas podem ser intencionais ou acidentais, e sao particularmente dificeis de detectar porque a pessoa ja possui acesso autorizado.",
+    "alternativas": [
+      {
+        "texto": "Um ataque originado exclusivamente por hackers estrangeiros",
+        "correta": false
+      },
+      {
+        "texto": "Um risco de seguranca originado por alguem com acesso legitimo, como um funcionario ou ex-funcionario",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de firewall instalado dentro do datacenter",
+        "correta": false
+      },
+      {
+        "texto": "Um malware que so ataca servidores internos, nunca externos",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e o 'MITRE ATT&CK'?",
+    "tema": "Incidentes de Segurança",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "O ATT&CK e amplamente usado por equipes de seguranca para mapear o comportamento observado de atacantes e melhorar deteccao e resposta a incidentes.",
+    "alternativas": [
+      {
+        "texto": "Um antivirus corporativo pago",
+        "correta": false
+      },
+      {
+        "texto": "Um framework que cataloga taticas e tecnicas conhecidas usadas por atacantes durante uma intrusao",
+        "correta": true
+      },
+      {
+        "texto": "Uma lei de protecao de dados dos EUA",
+        "correta": false
+      },
+      {
+        "texto": "Um protocolo de criptografia de e-mail",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "O que e uma vulnerabilidade de 'SSRF' (Server-Side Request Forgery)?",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "SSRF pode ser usada para acessar recursos internos protegidos por firewall, metadados de servicos em nuvem, ou outros sistemas que nao deveriam ser expostos diretamente.",
+    "alternativas": [
+      {
+        "texto": "Uma falha que permite a um atacante fazer o servidor realizar requisicoes para destinos nao intencionados",
+        "correta": true
+      },
+      {
+        "texto": "Um tipo de ataque que so afeta clientes de e-mail",
+        "correta": false
+      },
+      {
+        "texto": "Uma forma de autenticacao de dois fatores",
+        "correta": false
+      },
+      {
+        "texto": "Um metodo de backup incremental de banco de dados",
+        "correta": false
+      }
+    ]
+  },
+  {
+    "texto": "Qual e a ideia central do modelo de seguranca 'Zero Trust'?",
+    "tema": "Segurança Corporativa",
+    "nivel": 4,
+    "tipo": "MULTIPLA_ESCOLHA",
+    "explicacao": "Diferente do modelo tradicional de perimetro, o Zero Trust assume que nenhum usuario ou dispositivo e confiavel por padrao, mesmo estando dentro da rede corporativa.",
+    "alternativas": [
+      {
+        "texto": "Confiar automaticamente em qualquer dispositivo dentro do perimetro da rede corporativa",
+        "correta": false
+      },
+      {
+        "texto": "Nao confiar automaticamente em nenhum usuario ou dispositivo, exigindo verificacao continua de identidade e contexto",
+        "correta": true
+      },
+      {
+        "texto": "Eliminar toda forma de autenticacao para agilizar o acesso",
+        "correta": false
+      },
+      {
+        "texto": "Aplicar seguranca apenas na borda externa da rede",
+        "correta": false
+      }
+    ]
+  }
+]
