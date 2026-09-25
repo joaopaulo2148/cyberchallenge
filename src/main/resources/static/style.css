@@ -55,7 +55,15 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+    -webkit-text-size-adjust: 100%;
+    /* overflow-x fica no html, nao no body: colocar overflow-x:hidden
+       diretamente no body faz o overflow-y computar como "auto" (regra
+       da spec CSS) e isso quebra position:sticky do header em varios
+       navegadores mobile (Safari iOS em especial). */
+    overflow-x: hidden;
+    width: 100%;
+}
 
 body {
     margin: 0;
@@ -66,7 +74,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -186,6 +195,10 @@ a { color: var(--accent); }
 
 .account-control .conta-nickname {
     color: var(--accent-hover);
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .account-control .btn-sair {
@@ -207,6 +220,18 @@ a { color: var(--accent); }
 }
 
 /* ---------------- Cartao / container base ---------------- */
+/* .screen precisa de largura explicita (definite width): sem isso, por
+   ser filho direto de um flex container sem stretch (main.page-content),
+   ela faz shrink-to-fit em cima do conteudo. Isso deixa o min-width:460px
+   da tabela do ranking "vazar" pra cima e forcar a pagina inteira a ficar
+   mais larga que a tela no mobile, mesmo a tabela tendo scroll proprio. */
+.screen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -412,12 +437,14 @@ a { color: var(--accent); }
 /* ---------------- Tela de partida ---------------- */
 .game-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-bottom: 1.5rem;
 }
+
+.game-header .timer { margin-left: auto; }
 
 .badge {
     display: inline-flex;
@@ -558,6 +585,8 @@ a { color: var(--accent); }
     gap: 0.5rem;
     justify-content: center;
     margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 100%;
 }
 
 .ranking-tab {
@@ -571,6 +600,14 @@ a { color: var(--accent); }
     font-size: 0.88rem;
     cursor: pointer;
     transition: all 0.15s ease;
+    /* trava o botao a nunca exigir mais espaco do que a linha tem,
+       evitando que "Intermediario"/"Especialista" estourem a largura
+       no mobile mesmo com flex-wrap habilitado */
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
 }
 
 .ranking-tab.ativo { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); }
@@ -684,6 +721,7 @@ a { color: var(--accent); }
     .brand-name { font-size: 0.92rem; }
     .header-right { gap: 0.5rem; }
     .account-control a, .account-control button { padding: 0.35rem 0.65rem; font-size: 0.78rem; }
+    .account-control .conta-nickname { max-width: 72px; }
     .theme-toggle { width: 36px; height: 36px; }
     main.page-content { padding: 1rem 0.6rem 3rem; }
     .card { padding: 1.6rem 1.1rem; width: 96%; }
